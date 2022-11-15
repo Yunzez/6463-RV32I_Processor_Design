@@ -21,6 +21,9 @@
 
 
 module ControlUnit(
-    input test
+    input reg clk, 
+    input reg rst, 
+    input reg [31:0] instruction, 
+    
     );
 endmodule
