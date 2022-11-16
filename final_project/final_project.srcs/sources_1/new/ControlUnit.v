@@ -25,31 +25,39 @@ module ControlUnit(
     input [6:0]opcode,
     input [2:0]funct3,
     
-    output  reg             Branch,
-    output  reg             MemRead,
-    output  reg             MemtoReg,
-    output  reg     [3:0]   MemWrite,
-    output  reg             ALUSrc,
-    output  reg     [1:0]   ALUOptions,
-    output  reg             RegWrite
+    output  reg Branch, // true for branch not equal BNE
+    output  reg PCUpdate, // set to true when we fetch next instruction, or when unconditional jump
+    output  reg RegWrite,
+    output  reg IRWrite,                 // write instruction register
+    output  reg MemRead, // enable memory read
+    output  reg MemWrite, // enable memory write
+    output  reg AdrSrc, // address input to the memory
+    output  reg ResultSrc, // which reseult to take to write back
+    output  reg [1:0] ALUSrcB,
+    output  reg [1:0] ALUSrcA,
+    output  reg [1:0] ALUOptions // 00: add. 01:sub. 1-: look at func3
     );
     
     reg [2:0]curr_state;
     reg [2:0]next_state;
     
-    parameter INITALIZE  = 3'b000;
-    parameter INSRUCTIONLOAD    = 3'b001;
+    parameter FETCH  = 3'b000;
+    parameter DECODE    = 3'b001;
     parameter EXECUTION    = 3'b010;
-    parameter STOREMEMORY    = 3'b011;
-    parameter HALT   = 3'b100;
+    parameter MEMREAD    = 3'b011;
+    parameter MEMWRITEBACK   = 3'b100;
    
-      reg             Branch_temp;
-      reg             MemRead_temp;
-      reg             MemtoReg_temp;
-      reg     [3:0]   MemWrite_temp;
-      reg             ALUSrc_temp;
-      reg     [1:0]   ALUOptions_temp;  
-      reg             RegWrite_temp;
+      reg Branch_temp; // true for branch not equal BNE
+      reg PCUpdate_temp; // set to true when we fetch next instruction, or when unconditional jump
+      reg RegWrite_temp;
+      reg IRWrite_temp ;                // write instruction register
+      reg MemRead_temp; // enable memory read
+      reg MemWrite_temp; // enable memory write
+      reg AdrSrc_temp ;// address input to the memory
+      reg ResultSrc_temp; // which reseult to take to write back
+      reg [1:0] ALUSrcB_temp;
+      reg [1:0] ALUSrcA_temp;
+      reg [1:0] ALUOptions_temp; // 00: add. 01:sub. 1-: look at func3
     
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n)
@@ -71,15 +79,23 @@ module ControlUnit(
     
     always @(*) begin
      case(state)
-        INITALIZE: begin
-                Branch_tmp      = 1'b0;
-                ALUSrc_temp       = 1'b0;
-                MemRead_tmp     = 1'b0;
-                MemWrite_tmp    = 4'b0000;
-                ALUOptions_temp   = 2'b00;
-                MemtoReg_temp    = 1'b0;       
-                RegWrite_tmp    = 1'b0;
+        FETCH: begin
+        // we set:
+                AdrSrc_temp = 1'b0;// get the address
+                IRWrite_temp = 1'b1; // read the AdrSrc 
+                ALUSrcA_temp  = 2'b00; // tell ALU srcA to choose program counter 
+                ALUSrcB_temp = 2'b00; // tell ALU srcB to do nothing
+                ResultSrc_temp = 2'b10; // choose the result of the pc+4
+                ALUOptions_temp = 2'b00; // indicate adds
+                PCUpdate_temp = 1'b1; // increment PC counter so it loads the next instruction as we read the first one
         end
+        
+        DECODE : begin
+            // wait to read out value of rs1 
+            // wait to get immediate
+        end
+        
+        
         
         INSRUCTIONLOAD: begin 
             case(opcode)
@@ -143,14 +159,18 @@ module ControlUnit(
                     RegWrite_tmp    = 1'b0;
                 end
                 
-                7'b0000011: begin //LB
-                    Branch_tmp      = 1'b0;
-                    ALUSrc_temp       = 1'b0;
-                    MemRead_tmp     = 1'b0;
-                    MemWrite_tmp    = 4'b0000;
-                    ALUOptions_temp   = 2'b00;
-                    MemtoReg_temp    = 1'b0;       
-                    RegWrite_tmp    = 1'b0;
+                7'b0000011: begin //LB: load, calculate address
+                    Branch_temp; // true for branch not equal BNE
+                    PCUpdate_temp; // set to true when we fetch next instruction, or when unconditional jump
+                    RegWrite_temp;
+                    IRWrite_temp ;                // write instruction register
+                    MemRead_temp; // enable memory read
+                    MemWrite_temp; // enable memory write
+                    AdrSrc_temp ;// address input to the memory
+                    ResultSrc_temp; // which reseult to take to write back
+                    ALUSrcB_temp = 2'b01;
+                    ALUSrcA_temp = 2'b10;
+                    ALUOptions_temp = 2'b00; // 00: add.
                 end 
                 
                 7'b0100011: begin // SB
@@ -204,8 +224,47 @@ module ControlUnit(
                  end
            endcase
         end
+        
+        MEMREAD: begin
+            ResultSrc_temp  = 2'b00; // we choose to load in data we just calculated in ALU reg
+            AdrSrc_temp = 1;
+        end
+        
+        MEMWRITEBACK: begin 
+            ResultSrc_temp  = 2'b01; // choose the data as the data we wanna right in
+            RegWrite_temp = 1; // tell register file we are writing in 
+        end
     endcase
    end
+   
+   
+   //FSM
+always @(*) begin
+    case(state)
+        FETCH:
+            if(!rst_n)
+                next_state = FETCH;
+            else
+                next_state = DECODE;
+        DECODE:
+            if(!rst_n)
+                next_state = FETCH;
+            else
+                next_state = EXECUTION;
+        EXECUTION:
+            if(!rst_n)
+                next_state = FETCH;
+            else
+                next_state = MEMREAD;
+        MEMREAD:
+            if(!rst_n)
+                next_state = FETCH;
+            else
+                next_state = MEMWRITEBACK;
+        default:
+            next_state = FETCH;
+    endcase
+end
             
     
 endmodule
