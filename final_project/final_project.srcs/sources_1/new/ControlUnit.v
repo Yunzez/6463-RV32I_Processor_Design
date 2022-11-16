@@ -43,13 +43,13 @@ module ControlUnit(
     parameter STOREMEMORY    = 3'b011;
     parameter HALT   = 3'b100;
    
-      reg             Branch;
-      reg             MemRead;
-      reg             MemtoReg;
-      reg     [3:0]   MemWrite;
-      reg             ALUSrc;
-      reg     [1:0]   ALUOptions;
-      reg             RegWrite;
+      reg             Branch_temp;
+      reg             MemRead_temp;
+      reg             MemtoReg_temp;
+      reg     [3:0]   MemWrite_temp;
+      reg             ALUSrc_temp;
+      reg     [1:0]   ALUOptions_temp;  
+      reg             RegWrite_temp;
     
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n)
@@ -68,45 +68,144 @@ module ControlUnit(
     // 0100011 //Store
     // 0010011 I_TYPE
     // 0110011 //Lui
+    
     always @(*) begin
-        case(opcode)
-            7'b0110111: begin 
-            
-            end
-            
-            7'b0010111: begin
-            
-            end
-            
-            7'b1101111: begin 
-            
-            end
-            7'b1100111: begin 
-            
-            end
-            
-            7'b1100011: begin 
-            end
-            7'b0000011: begin 
-            end 
-            
-            7'b0100011: begin
-             end
-            
-            7'b0010011: begin 
-             end
-            
-            7'b0110011: begin
-             end
-            
-            7'b0001111: begin 
-             end
-            
-            7'b1110011: begin
-             end
-            
-
-            
+     case(state)
+        INITALIZE: begin
+                Branch_tmp      = 1'b0;
+                ALUSrc_temp       = 1'b0;
+                MemRead_tmp     = 1'b0;
+                MemWrite_tmp    = 4'b0000;
+                ALUOptions_temp   = 2'b00;
+                MemtoReg_temp    = 1'b0;       
+                RegWrite_tmp    = 1'b0;
+        end
+        
+        INSRUCTIONLOAD: begin 
+            case(opcode)
+                7'b0110111: begin //LUI
+    //            Loads the immediate value into the upper
+    //            20 bits of the target register rd and sets
+    //            the lower bits to 0
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+    
+                end
+                
+                7'b0010111: begin // AUIPC
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                end
+                
+                7'b1101111: begin // JAL
+//                Jump to PC=PC+(sign-extended
+//                immediate value) and store the current PC
+                    Branch_tmp      = 1'b1;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                end
+                
+                7'b1100111: begin //JALR
+//                Jump to PC=rs1 register value
+//                +(sign-extended immediate value) and
+//                store the current PC address+4 in register
+//                rd
+                    Branch_tmp      = 1'b1;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                end
+                
+                7'b1100011: begin //BEQ...
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                end
+                
+                7'b0000011: begin //LB
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                end 
+                
+                7'b0100011: begin // SB
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                 end
+                
+                7'b0010011: begin //ADDI 
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                 end
+                
+                7'b0110011: begin //ADD
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                 end
+                
+                7'b0001111: begin //FENCE 
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                 end
+                
+                7'b1110011: begin //ECALL
+                    Branch_tmp      = 1'b0;
+                    ALUSrc_temp       = 1'b0;
+                    MemRead_tmp     = 1'b0;
+                    MemWrite_tmp    = 4'b0000;
+                    ALUOptions_temp   = 2'b00;
+                    MemtoReg_temp    = 1'b0;       
+                    RegWrite_tmp    = 1'b0;
+                 end
+           endcase
+        end
+    endcase
+   end
             
     
 endmodule
