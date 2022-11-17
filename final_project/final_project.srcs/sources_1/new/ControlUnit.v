@@ -69,8 +69,8 @@ module ControlUnit(
                 DataMem_rd_temp = 1'b0; 
                 Data_op_temp = 2'b00; 
                 Data_s_temp = 1'b0;
-                Data_we_temp = 4'b0000
-                Bc_Op = 1'b0
+                Data_we_temp = 4'b0000;
+                Bc_Op = 1'b0;
                
         end
         
@@ -93,8 +93,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0; // 
-                    Data_we_temp = 4'b0000 
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b0000; 
+                    Bc_Op = 1'b0;
                 end
 
                 7'b0000011: begin // I-type load and store in rd
@@ -115,8 +115,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b0000;
+                    Bc_Op = 1'b0;
                 end
 
                  7'b0100011: begin // S-type store 
@@ -137,8 +137,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // store to data
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000 // TODO: check value  
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b0000; // TODO: check value  
+                    Bc_Op = 1'b0;
                 end
                 
 
@@ -160,8 +160,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000 // TODO: check value 
-                    Bc_Op = 1'b1 // there will be branch
+                    Data_we_temp = 4'b0000; // TODO: check value 
+                    Bc_Op = 1'b1; // there will be branch
                 end
 
 
@@ -181,8 +181,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000  
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b0000;  
+                    Bc_Op = 1'b0;
                 end
 
                 7'b1101111: begin // J-type jump and link 
@@ -203,8 +203,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000 // need to double check 
-                    Bc_Op = 1'b0 
+                    Data_we_temp = 4'b0000; // need to double check 
+                    Bc_Op = 1'b0;
                 end
             endcase
         end
@@ -230,8 +230,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // take ALU result
-                    Data_we_temp = 4'b0000 
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b0000; 
+                    Bc_Op = 1'b0;
                 end
 
                7'b0000011: begin // I-type load and store in rd
@@ -252,8 +252,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // take ALU result
-                    Data_we_temp = 4'b0000
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b0000;
+                    Bc_Op = 1'b0;
                 end
 
 
@@ -275,8 +275,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b1; // store to data
                     Data_op_temp = 2'b00; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b1111 // TODO: check value  may depend on funct3
-                    Bc_Op = 1'b0
+                    Data_we_temp = 4'b1111; // TODO: check value  may depend on funct3
+                    Bc_Op = 1'b0;
                 end
 
                  7'b1100011: begin // B-type Store ... of rs2 to memory
@@ -297,8 +297,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // select ALU cal
-                    Data_we_temp = 4'b0000 // TODO: check value 
-                    Bc_Op = 1'b1 // use branch control
+                    Data_we_temp = 4'b0000; // TODO: check value 
+                    Bc_Op = 1'b1; // use branch control
                 end
 
 
@@ -341,8 +341,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0; //select ALU
-                    Data_we_temp = 4'b0000 // need to double check 
-                    Bc_Op = 1'b0 
+                    Data_we_temp = 4'b0000; // need to double check 
+                    Bc_Op = 1'b0;
                 end
             
             endcase
