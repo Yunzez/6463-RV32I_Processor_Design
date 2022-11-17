@@ -24,6 +24,7 @@ module ControlUnit(
     input clk, rst,
     input [6:0]opcode,
     input [2:0]funct3,
+    input bc, // branch info
      
     output PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, ALU_op, DataMem_rd, Data_op, data_s, Branch,
     output [3:0]Data_we,
@@ -39,7 +40,7 @@ module ControlUnit(
     parameter JUMPEXTRA    = 3'b011;
     parameter JUMPEXTRA2   = 3'b100;
    
-   reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, data_s_temp, Branch_temp; 
+   reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, data_s_temp, Bc_Op; 
    reg [3:0]Data_we_temp;      
    reg [1:0]ALU_op_temp;                                        
     
@@ -50,16 +51,6 @@ module ControlUnit(
             state   <= next_state;
     end
     
-    // cases we have for op module 
-    // 0110111 // R-type
-    // 0010111 //Auipc//
-    // 1101111 //Jal
-    // 1100111 //Jalr
-    // 1100011 //Branch
-    // 0000011 //Load
-    // 0100011 //Store
-    // 0010011 I_TYPE
-    // 0110011 //Lui
     
     always @(posedge clk) begin
      case(state)
@@ -78,8 +69,8 @@ module ControlUnit(
                 DataMem_rd_temp = 1'b0; 
                 Data_op_temp = 2'b00; 
                 Data_s_temp = 1'b0;
-                Data_we_temp = 4'b0000;
-                Branch_temp = 1'b0;
+                Data_we_temp = 4'b0000
+                Bc_Op = 1'b0
                
         end
         
@@ -102,8 +93,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0; // 
-                    Data_we_temp = 4'b0000 ;
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000 
+                    Bc_Op = 1'b0
                 end
 
                 7'b0000011: begin // I-type load and store in rd
@@ -124,8 +115,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000;
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000
+                    Bc_Op = 1'b0
                 end
 
                  7'b0100011: begin // S-type store 
@@ -146,9 +137,10 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // store to data
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000; // TODO: check value  
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000 // TODO: check value  
+                    Bc_Op = 1'b0
                 end
+                
 
                 7'b1100011: begin // B-type Store ... of rs2 to memory
                 // e.g. PC=(rs1==rs2) ? PC+sign_ext(imm) : PC+4
@@ -168,8 +160,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000; // TODO: check value 
-                    Branch_temp = 1'b1; // there will be branch
+                    Data_we_temp = 4'b0000 // TODO: check value 
+                    Bc_Op = 1'b1 // there will be branch
                 end
 
 
@@ -189,16 +181,16 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000 ; 
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000  
+                    Bc_Op = 1'b0
                 end
 
-                7'b0110111: begin // J-type jump and link 
-
+                7'b1101111: begin // J-type jump and link 
+                    
                 //rd=PC+4; PC=PC+sign_ext(imm)
                     // we do rd=PC+4 this step
-                    PC_s_temp = 1'b0; // choose alu value
-                    PC_we_temp = 1'b1; // write alu value to pc
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; // take pc + 4 
 
@@ -211,8 +203,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000; // need to double check 
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000 // need to double check 
+                    Bc_Op = 1'b0 
                 end
             endcase
         end
@@ -238,8 +230,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // take ALU result
-                    Data_we_temp = 4'b0000; 
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000 
+                    Bc_Op = 1'b0
                 end
 
                7'b0000011: begin // I-type load and store in rd
@@ -260,8 +252,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // take ALU result
-                    Data_we_temp = 4'b0000;
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b0000
+                    Bc_Op = 1'b0
                 end
 
 
@@ -283,14 +275,14 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b1; // store to data
                     Data_op_temp = 2'b00; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b1111; // TODO: check value  may depend on funct3
-                    Branch_temp = 1'b0;
+                    Data_we_temp = 4'b1111 // TODO: check value  may depend on funct3
+                    Bc_Op = 1'b0
                 end
 
                  7'b1100011: begin // B-type Store ... of rs2 to memory
                 // e.g. PC=(rs1==rs2) ? PC+sign_ext(imm) : PC+4
 
-                    PC_s_temp = 1'b0; // take pc value from ALU
+                    PC_s_temp = bc; // choose what to take base on bc
                     PC_we_temp = 1'b1; // write pc 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
@@ -305,8 +297,8 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // select ALU cal
-                    Data_we_temp = 4'b0000; // TODO: check value 
-                    Branch_temp = 1'b1; // there will be branch
+                    Data_we_temp = 4'b0000 // TODO: check value 
+                    Bc_Op = 1'b1 // use branch control
                 end
 
 
@@ -327,64 +319,11 @@ module ControlUnit(
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // choose alu
                     Data_we_temp = 4'b0000;
-                    Branch_temp = 1'b0;
+                    Bc_Op = 1'b0
                 end
 
 
-                7'b0110111: begin // J-type jump and link 
-
-                //rd=PC+4; PC=PC+sign_ext(imm)
-                    // we do rd=PC+4 this step
-                    PC_s_temp = 1'b0; // choose alu value
-                    PC_we_temp = 1'b1; // write alu value to pc
-                    Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; // take pc + 4 
-
-                    RegFile_we_temp = 1'b1; // write pc + 4
-                    Imm_op_temp = 1'b0;
-                    ALU_s1_temp = 1'b0;
-                    ALU_s2_temp = 1'b0;
-                    ALU_op_temp = 2'b00;
-
-                    DataMem_rd_temp = 1'b0; 
-                    Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b1; //select ALU
-                    Data_we_temp = 4'b0000; // need to double check 
-                    Branch_temp = 1'b0 ;
-                end
-            
-            endcase
-        end
-
-        JUMPEXTRA: begin
-            case(opcode)
-                7'b0110111: begin // J-type jump and link 
-
-                //rd=PC+4; PC=PC+sign_ext(imm)
-                    // we do PC=PC+sign_ext(imm) this step
-                    PC_s_temp = 1'b0; // choose alu value
-                    PC_we_temp = 1'b0; // write alu value to pc
-                    Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b0; // take pc + 4 
-
-                    RegFile_we_temp = 1'b0; // write pc + 4
-                    Imm_op_temp = 1'b0;
-                    ALU_s1_temp = 1'b1; // take pc
-                    ALU_s2_temp = 1'b0; //take imm
-                    ALU_op_temp = 2'b10; // add
-
-                    DataMem_rd_temp = 1'b0; 
-                    Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b0; 
-                    Data_we_temp = 4'b0000; // need to double check 
-                    Branch_temp = 1'b0 ;
-                end
-            endcase
-        end
-
-        JUMPEXTRA2: begin
-            case(opcode)
-                7'b0110111: begin // J-type jump and link 
+                7'b1101111: begin // J-type jump and link 
 
                 //rd=PC+4; PC=PC+sign_ext(imm)
                     // we do PC=PC+sign_ext(imm) this step
@@ -393,18 +332,19 @@ module ControlUnit(
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
-                    RegFile_we_temp = 1'b1; // enable write
+                    RegFile_we_temp = 1'b1; // write  PC=PC+sign_ext
                     Imm_op_temp = 1'b0;
                     ALU_s1_temp = 1'b0;
-                    ALU_s2_temp = 1'b0; 
-                    ALU_op_temp = 2'b00; 
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00;
 
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b0; 
-                    Data_we_temp = 4'b0000; // need to double check 
-                    Branch_temp = 1'b0 ;
+                    Data_s_temp = 1'b0; //select ALU
+                    Data_we_temp = 4'b0000 // need to double check 
+                    Bc_Op = 1'b0 
                 end
+            
             endcase
         end
     endcase
@@ -429,16 +369,6 @@ always @(*) begin
                 next_state = FETCH;
             else
                 next_state = MEMREAD;
-        MEMREAD:
-            if(!rst_n)
-                next_state = FETCH;
-            else
-                next_state = JUMPEXTRA;
-        JUMPEXTRA:
-            if(!rst_n)
-                next_state = FETCH;
-            else
-                next_state = JUMPEXTRA2;
         default:
             next_state = FETCH;
     endcase
