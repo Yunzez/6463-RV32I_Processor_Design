@@ -49,10 +49,31 @@ The testbench of the Control unit go through all the opcode of all R, I, S, B, U
 
 ---
 4. Register File
+
 ---
-5. Data Memory
+5. Instruction Memory 
+- Variables:
+takes in read_instr, addr_in, addr_in2, read_enable
+returns instr_out, instr_out2
+
+- Des:
+The instruction memory is a ROM which means the memory file cannot be load or delete. The instruction memory can store up to 512 32-bits instructions. These instruction read from memory.
+
+- Testbench:
+The test file instruction.mem contain memory data for test. You might need to readded it manually to test it.
+
 ---
-6. Instruction Memory 
+6. Data Memory
+- Variables:
+takes in w_mode, r_mode, addr_in, din
+returns dout
+
+- Des:
+The functions of data memory include stroing, reading and resetting operations. User could switch read mode to read data or write mode to write data in memory file. This data memory program supports all byte-addressing operations.
+
+- Testbench:
+The testbench testing the memory program by storing data into different place by using various addresses, then read the data and check if read data match with expected value. 
+
 ---
 7. Branch Control Unit
 ---
