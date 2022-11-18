@@ -23,37 +23,38 @@
 module file_register_test(
 
     );
-    reg clk;
-    reg rst;
-    reg en;
+    reg clk_t;
+    reg rst_t;
+    reg en_t;
     
-    reg [4:0] readS1;
-    reg [4:0] readS2;
-    reg [4:0] readRd;
-    reg [31:0] data_in;
-    wire [31:0] rs1;
-    wire [31:0] rs2;
+    reg [4:0] readS1_t;
+    reg [4:0] readS2_t;
+    reg [4:0] readRd_t;
+    reg [31:0] data_in_t;
+    wire [31:0] rs1_t;
+    wire [31:0] rs2_t;
     
-    reg  file_arg1, file_arg2;
-    reg [4:0] file_arg3;
-    reg [4:0] file_arg4;
-    reg [4:0] file_arg5;
-    reg [31:0] file_arg6;
-    reg [31:0] file_arg7;
-    reg [31:0] file_arg8;
+    reg  rst_load, en_load;
+    reg [4:0] readS1_load;
+    reg [4:0] readS2_load;
+    reg [4:0] readRd_load;
+    reg [31:0] data_in_load;
+    reg [31:0] rs1_load;
+    reg [31:0] rs2_load;
     
     
     integer fp;
+
     RegisterFile dut(
-    .clk(clk),
-    .rst(rst),
-    .en(en),
-    .readS1(readS1),
-    .readS2(readS2),
-    .readRd(readRd),
-    .data_in(data_in),
-    .rs1(rs1),
-    .rs2(rs2)
+    .clk(clk_t),
+    .rst(rst_t),
+    .en(en_t),
+    .readS1(readS1_t),
+    .readS2(readS2_t),
+    .readRd(readRd_t),
+    .data_in(data_in_t),
+    .rs1(rs1_t),
+    .rs2(rs2_t)
     
     );
     initial begin
@@ -67,30 +68,31 @@ module file_register_test(
         while( !$feof(fp)) begin 
             #1;
             
-            clk = 0;
-            $fscanf(fp, "%b %b %b %b %b %b %b %b", file_arg1, file_arg2, file_arg3, file_arg4, file_arg5, file_arg6, file_arg7, file_arg8);
+            clk_t = 0;
+            $fscanf(fp, "%b %b %b %b %b %b %b %b", rst_load, en_load, readS1_load, readS2_load, readRd_load, data_in_load, rs1_load, rs2_load);
             
             
-            rst = file_arg1;
-            en = file_arg2;
-            readS1 = file_arg3;
-            readS2 = file_arg4;
-            readRd = file_arg5;
-            data_in = file_arg6;
+            rst_t = rst_load;
+            en_t = en_load;
+            readS1_t = readS1_load;
+            readS2_t = readS2_load;
+            readRd_t = readRd_load;
+            data_in_t = data_in_load;
             
             
             
             
             #1;
-            clk = 1;
+            clk_t = 1;
+            $display("----------------------");
             $display("expected output-------");
-            $display(file_arg7, file_arg8);
+            $display(readS1_load, readS2_load);
            $display("actual output-----");
-            $display(rs1, rs2);
+            $display(readS1_t, readS2_t);
             
             
 
-            if(rs1 != file_arg7 || rs2 != file_arg8) begin
+            if(readS1_t != readS1_load ||  readS2_t != readS2_load) begin
                 $display("test failed");
                 $fclose(fp);
                 $stop;
