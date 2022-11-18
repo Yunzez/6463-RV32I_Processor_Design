@@ -1,0 +1,6 @@
+opcode_load,bc_load,PC_s_load,PC_we_load,Instr_rd_load,RegFile_s_load,RegFile_we_load,Imm_op_load,ALU_s1_load,ALU_s2_load,ALU_op_load,DataMem_rd_load,Data_op_load,data_s_load, Branch_load, Data_we_load,ALU_op_load,opcode_load
+0000000,0,1,1,1,0,0
+0010011,0
+0010011,0
+
+

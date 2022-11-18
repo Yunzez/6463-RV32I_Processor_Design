@@ -26,8 +26,8 @@ module ControlUnit(
 //    input [2:0]funct3,
     input bc, // branch info
      
-    output  PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, data_s, Bc_Op_temp, Data_we,
-    output [1:0]ALU_op
+    output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op, Data_we,
+    output reg [1:0]ALU_op
     );
     
     reg [2:0]curr_state;
@@ -38,19 +38,19 @@ module ControlUnit(
     parameter MEMWRITE    = 3'b010;
    
    
-   reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, data_s_temp, Bc_Op_temp_temp, Data_we_temp; 
+   reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
    reg [1:0]ALU_op_temp;                                        
     
     always @(posedge clk or negedge rst) begin
         if(!rst)
-            state   <= FETCH;
+            curr_state   <= FETCH;
         else
-            state   <= next_state;
+            curr_state   <= next_state;
     end
     
     
     always @(posedge clk) begin
-     case(state)
+     case(curr_state)
         FETCH: begin
         // we set:
                 PC_s_temp = 1'b1; // we set when pc s is 1; program counter plus 4
@@ -84,7 +84,7 @@ module ControlUnit(
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; // let both s1 s2 take in rs data
                     ALU_s2_temp = 1'b1; 
-                    ALU_op_temp = 1'b10; // enable alu R-type
+                    ALU_op_temp = 2'b10; // enable alu R-type
 
                     // we do store in next stage
                     DataMem_rd_temp = 1'b0; 
@@ -338,7 +338,7 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0; //select ALU
-                    Data_we_temp = 4'b0; // need to double check 
+                    Data_we_temp = 1'b0; // need to double check 
                     Bc_Op_temp = 1'b0;
                 end
             
@@ -350,36 +350,42 @@ module ControlUnit(
 //   PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, data_s_temp, Bc_Op_temp;
    always @(posedge clk or negedge rst) begin
     if(!rst) begin
-        PC_s      <= 1'b0;
-        PC_we        <= 1'b0;
-        Instr_rd       <= 1'b0;
-        RegFile_s     <= 1'b0;
-        RegFile_we      <= 1'b0;
-        ALU_s1    <= 1'b0;
-        ALU_s2      <= 2'b00;
-        DataMem_rd    <= 1'b0;
-        Data_op    <= 1'b0;
-        Data_s       <= 1'b0; 
-        Bc_Op_temp        <= 1'b0; 
+        PC_s   = 1'b0;
+        PC_we     = 1'b0;
+        Instr_rd    = 1'b0;
+        RegFile_s     = 1'b0;
+        RegFile_we      = 1'b0;
+        Imm_op = 1'b0;
+        ALU_s1    = 1'b0;
+        ALU_s2      = 2'b00;
+        ALU_op_temp = 2'b00;
+        DataMem_rd    = 1'b0;
+        Data_op    = 1'b0;
+        Data_s       = 1'b0; 
+        Data_we  = 1'b0; 
+        Bc_Op        = 1'b0; 
     end
     else begin
-        PC_s         <= PC_s_temp;
-        PC_we        <= PC_we_temp;
-        Instr_rd     <= Instr_rd_temp;
-        RegFile_s    <= RegFile_s_temp;
-        RegFile_we   <= RegFile_we_temp;
-        ALU_s1       <= ALU_s1_temp;
-        ALU_s2       <= ALU_s2_temp;
-        DataMem_rd   <= DataMem_rd_temp;
-        Data_op      <= Data_op_temp;
-        Data_s       <= Data_s_temp;
-        Bc_Op_temp        <= Bc_Op_temp_temp;
+        PC_s         = PC_s_temp;
+        PC_we        = PC_we_temp;
+        Instr_rd     = Instr_rd_temp;
+        RegFile_s    = RegFile_s_temp;
+        RegFile_we   = RegFile_we_temp;
+        Imm_op       = Imm_op_temp;
+        ALU_s1       = ALU_s1_temp;
+        ALU_s2       = ALU_s2_temp;
+        ALU_op       = ALU_op_temp;
+        DataMem_rd   = DataMem_rd_temp;
+        Data_op      = Data_op_temp;
+        Data_s       = Data_s_temp;
+        Data_we      = Data_we_temp; 
+        Bc_Op        = Bc_Op_temp;
     end
 end
    
    //FSM
 always @(*) begin
-    case(state)
+    case(curr_state)
         FETCH:
             if(!rst)
                 next_state = FETCH;
@@ -390,11 +396,6 @@ always @(*) begin
                 next_state = FETCH;
             else
                 next_state = MEMWRITE;
-        MEMWRITE:
-            if(!rst)
-                next_state = FETCH;
-            else
-                next_state = MEMREAD;
         default:
             next_state = FETCH;
     endcase
