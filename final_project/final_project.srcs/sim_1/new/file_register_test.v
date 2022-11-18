@@ -68,7 +68,7 @@ module file_register_test(
             #1;
             
             clk = 0;
-            $fscanf(fp, "%b %b %b%b%b%b%b %b%b%b%b%b %b%b%b%b%b %b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b %b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b %b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b\n", file_arg1, file_arg2, file_arg3, file_arg4, file_arg5, file_arg6, file_arg7, file_arg8);
+            $fscanf(fp, "%b %b %b %b %b %b %b %b", file_arg1, file_arg2, file_arg3, file_arg4, file_arg5, file_arg6, file_arg7, file_arg8);
             
             
             rst = file_arg1;
@@ -83,13 +83,14 @@ module file_register_test(
             
             #1;
             clk = 1;
-            $display(file_arg7);
-            $display(file_arg8);
-            $display(rs1);
-            $display(rs2);
+            $display("expected output-------");
+            $display(file_arg7, file_arg8);
+           $display("actual output-----");
+            $display(rs1, rs2);
+            
             
 
-            if(rs1 != file_arg7 && rs2 != file_arg8) begin
+            if(rs1 != file_arg7 || rs2 != file_arg8) begin
                 $display("test failed");
                 $fclose(fp);
                 $stop;
