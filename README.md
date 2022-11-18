@@ -84,5 +84,4 @@ The functions of data memory include stroing, reading and resetting operations. 
 The testbench testing the memory program by storing data into different place by using various addresses, then read the data and check if read data match with expected value. 
 
 ---
-7. Branch Control Unit
----
+
