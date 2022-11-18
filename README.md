@@ -11,8 +11,28 @@ instruction set.
 ---
 ***module***
 1. ALU 
+- Variables:
+takes in alu_ctrl, operand1, operand2
+returns alu_out
+
+- Des:
+ALU implements the four categories calculation according to the ALU control obtained from ALU control including addition, substraction, AND and OR.
+
+- Testbench:
+The testbench of the ALU go through all the basic calculation. The outputs are as expected currently, but more cases need to be validated in the future.
+
 ---
 2. ALU Control 
+- Variables:
+takes in clk, rst, ALUop, funct3, funct7
+returns alu_ctrl
+
+- Des:
+ALU Control implements the calculation instruction recognition according to the input instruction, which includes add, sub, and, or calculation.
+
+- Testbench:
+The testbench of the ALU go through all the instruction combination basically. The outputs are as expected currently, but more cases need to be validated in the future.
+
 ---
 3. Control Unit 
 - Variables: 
