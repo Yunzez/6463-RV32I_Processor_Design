@@ -1,10 +1,10 @@
 # NYU-6463-RV32I_Processor_Design
 
 ---
-By
-**Fred Zhao, netId: yz8751**
-**Rongze LI, netId: rl4670**
-**Junqing Zhao, netId: jz5954***
+
+- Fred Zhao, netId: yz8751
+- Rongze LI, netId: rl4670
+- Junqing Zhao, netId: jz5954
 ---
 The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I
 instruction set. 
@@ -49,6 +49,15 @@ The testbench of the Control unit go through all the opcode of all R, I, S, B, U
 
 ---
 4. Register File
+- Variables: 
+takes in reset, enable, readS1, readS2, readRd, data_in
+returns r1_data, r2_data
+
+- Des: 
+The register file is the component that contains all the general purpose registers, it can store and read data depends on instrcution and the address provided. 
+
+- Testbench: 
+The testbench of the register file test if the register file can store the data provided to the address provided, with correct output data. And makes sure it can handle enable and reset signal correctly. 
 
 ---
 5. Instruction Memory 
