@@ -2,9 +2,9 @@
 
 ---
 
-- Fred Zhao, netId: yz8751
-- Rongze LI, netId: rl4670
-- Junqing Zhao, netId: jz5954
+- Fred Zhao, netId: yz8751. Components: Control Unit, Mux, PC 
+- Rongze LI, netId: rl4670. Components: ALU, ALU control, 
+- Junqing Zhao, netId: jz5954.  Components: Instr Mem, Data Mem, 
 ---
 The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I
 instruction set. 
@@ -84,4 +84,5 @@ The functions of data memory include stroing, reading and resetting operations. 
 The testbench testing the memory program by storing data into different place by using various addresses, then read the data and check if read data match with expected value. 
 
 ---
+7. Other small components: PC, MUX will not be tested for milestone 1. 
 
