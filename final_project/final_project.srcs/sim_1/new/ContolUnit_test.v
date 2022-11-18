@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2022/11/16 20:19:30
+// Create Date: 11/18/2022 12:24:53 PM
 // Design Name: 
-// Module Name: file_register_test
+// Module Name: Data_mem
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,87 +20,72 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module file_register_test(
-
+module data_mem(
+    input wire          clk,
+    input wire [31:0]   addr,
+    input wire [3:0]    we,             //we will assume 0001--SB, 0011--SH, 1111--SW, 0000--write disable
+    input wire          read,
+    input wire [31:0]   data_in,
+    output wire [31:0]   data_out
     );
-    reg clk_t;
-    reg rst_t;
-    reg en_t;
     
-    reg [4:0] readS1_t;
-    reg [4:0] readS2_t;
-    reg [4:0] readRd_t;
-    reg [31:0] data_in_t;
-    wire [31:0] rs1_t;
-    wire [31:0] rs2_t;
-    
-    reg  rst_load, en_load;
-    reg [4:0] readS1_load;
-    reg [4:0] readS2_load;
-    reg [4:0] readRd_load;
-    reg [31:0] data_in_load;
-    reg [31:0] rs1_load;
-    reg [31:0] rs2_load;
-    
-    
-    integer fp;
+    //declaraction
+    parameter   depth = 1024;
+    reg     [31:0]  dmem [depth-1:0];
+    reg     [31:0]  rom  [0:7];
+    wire    [9:0]   dmem_addr;
+    wire    [31:0]  data_out_tmp;
+    wire            w_en;
+    wire    [7:0]   data_in_0;
+    wire    [7:0]   data_in_1;
+    wire    [7:0]   data_in_2;
+    wire    [7:0]   data_in_3;
+    wire    [31:0]  dmem_tmp;
+    reg     [31:0]  data_out;
 
-    RegisterFile dut(
-    .clk(clk_t),
-    .rst(rst_t),
-    .en(en_t),
-    .readS1(readS1_t),
-    .readS2(readS2_t),
-    .readRd(readRd_t),
-    .data_in(data_in_t),
-    .rs1(rs1_t),
-    .rs2(rs2_t)
-    
-    );
+
+    //initialize data memory and rom    
     initial begin
-        fp = $fopen("rf_tb.csv", "r");
-        if(fp == 0) begin 
-            $display("Failed to open target file.");
-            $stop;
-        end
-        
-        
-        while( !$feof(fp)) begin 
-            #1;
-            
-            clk = 0;
-            $fscanf(fp, "%b %b %b %b %b %b %b %b", rst_load, en_load, readS1_load, readS2_load, readRd_load, data_in_load, rs1_load, rs2_load);
-            
-            
-            rst_t = rst_load;
-            en_t = en_load;
-            readS1_t = readS1_load;
-            readS2_t = readS2_load;
-            readRd_t = readRd_load;
-            data_in_t = data_in_load;
-            
-            
-            
-            
-            #1;
-            clk = 1;
-            $display("----------------------");
-            $display("expected output-------");
-            $display(rs2, file_arg8);
-           $display("actual output-----");
-            $display(rs1, rs2);
-            
-            
-
-            if(rs1 != rs2 || rs2 != file_arg8) begin
-                $display("test failed");
-                $fclose(fp);
-                $stop;
-            end
-        end
-        $display("Test finished successfully");
-        $fclose(fp);
+        $readmemh("dmem_zeros.txt",dmem);
     end
 
+    (*rom_style = "block" *) reg [32:0] rom_data;
+    always @(posedge clk) begin
+        if(read)
+            case(addr[3:2])
+                2'b00: rom_data <=32'd11311762;
+                2'b01: rom_data <=32'd19816562;
+                2'b10: rom_data <=32'd17003972;        
+                2'b11: rom_data <=32'd0;
+            endcase
+    end
+
+    //STORE INSTRUCTION DECODE
+    assign w_en = we == 4'b0000;
+    assign dmem_addr = addr[11:2];
+
+    assign data_in_0 = we[0] ? data_in[7:0] : dmem[dmem_addr][7:0];
+    assign data_in_1 = we[1] ? data_in[15:8] : dmem[dmem_addr][15:8];
+    assign data_in_2 = we[2] ? data_in[23:16] : dmem[dmem_addr][23:16];
+    assign data_in_3 = we[3] ? data_in[31:24] : dmem[dmem_addr][31:24];
+    assign dmem_tmp   = {data_in_3,data_in_2,data_in_1,data_in_0};
+
+    //DATA MEMORY 
+    always@(posedge clk) begin
+        if(we) begin
+            dmem[dmem_addr]    <= dmem_tmp;
+        end
+    end
+
+    always@(posedge clk) begin
+        if(read) begin 
+            data_out <= dmem[dmem_addr];
+        end
+    end
+
+    assign data_out = addr[31]? data_out
+                    : addr[20]? rom_data
+                    : 'hz;
+    
 
 endmodule

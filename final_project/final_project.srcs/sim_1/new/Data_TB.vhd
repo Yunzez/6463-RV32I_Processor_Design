@@ -22,9 +22,7 @@ signal opc_in: std_logic_vector(9 downto 0);
     
 begin
 
---entity instantiation
---reference: https://vhdlwhiz.com/entity-instantiation-and-component-instantiation/
-dut: entity work.Data_Memory
+dut: entity work.Data
     Port map( 
         clk => clk,
         rst => clr,

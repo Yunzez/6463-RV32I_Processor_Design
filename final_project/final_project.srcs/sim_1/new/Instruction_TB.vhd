@@ -22,8 +22,7 @@ signal t_instr_out2: std_logic_vector(31 downto 0);
 signal t_read_enable: std_logic_vector(2 downto 0) := "000"; 
 
 begin
---entity instantiation
---reference: https://vhdlwhiz.com/entity-instantiation-and-component-instantiation/
+
 dut: entity work.Instruction
     Port map( 
     clk => t_clk,
