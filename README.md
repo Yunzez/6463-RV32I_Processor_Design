@@ -15,10 +15,11 @@ instruction set.
 2. ALU Control 
 ---
 3. Control Unit 
-- Des: 
+- Variables: 
 takes in Opcode, reset, enable, branch control signal;
 returns PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op, Data_we, ALU_op
 
+- Des: 
 Control unit is a FSM that indicates what to do for the whole CPU by giving singal to different components. 
 For now the Control Unit will only has 3 stages, we will add more stages if we realized more stages will be beneficial. 
 The 3 stages are: Fetch, Execute, Write Memory.
