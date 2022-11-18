@@ -62,7 +62,7 @@ module ControlUnit(
                 Imm_op_temp = 1'b0; 
                 ALU_s1_temp = 1'b0; 
                 ALU_s2_temp = 1'b0; 
-                ALU_op_temp = 1'b0;
+                ALU_op_temp = 2'b00;
                 DataMem_rd_temp = 1'b0; 
                 Data_op_temp = 2'b00; 
                 Data_s_temp = 1'b0;
