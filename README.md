@@ -62,11 +62,11 @@ The testbench of the register file test if the register file can store the data 
 ---
 5. Instruction Memory 
 - Variables:
-takes in read_instr, addr_in, addr_in2, read_enable
-returns instr_out, instr_out2
+takes in read_instr(read command), addr_in, addr_in2(only for testing), read_enable(read memory)
+returns instr_out, instr_out2 (only for testing)
 
 - Des:
-The instruction memory is a ROM which means the memory file cannot be load or delete. The instruction memory can store up to 512 32-bits instructions. These instruction read from memory.
+The instruction memory is a ROM which means the memory file cannot be load or delete. The instruction memory can store up to 512 32-bits instructions. These instruction read from memory. We still have some testing variables in here. 
 
 - Testbench:
 The test file instruction.mem contain memory data for test. You might need to readded it manually to test it.
