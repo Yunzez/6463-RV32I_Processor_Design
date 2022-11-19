@@ -11,10 +11,16 @@ entity Instruction is
     rst : in std_logic := '1';
     read_instr: in std_logic := '1'; 
     addr_in: in std_logic_vector(31 downto 0) := X"01000000";
+<<<<<<< HEAD
     addr_in2: in std_logic_vector(31 downto 0) := (others => '0'); -- test 
     read_enable: in std_logic_vector(2 downto 0) := "000";
     instr_out: out std_logic_vector(31 downto 0);
     instr_out2: out std_logic_vector(31 downto 0) -- test 
+=======
+    read_enable: in std_logic_vector(2 downto 0) := "000";
+    instr_out: out std_logic_vector(31 downto 0)
+
+>>>>>>> 7f05f6e50697a7bda5cbd83407fff43e9c05ec4d
   );
 end Instruction;
 
@@ -61,30 +67,6 @@ process(clk) begin
             instr_out(23 downto 16) <= rom_words(to_integer(unsigned(addr_word)))(15 downto  8);
             instr_out(15 downto  8) <= rom_words(to_integer(unsigned(addr_word)))(23 downto 16);
             instr_out( 7 downto  0) <= rom_words(to_integer(unsigned(addr_word)))(31 downto 24);
-        end if;
-    end if;
-end process;
-
-addr2 <= addr_in2 and (not X"01000000");
-addr_word2(29 downto 0) <= addr2(31 downto 2);
-process(rst,clk) begin
-    if(rst = '0') then
-        instr_out2 <= (others => '0');
-    elsif rising_edge(clk) then
-        if(addr2 < 4) then
-            if(read_enable = "111") then
-                --Little-endian
-                instr_out2(31 downto 24) <= rom_words(to_integer(unsigned(addr_word2)))( 7 downto  0);
-                instr_out2(23 downto 16) <= rom_words(to_integer(unsigned(addr_word2)))(15 downto  8);
-                instr_out2(15 downto  8) <= rom_words(to_integer(unsigned(addr_word2)))(23 downto 16);
-                instr_out2( 7 downto  0) <= rom_words(to_integer(unsigned(addr_word2)))(31 downto 24);
-            else
-                instr_out2 <= (others => '0');
-            
-            end if;
-        else
-            instr_out2 <= (others => '0');
-            
         end if;
     end if;
 end process;

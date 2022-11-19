@@ -16,22 +16,19 @@ signal t_clk : std_logic := '0';
 signal t_rst : std_logic := '1';
 signal t_read_instr: std_logic := '1';
 signal t_addr_in: std_logic_vector(31 downto 0) := X"01000000";
-signal t_addr_in2: std_logic_vector(31 downto 0) := (others => '0');
 signal t_instr_out: std_logic_vector(31 downto 0);
-signal t_instr_out2: std_logic_vector(31 downto 0);
 signal t_read_enable: std_logic_vector(2 downto 0) := "000"; 
 
 begin
-
+--entity instantiation
+--reference: https://vhdlwhiz.com/entity-instantiation-and-component-instantiation/
 dut: entity work.Instruction
     Port map( 
     clk => t_clk,
     rst => t_rst,
     read_instr => t_read_instr,
     addr_in => t_addr_in,
-    addr_in2 => t_addr_in2,
     instr_out => t_instr_out,
-    instr_out2 => t_instr_out2,
     read_enable => t_read_enable
   );
 
@@ -70,24 +67,19 @@ begin
         t_read_instr <= '0';
         wait for 40 ns;
     end loop;
-    t_addr_in2 <= t_addr_in;
     t_read_enable <= "111";
     wait for 10 ns;
-    assert(t_instr_out2=file_instr) report "Do not match (instruction)" severity FAILURE;
     
     t_read_enable <= "011";
     wait for 10 ns;
-    assert(t_instr_out2= (X"0000"&file_instr(15 downto 0)) ) report "Do not match (instruction)" severity FAILURE;
     
     t_read_enable <= "001";
     wait for 10 ns;
-    assert(t_instr_out2= (X"000000"&file_instr(7 downto 0)) ) report "Do not match (instruction)" severity FAILURE;
         
     wait for 28 ns;
     t_rst <= '0';
     wait for 2 ns;
     t_rst <= '1';
-    assert(t_instr_out2=X"00000000") report "Do not match (instruction)" severity FAILURE;    
     
     report "Test finished";
     std.env.stop;
