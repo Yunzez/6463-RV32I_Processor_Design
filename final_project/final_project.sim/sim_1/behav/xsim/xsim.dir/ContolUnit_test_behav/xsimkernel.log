@@ -2,3 +2,6 @@ Running: xsim.dir/ContolUnit_test_behav/xsimk.exe -simmode gui -wdb ContolUnit_t
 Design successfully loaded
 Design Loading Memory Usage: 7904 KB (Peak: 7904 KB)
 Design Loading CPU Usage: 0 ms
+Simulation completed
+Simulation Memory Usage: 8588 KB (Peak: 8588 KB)
+Simulation CPU Usage: 0 ms
