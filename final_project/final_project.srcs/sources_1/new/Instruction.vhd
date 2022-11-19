@@ -11,10 +11,10 @@ entity Instruction is
     rst : in std_logic := '1';
     read_instr: in std_logic := '1'; 
     addr_in: in std_logic_vector(31 downto 0) := X"01000000";
-    addr_in2: in std_logic_vector(31 downto 0) := (others => '0');
+    addr_in2: in std_logic_vector(31 downto 0) := (others => '0'); -- test 
     read_enable: in std_logic_vector(2 downto 0) := "000";
     instr_out: out std_logic_vector(31 downto 0);
-    instr_out2: out std_logic_vector(31 downto 0)
+    instr_out2: out std_logic_vector(31 downto 0) -- test 
   );
 end Instruction;
 

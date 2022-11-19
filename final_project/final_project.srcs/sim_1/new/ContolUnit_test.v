@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/18/2022 12:24:53 PM
+// Create Date: 10/03/2022 01:25:19 PM
 // Design Name: 
-// Module Name: Data_mem
+// Module Name: leftRotateVerilogTest
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,74 +18,160 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+module ContolUnit_test();
+    // original 
+    reg clk_t;
+    reg rst_t;
+    reg [6:0]opcode_t;
+    reg bc_t;
 
+    wire PC_s_t;
+    wire PC_we_t;
+    wire Instr_rd_t;
+    wire RegFile_s_t; 
+    wire RegFile_we_t; 
+    wire Imm_op_t; 
+    wire ALU_s1_t; 
+    wire ALU_s2_t; 
+    wire DataMem_rd_t; 
+    wire Data_op_t; 
+    wire Data_s_t; 
+    wire Bc_Op_t; 
+    wire Data_we_t;
+    
+     wire [1:0] ALU_op_t;
 
-module data_mem(
-    input wire          clk,
-    input wire [31:0]   addr,
-    input wire [3:0]    we,             //we will assume 0001--SB, 0011--SH, 1111--SW, 0000--write disable
-    input wire          read,
-    input wire [31:0]   data_in,
-    output wire [31:0]   data_out
+    // loader form test file
+    reg PC_s_load;
+    reg PC_we_load;
+    reg Instr_rd_load; 
+    reg RegFile_s_load; 
+    reg RegFile_we_load; 
+    reg Imm_op_load; 
+    reg ALU_s1_load; 
+    reg ALU_s2_load; 
+    reg DataMem_rd_load;
+    reg  Data_op_load; 
+    reg Data_s_load; 
+    reg Bc_Op_load; 
+    reg Data_we_load;
+
+    reg [1:0]ALU_op_load;
+
+    reg [6:0]opcode_load;
+    reg bc_load;
+    
+     integer testPassNum = 0;
+    integer testFailNum = 0;
+
+    localparam period = 10; 
+
+    integer file_pointer; // file pointer
+    
+    ControlUnit dut (
+        // self assigned input
+        .clk(clk_t),
+        .rst(rst_t),
+
+        // test assigned input
+        .bc(bc_t),
+        .opcode(opcode_t),
+
+        // output 
+        .PC_s(PC_s_t), 
+        .PC_we(PC_we_t), 
+        .Instr_rd(Instr_rd_t), 
+        .RegFile_s(RegFile_s_t), 
+        .RegFile_we(RegFile_we_t), 
+        .Imm_op(Imm_op_t),
+        .ALU_s1(ALU_s1_t), 
+        .ALU_s2(ALU_s2_t), 
+        .ALU_op(ALU_op_t), 
+        .DataMem_rd(DataMem_rd_t), 
+        .Data_op(Data_op_t), 
+        .Data_s(Data_s_t), 
+        .Bc_Op(Bc_Op_t), 
+        .Data_we(Data_we_t)
     );
-    
-    //declaraction
-    parameter   depth = 1024;
-    reg     [31:0]  dmem [depth-1:0];
-    reg     [31:0]  rom  [0:7];
-    wire    [9:0]   dmem_addr;
-    wire    [31:0]  data_out_tmp;
-    wire            w_en;
-    wire    [7:0]   data_in_0;
-    wire    [7:0]   data_in_1;
-    wire    [7:0]   data_in_2;
-    wire    [7:0]   data_in_3;
-    wire    [31:0]  dmem_tmp;
-    reg     [31:0]  data_out;
 
-
-    //initialize data memory and rom    
     initial begin
-        $readmemh("dmem_zeros.txt",dmem);
+    $display("testing control unit");
+        file_pointer = $fopen("control_unit_testfile.csv", "r");
+        if(file_pointer == 0 ) begin 
+            $display("cannot open testfile");
+            $stop;
+        end 
+        $display("load test file successfully");
+        
+         //
+        rst_t = 0;
+        #period;
+        while(!$feof(file_pointer)) begin
+            $display("testing one line");
+            #10;
+             $fscanf(file_pointer, "%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b", opcode_load, bc_load, PC_s_load, PC_we_load, Instr_rd_load, RegFile_s_load, RegFile_we_load, Imm_op_load, ALU_s1_load, ALU_s2_load, ALU_op_load, DataMem_rd_load, Data_op_load, Data_s_load,  Bc_Op_load, Data_we_load );
+
+            opcode_t =opcode_load;
+            $display("opcode_load, bc_load, PC_s_load, PC_we_load, Instr_rd_load, RegFile_s_load, RegFile_we_load, Imm_op_load, ALU_s1_load, ALU_s2_load, ALU_op_load, DataMem_rd_load, Data_op_load, Data_s_load, Bc_Op_load, Data_we_load");
+
+                #period;
+                clk_t = 1;
+                bc_t = bc_load;
+                opcode_t = opcode_load;
+                rst_t = 1; 
+
+                #period;
+                clk_t = 0;
+                
+                if(
+                PC_s_load != PC_s_t ||
+                PC_we_load != PC_we_t || 
+                Instr_rd_load != Instr_rd_t || 
+                RegFile_s_load!= RegFile_s_t ||
+                RegFile_we_load!= RegFile_we_t ||
+                Imm_op_load != Imm_op_t ||
+                ALU_s1_load != ALU_s1_t ||
+                ALU_s2_load != ALU_s2_t || 
+                ALU_op_load != ALU_op_t ||
+                DataMem_rd_load != DataMem_rd_t || 
+                Data_op_load != Data_op_t ||
+                Data_s_load != Data_s_t || 
+                Bc_Op_load != Bc_Op_t ||
+                Data_we_load != Data_we_t
+             ) begin
+             
+              $display("Test Failed!, test value =   ");
+                $display(opcode_load," ", bc_load," ", PC_s_load," ", PC_we_load," ", Instr_rd_load," ", RegFile_s_load," ", RegFile_we_load," ", Imm_op_load," ", ALU_s1_load," ", ALU_s2_load," ", ALU_op_load," ", DataMem_rd_load," ", Data_op_load," ", Data_s_load," ", Bc_Op_load," ",  Data_we_load);
+                $display("actual value:");
+                $display(opcode_t," ", bc_t," ", PC_s_t," ", PC_we_t," ", Instr_rd_t," ", RegFile_s_t," ", RegFile_we_t," ", Imm_op_t," ", ALU_s1_t," ", ALU_s2_t," ", ALU_op_t," ", DataMem_rd_t," ", Data_op_t," ", Data_s_t," ", Bc_Op_t," ", Data_we_t);
+                testFailNum = testFailNum + 1;
+
+                $stop;
+             end
+             
+             else if (
+              PC_s_load == PC_s_t &&
+                PC_we_load == PC_we_t && 
+                Instr_rd_load == Instr_rd_t && 
+                RegFile_s_load == RegFile_s_t &&
+                RegFile_we_load == RegFile_we_t &&
+                Imm_op_load == Imm_op_t &&
+                ALU_s1_load == ALU_s1_t &&
+                ALU_s2_load == ALU_s2_t &&
+                ALU_op_load == ALU_op_t &&
+                DataMem_rd_load == DataMem_rd_t && 
+                Data_op_load == Data_op_t &&
+                Data_s_load == Data_s_t && 
+                Bc_Op_load == Bc_Op_t &&
+                Data_we_load == Data_we_t
+              ) begin
+                $display("pass");
+                testPassNum = testPassNum + 1;
+             end
+             
+             end
+        if(testFailNum == 0) $display("Yay, All tests passed,     passed:", testPassNum, "        failed:",testFailNum);
+        $fclose(file_pointer);
+        
     end
-
-    (*rom_style = "block" *) reg [32:0] rom_data;
-    always @(posedge clk) begin
-        if(read)
-            case(addr[3:2])
-                2'b00: rom_data <=32'd11311762;
-                2'b01: rom_data <=32'd19816562;
-                2'b10: rom_data <=32'd17003972;        
-                2'b11: rom_data <=32'd0;
-            endcase
-    end
-
-    //STORE INSTRUCTION DECODE
-    assign w_en = we == 4'b0000;
-    assign dmem_addr = addr[11:2];
-
-    assign data_in_0 = we[0] ? data_in[7:0] : dmem[dmem_addr][7:0];
-    assign data_in_1 = we[1] ? data_in[15:8] : dmem[dmem_addr][15:8];
-    assign data_in_2 = we[2] ? data_in[23:16] : dmem[dmem_addr][23:16];
-    assign data_in_3 = we[3] ? data_in[31:24] : dmem[dmem_addr][31:24];
-    assign dmem_tmp   = {data_in_3,data_in_2,data_in_1,data_in_0};
-
-    //DATA MEMORY 
-    always@(posedge clk) begin
-        if(we) begin
-            dmem[dmem_addr]    <= dmem_tmp;
-        end
-    end
-
-    always@(posedge clk) begin
-        if(read) begin 
-            data_out <= dmem[dmem_addr];
-        end
-    end
-
-    assign data_out = addr[31]? data_out
-                    : addr[20]? rom_data
-                    : 'hz;
-    
-
 endmodule
