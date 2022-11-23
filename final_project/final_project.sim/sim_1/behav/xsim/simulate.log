@@ -1,1 +1,10 @@
 Time resolution is 1 ps
+testing Instruction decode
+load test file successfully
+testing one line
+instruction value: 00000000000000000000000000010011
+Test Failed!, test value =   
+        19   0  1  1  1 0
+actual value:
+        19  19  0  0  0 0
+$stop called at time : 30 ns : File "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/Instruction_decode_test.v" Line 99

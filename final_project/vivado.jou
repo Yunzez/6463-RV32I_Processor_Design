@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Nov 22 23:05:22 2022
+# Process ID: 24440
+# Current directory: C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14596 C:\Users\frezy\NYU-6463-RV32I_Processor_Design\final_project\final_project.xpr
+# Log file: C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/vivado.log
+# Journal file: C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project\vivado.jou
+# Running On: LAPTOP-2O846HLK, OS: Windows, CPU Frequency: 3294 MHz, CPU Physical cores: 16, Host memory: 68081 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.xpr

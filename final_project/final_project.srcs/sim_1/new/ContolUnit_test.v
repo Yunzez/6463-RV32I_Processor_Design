@@ -96,7 +96,7 @@ module ContolUnit_test();
 
     initial begin
     $display("testing control unit");
-        file_pointer = $fopen("control_unit_testfile.csv", "r");
+        file_pointer = $fopen("instruction_decode_test_file.txt", "r");
         if(file_pointer == 0 ) begin 
             $display("cannot open testfile");
             $stop;
