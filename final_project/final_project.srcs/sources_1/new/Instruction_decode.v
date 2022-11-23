@@ -21,14 +21,14 @@
 
 
 module Instruction_decode(
-    input reg clk, 
-    input instr_in,
-    output rd_addr,
-    output rs1_addr,
-    output rs2_addr,
-    output opcode,
-    output funct,
-    output [2:0]imm_op
+    input  clk, 
+    input  [31:0]instr_in,
+    output [4:0]rd_addr,
+    output [4:0]rs1_addr,
+    output [4:0]rs2_addr,
+    output [6:0]opcode,
+    output [2:0]funct,
+    output [31:0] imm_ext
     );
     localparam [6:0]R_TYPE  = 7'b0110011, // op: 000
                 I_TYPE  = 7'b0010011, // op: 001
@@ -41,40 +41,43 @@ module Instruction_decode(
                 LUI     = 7'b0110111;   // op: 110
     
   
-   reg opcode_temp = instr_in[6:0];
-   reg funct_temp = instr_in[14:12];
-   reg rd_addr_temp = instr_in[11:7];
-   reg rs1_addr_temp = instr_in[19:15];
-   reg rs2_addr_temp = instr_in[24:20];
-
-   assign opcode   = opcode_temp ;
-   assign funct    = funct_temp  ;
-   assign rd_addr  = rd_addr_temp ;
-   assign rs1_addr = rs1_addr_temp;
-   assign rs2_addr = rs2_addr_temp;
+//   reg opcode_temp = instr_in[6:0];
+//   reg funct_temp = instr_in[14:12];
+//   reg rd_addr_temp = instr_in[11:7];
+//   reg rs1_addr_temp = instr_in[19:15];
+//   reg rs2_addr_temp = instr_in[24:20];
+   reg [5:0]test = {2{LUI[2:0]}};
+   reg [31:0]imm_temp;
+   assign opcode   = instr_in[6:0];
+   assign funct    = instr_in[14:12];
+   assign rd_addr  = instr_in[11:7];
+   assign rs1_addr = instr_in[19:15];
+   assign rs2_addr = instr_in[24:20];
    
-   case(instr_in[6:0]) 
-        R_TYPE: begin
-            assign imm_op = 3'b000;
-        end
-         I_TYPE: begin
-            assign imm_op = 3'b001;
-        end 
-          S_TYPE: begin
-            assign imm_op = 3'b010;
-        end 
-          L_TYPE: begin
-            assign imm_op = 3'b011;
-        end 
-         B_TYPE: begin
-            assign imm_op = 3'b100;
-        end 
-         JALR || JALR: begin
-            assign imm_op = 3'b101;
-        end 
-         AUIPC || LUI: begin
-            assign imm_op = 3'b110;
-        end
+   always @(posedge clk) begin
+        case(opcode) 
+        LUI:
+            imm_temp = {instr_in[31:12], 12'b0};
+        AUIPC:
+            imm_temp = {instr_in[31:12], 12'b0};
+        JAL:
+            imm_temp = {{12{instr_in[31]}}, instr_in[19:12], instr_in[20], instr_in[30:21], 1'b0}; // 12{{instr_in[31]}} extend the first bit of instruction 12 times; if 0, 12 * 0 are put in front
+        I_TYPE:
+            imm_temp = {{21{instr_in[31]}}, instr_in[30:20]};
+        L_TYPE:
+            imm_temp = {{21{instr_in[31]}}, instr_in[30:20]};
+        JALR:
+            imm_temp = {{21{instr_in[31]}}, instr_in[30:20]};
+        B_TYPE:
+            imm_temp = {{20{instr_in[31]}}, instr_in[7], instr_in[30:25], instr_in[11:8], 1'b0};
+        S_TYPE:
+            imm_temp = {{21{instr_in[31]}}, instr_in[30:25], instr_in[11:7]};
+        default:
+            imm_temp = {{21{instr_in[31]}}, instr_in[30:20]}; //ITYPE ALU IMM
         
     endcase
+   end
+   
+   assign imm_ext = imm_temp;
+   
 endmodule

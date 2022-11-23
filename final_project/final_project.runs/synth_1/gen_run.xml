@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35ticpg236-1L" LaunchTime="1668844811">
   <File Type="PA-TCL" Name="Instruction_decode.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="Instruction_decode_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Instruction_decode_reports.tcl"/>
   <File Type="RDS-RDS" Name="Instruction_decode.vds"/>
-  <File Type="RDS-UTIL" Name="Instruction_decode_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="Instruction_decode_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="Instruction_decode.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="Instruction_decode_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="Instruction_decode_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Instruction_decode.v">
