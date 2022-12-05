@@ -8,10 +8,9 @@ module Instruction_TB;
    reg         t_read_instr = 0;
    reg [31:0]  t_addr_in;
    wire [31:0] t_instr_out;
-   reg [2:0]   t_read_enable;
    
    
-   Instruction dut(.clk(t_clk), .rst(t_rst), .read_instr(t_read_instr), .addr_in(t_addr_in), .instr_out(t_instr_out),  .read_enable(t_read_enable));
+   Instruction dut(.clk(t_clk), .rst(t_rst), .read_instr(t_read_instr), .addr_in(t_addr_in), .instr_out(t_instr_out));
    
    
    always
@@ -57,12 +56,6 @@ module Instruction_TB;
 			end 
 			#40 ;
 		end 
-		t_read_enable = 3'b111;
-		#10 ;
-		t_read_enable = 3'b011;
-		#10 ;
-		t_read_enable = 3'b001;
-		#10 ;
 			
 		#28 t_rst =0;
 		#2  t_rst = 1;
