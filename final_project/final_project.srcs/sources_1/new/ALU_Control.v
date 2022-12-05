@@ -66,8 +66,6 @@ always @(*) begin
             end
             else
                 temp = 4'b0001;
-                
-            
         default: 
             temp = 4'b0000;
     endcase
