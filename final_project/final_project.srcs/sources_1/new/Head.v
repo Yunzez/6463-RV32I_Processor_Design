@@ -21,12 +21,9 @@
 
 
 module Head(
-    clk,
-    rst_n
+    input   clk,
+    input   rst_n
     );
-    
-    input  wire                     clk;
-    input  wire                     rst_n;
 
 //processor_ctrl
 // output wire
@@ -34,7 +31,7 @@ module Head(
     wire PC_we; // pc enable signal
     wire Instr_rd; // control instruction enable
     wire RegFile_s; 
-    wire RegFile_we; 
+    wire RegFile_we; // this is reg_enable
     wire Imm_op; 
     wire ALU_s1; 
     wire ALU_s2; 
@@ -44,48 +41,74 @@ module Head(
     wire Bc_Op; 
     wire Data_we;
 
+    //TODO: add data memory read/write enable
+
 // pc  
-    wire PC_inputAddress;
-    wire PC_outputAddress;
+    wire [31:0]PC_inputAddress;
+    wire [31:0]PC_outputAddress;
     
  
 //instr_mem
 
-wire addr_in;
-wire instr_out;
+    wire [31:0] Instr_addr_in;
+    wire [31:0]instr_out;
 
 
 //registor_file
-wire                            RegWrite;
-wire    [31:0]                  rd_data_in;
-wire    [31:0]                  rs1_data;
-wire    [31:0]                  rs2_data;
+    
+    
+    wire [4:0]readS1;
+    wire [4:0]readS2;
+    wire [4:0]readRd;
+    wire [31:0] data_in;
+    // output
+    wire [31:0] rs1;
+    wire [31:0] rs2;
 
-//imm_gen
-reg     [31:0]                  imm_ext;
-wire    [31:0]                  imm_ext_tmp;
+//instruction decode
+    
+    wire [31:0]instr_in;
+    
+    // output
+    wire [4:0] rd_addr;
+    wire [4:0] rs1_addr;
+    wire [4:0] rs2_addr;
+    wire [6:0] opcode;
+    wire [2:0] funct;
+    wire [31:0] imm_ext;
 
 //alu_ctrl
-wire    [3:0]                   alu_op;
+    wire    [1:0]                   ALUop;
+    wire    [2:0]                   funct3;
+    wire                            has_funct7;
+
+    // output 
+    wire     [3:0]                   alu_ctrl;
+
 
 //alu
-wire    [31:0]                  operand1;
-wire    [31:0]                  operand2;
-wire    [31:0]                  alu_out_tmp;
-reg     [31:0]                  alu_out;
+    wire    [31:0]                  operand1;
+    wire    [31:0]                  operand2;
+
+    // output
+    wire     [31:0]                  alu_out;
 
 //data_mem
-wire                            MemRead;
-wire    [3:0]                   MemWrite;
-wire    [31:0]                  dmem_out;                  
+    wire    [2:0]                   w_mode;
+    wire    [2:0]                   r_mode;
+    wire    [31:0]                  data_addr_in;
+    wire    [31:0]                  din;
+    wire    [9:0]                   opc_in;
 
-//data_ext
-wire    [31:0]                  data_ext_out;
+    // dout 
+    wire    [31:0]                  dout;                  
 
-//branch
-wire    [2:0]                   funct3;
-wire                            branch_true;
-wire                            alu_true;
+
+// TODO: will add after branch contorl is done 
+// //branch
+// wire    [2:0]                   funct3;
+// wire                            branch_true;
+// wire                            alu_true;
     //////////////////////////////////////////////////////////////////////////////////
     //Module
     //////////////////////////////////////////////////////////////////////////////////
@@ -93,7 +116,7 @@ wire                            alu_true;
     // input
     .clk                         (clk                ),
     .rst                         (rst_n              ),
-    .opcode                      (instruction[6:0]   ),
+    .opcode                      (opcode   ),
     .bc                          (branch_info),
     
     //output
@@ -116,23 +139,25 @@ wire                            alu_true;
         .clk                         (clk                ),
         .rst                         (rst_n              ),
         .en                          (PC_we              ),
-        .PC_inputAddress                  (PC_inputAddress             ),
+        .PC_inputAddress             (PC_inputAddress             ),
         // output
-        .PC_outputAddress                 (PC_outputAddress                 )
+        .PC_outputAddress            (PC_outputAddress                 )
     );
     
     Instruction Instruction(
         .clk                         (clk                ),
         .rst                         (rst_n              ),
         .read_instr                  (Instr_rd),
-        .addr_in(addr_in),
+        .addr_in(Instr_addr_in),
+
+        // output
         .instr_out(instr_out)
     );
     
     RegisterFile RegisterFile(
         .clk  (clk),
         .rst  (rst_n),
-        .en   (reg_en),
+        .en   (RegFile_we), 
         .readS1 (readS1),
         .readS2(readS2),
         .readRd(readRd),
@@ -142,20 +167,20 @@ wire                            alu_true;
     );
     
     Instruction_decode Instruction_decode(
-        clk(clk), 
-        instr_in(instr_in),
-        rd_addr(rd_addr),
-        rs1_addr(rs1_addr),
-        rs2_addr(rs2_addr),
-        opcode(opcode),
-        funct(funct),
-        imm_ext(imm_ext)
+        .clk(clk), 
+        .instr_in(instr_in),
+        .rd_addr(rd_addr),
+        .rs1_addr(rs1_addr),
+        .rs2_addr(rs2_addr),
+        .opcode(opcode),
+        .funct(funct),
+        .imm_ext(imm_ext)
     );
     
     ALU_Control ALU_Control(
         .clk(clk),
         .rst(rst),
-        .funct7(funct7),
+        .funct7(has_funct7),
         .ALUop(ALUop),
         .funct3(funct3),
         
@@ -175,9 +200,10 @@ wire                            alu_true;
      .rst(data_rst),
      .w_mode(w_mode),
      .r_mode(r_mode),
-     .addr_in(addr_in),
+     .addr_in(data_addr_in),
      .din(din),
      .opc_in(opc_in),
      .dout(dout)
     );
+    
 endmodule
