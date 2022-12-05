@@ -4,7 +4,6 @@ module Instruction
 	input rst,
 	input read_instr,
 	input [31:0] addr_in,
-	input [2:0] read_enable ,
 	output reg [31:0] instr_out
 );
 reg [31:0] rom_words[0:511];
