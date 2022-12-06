@@ -47,11 +47,10 @@ module Head(
     wire [31:0]PC_inputAddress;
     wire [31:0]PC_outputAddress;
     
+    wire [31:0] added4_pc;
  
 //instr_mem
-
-    wire [31:0] Instr_addr_in;
-    wire [31:0]instr_out;
+    wire [31:0]mem_instr_out;
 
 
 //registor_file
@@ -74,12 +73,11 @@ module Head(
     wire [4:0] rs1_addr;
     wire [4:0] rs2_addr;
     wire [6:0] opcode;
-    wire [2:0] funct;
-    wire [31:0] imm_ext;
+    wire [2:0] funct3;
+    wire [31:0] imm_ext_data;
 
 //alu_ctrl
     wire    [1:0]                   ALUop;
-    wire    [2:0]                   funct3;
     wire                            has_funct7;
 
     // output 
@@ -103,10 +101,16 @@ module Head(
     // dout 
     wire    [31:0]                  dout;                  
 
+// testing variable 
+    
+    wire [2:0] control_stage_carry;
+
+
+
 
 // TODO: will add after branch contorl is done 
 // //branch
-    wire    [2:0]                   funct3;
+    
     wire                            branch_true;
     wire                            alu_true;
     //////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +136,10 @@ module Head(
     .Data_op(Data_op), 
     .Data_s(Data_s), 
     .Bc_Op(Bc_Op), 
-    .Data_we(Data_we)
+    .Data_we(Data_we),
+    
+    // ! testing purpose only 
+    .testing_stage(control_stage_carry)
     );
 
     ProgramCounter ProgramCounter(
@@ -148,10 +155,10 @@ module Head(
         .clk                         (clk                ),
         .rst                         (rst_n              ),
         .read_instr                  (Instr_rd),
-        .addr_in(Instr_addr_in),
+        .addr_in(PC_outputAddress),
 
         // output
-        .instr_out(instr_out)
+        .instr_out(mem_instr_out)
     );
     
     RegisterFile RegisterFile(
@@ -165,26 +172,35 @@ module Head(
         .rs1(rs1),
         .rs2(rs2)
     );
-    
-    Instruction_decode Instruction_decode(
+   Instruction_decode Instruction_decode(
         .clk(clk), 
-        .instr_in(instr_in),
+        .instr_in(mem_instr_out), // memory output will be take in here
+        
+        // output
         .rd_addr(rd_addr),
         .rs1_addr(rs1_addr),
         .rs2_addr(rs2_addr),
         .opcode(opcode),
-        .funct(funct),
-        .imm_ext(imm_ext)
+        .funct(funct3)
+    );
+    
+    // after decode, we will go to imm_ext if needed
+    imm_ext imm_ext(
+        .clk(clk),
+        .opcode(opcode),
+        .instr_in(mem_instr_out),
+        
+        // output 
+        .imm_ext(imm_ext_data)
     );
 
-    Bracnh_Control Bracnh_Control(
-        .funct3(func3)
-         .operand1(operand1),
+    Branch_control Branch_control(
+        .operand1(operand1),
         .operand2(operand2),
         .bc_enable(branch_true),
-        .opcode(opcode),
+        .opcode(funct3),
         .bc_out(branch_info)
-    )
+    );
     
     ALU_Control ALU_Control(
         .clk(clk),
@@ -217,42 +233,54 @@ module Head(
 
     // ! for data imm mux output
 
-    reg data_imm_S;
+    reg [31:0] data_imm_s;
 
     // ! here we will start implement muxes that are needed for different area 
+    
+    
+    // mux variable 
+    reg [31:0] PC_input_addr_temp;
+    reg [4:0] readRd_temp;
+    reg [31:0] operand1_temp;
+    reg [31:0] operand2_temp;
 
     // *pc_adder
-        reg added4_pc = PC_outputAddress + 4
-
+    assign added4_pc = PC_inputAddress + 32'd4;
+        
     // *pc_mux
     // ! the input address will get assigned to output directly
     always @(posedge clk or negedge rst_n) begin
-        if(PC_s == 0) PC_inputAddress = added4_pc
-        else PC_inputAddress = alu_out
+        if(PC_s == 0) PC_input_addr_temp = added4_pc;
+        else PC_input_addr_temp = alu_out;
     end
+    
+    assign PC_inputAddress = PC_input_addr_temp;
 
     // *regfile mux
     always @(posedge clk or negedge rst_n) begin
-        if(RegFile_s == 0) readRd = added4_pc
-        else readRd = data_imm_S
+        if(RegFile_s == 0) readRd_temp = added4_pc;
+        else readRd_temp = data_imm_s;
     end
-
+    assign readRd = readRd_temp;
+        
     // *ALU mux 1
     always @(posedge clk or negedge rst_n) begin
-        if(ALU_s1 == 0) operand1 = rs1
-        else operand1 = PC_inputAddress
+        if(ALU_s1 == 0) operand1_temp = rs1;
+        else operand1_temp = PC_inputAddress;
     end
-
+    assign operand1 = operand1_temp;
+     
     // *ALU mux 2
     always @(posedge clk or negedge rst_n) begin
-        if(ALU_s2 == 0) operand2 = rs2
-        else operand2 = imm_ext
+        if(ALU_s2 == 0) operand2_temp = rs2;
+        else operand2_temp = imm_ext_data;
     end
-
+    assign operand2 = operand2_temp;
+    
     // *Data mem mux
     always @(posedge clk or negedge rst_n) begin
-        if(Data_s == 0) data_imm_S = dout
-        else data_imm_S = alu_out
+        if(Data_s == 0) data_imm_s = dout;
+        else data_imm_s = alu_out;
     end
 
 endmodule

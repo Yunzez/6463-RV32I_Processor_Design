@@ -20,39 +20,34 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module BC(
-    funct3
-    operand1,
-    operand2,
-    bc_enable,
-    opcode,
-    bc_out
+module Branch_control(
+   input bc_enable,
+    input wire [2:0] opcode,
+    input wire [31:0] operand1,
+    input wire [31:0] operand2,
+    output reg bc_out
     );
-input bc_enable;
-input wire [2:0] opcode;
-input wire [31:0] operand1;
-input wire [31:0] operand2;
-output reg bc_out;
+
 
 
 
 
 always @(*) begin
     if (bc_enable) begin
-        if (opcode == 3b'000) begin
+        if (opcode == 3'b000) begin
             if (operand1 - operand2 == 0)
                 bc_out <= 1;
             else
                 bc_out <= 0; 
         end
-        else if (opcode == 3b'001) begin
+        else if (opcode == 3'b001) begin
             if (operand1 - operand2 != 0)
                 bc_out <= 1;
             else
                 bc_out <= 0; 
         end
 
-        else if (opcode == 3b'100) begin
+        else if (opcode == 3'b100) begin
             if (operand1[31] == 0 && operand2[31] == 1)
                 bc_out <= 0;
             else if (operand1[31] == 1 && operand2[31] == 0)
@@ -66,7 +61,7 @@ always @(*) begin
             
         end
 
-        else if (opcode == 3b'101) begin
+        else if (opcode == 3'b101) begin
             if (operand1[31] == 0 && operand2[31] == 1)
                 bc_out <= 1;
             else if (operand1[31] == 1 && operand2[31] == 0)
@@ -78,13 +73,13 @@ always @(*) begin
                     bc_out <= 0;
             end
         end
-        else if (opcode == 3b'110) begin
+        else if (opcode == 3'b110) begin
             if (operand1 - operand2 >= 0)
                 bc_out <= 1;
             else
                 bc_out <= 0; 
         end
-        else if (opcode == 3b'111) begin
+        else if (opcode == 3'b111) begin
             if (operand1 - operand2 >= 0)
                 bc_out <= 1;
             else

@@ -25,7 +25,7 @@ module ControlUnit(
     input [6:0]opcode,
 //    input [2:0]funct3,
     input bc, // branch info
-     
+    output [2:0] testing_stage,
     output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op, Data_we,
     output reg [1:0]ALU_op
     );
@@ -33,25 +33,27 @@ module ControlUnit(
     reg [2:0]curr_state;
     reg [2:0]next_state;
     
-    parameter FETCH  = 3'b000;
-    parameter EXECUTION    = 3'b001;
-    parameter MEMWRITE    = 3'b010;
+    parameter INITALIZE  = 3'b000;
+    parameter FETCH_INSTRUCTION  = 3'b001;
+    parameter FETCH_DECODE  = 3'b010;
+    parameter EXECUTION    = 3'b011;
+    parameter MEMWRITE    = 3'b100;
    
    
    reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
-   reg [1:0]ALU_op_temp;                                        
-    
+   reg [1:0]ALU_op_temp;           
+    assign testing_stage = curr_state;
     always @(posedge clk or negedge rst) begin
         if(!rst)
-            curr_state   <= FETCH;
+            curr_state   <= INITALIZE;
         else
             curr_state   <= next_state;
+            
     end
-    
     
     always @(posedge clk) begin
      case(curr_state)
-        FETCH: begin
+        INITALIZE: begin
         // we set:
                 PC_s_temp = 1'b1; // we set when pc s is 1; program counter plus 4
                 PC_we_temp = 1'b1; // allow adder write to pc  
@@ -69,6 +71,24 @@ module ControlUnit(
                 Data_we_temp = 1'b0;
                 Bc_Op_temp = 1'b0;
                
+        end
+        
+        FETCH_INSTRUCTION: begin
+                 PC_s_temp = 1'b1; // we set when pc s is 1; program counter plus 4
+                PC_we_temp = 1'b0; // allow adder write to pc  
+                Instr_rd_temp = 1'b1; // get the current memory
+                RegFile_s_temp = 1'b0; 
+                // that's all the signal we need to get the command 
+                RegFile_we_temp = 1'b0; 
+                Imm_op_temp = 1'b0; 
+                ALU_s1_temp = 1'b0; 
+                ALU_s2_temp = 1'b0; 
+                ALU_op_temp = 2'b00;
+                DataMem_rd_temp = 1'b0; 
+                Data_op_temp = 2'b00; 
+                Data_s_temp = 1'b0;
+                Data_we_temp = 1'b0;
+                Bc_Op_temp = 1'b0;
         end
         
         EXECUTION: begin 
@@ -386,18 +406,31 @@ end
    //FSM
 always @(*) begin
     case(curr_state)
-        FETCH:
+        INITALIZE : 
             if(!rst)
-                next_state = FETCH;
+                next_state = INITALIZE;
+            else
+                next_state = FETCH_INSTRUCTION;
+                
+        FETCH_INSTRUCTION :
+            if(!rst)
+                next_state = INITALIZE;
+            else
+                next_state = FETCH_DECODE;
+                
+        FETCH_DECODE: 
+            if(!rst)
+                next_state = INITALIZE;
             else
                 next_state = EXECUTION;
-        EXECUTION:
+                
+        EXECUTION :
             if(!rst)
-                next_state = FETCH;
+                next_state = INITALIZE;
             else
                 next_state = MEMWRITE;
         default:
-            next_state = FETCH;
+            next_state = INITALIZE;
     endcase
 end
             

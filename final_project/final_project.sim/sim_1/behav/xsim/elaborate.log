@@ -13,6 +13,8 @@ Compiling module xil_defaultlib.ProgramCounter
 Compiling module xil_defaultlib.Instruction
 Compiling module xil_defaultlib.RegisterFile
 Compiling module xil_defaultlib.Instruction_decode
+Compiling module xil_defaultlib.imm_ext
+Compiling module xil_defaultlib.Branch_control
 Compiling module xil_defaultlib.ALU_Control
 Compiling module xil_defaultlib.ALU
 Compiling module xil_defaultlib.Data
