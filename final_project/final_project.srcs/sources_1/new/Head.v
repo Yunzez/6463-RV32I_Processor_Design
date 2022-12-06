@@ -220,23 +220,33 @@ module Head(
 
     // *pc_mux
     // ! the input address will get assigned to output directly
+    always @(posedge clk or negedge rst_n) begin
         if(PC_s == 0) PC_inputAddress = added4_pc
         else PC_inputAddress = alu_out
+    end
 
     // *regfile mux
+    always @(posedge clk or negedge rst_n) begin
         if(RegFile_s == 0) readRd = added4_pc
         else readRd = data_imm_S
-    
+    end
+
     // *ALU mux 1
+    always @(posedge clk or negedge rst_n) begin
         if(ALU_s1 == 0) operand1 = rs1
         else operand1 = PC_inputAddress
+    end
 
     // *ALU mux 2
+    always @(posedge clk or negedge rst_n) begin
         if(ALU_s2 == 0) operand2 = rs2
         else operand2 = imm_ext
+    end
 
     // *Data mem mux
+    always @(posedge clk or negedge rst_n) begin
         if(Data_s == 0) data_imm_S = dout
         else data_imm_S = alu_out
+    end
     
 endmodule
