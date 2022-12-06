@@ -182,8 +182,8 @@ module Head(
          .operand1(operand1),
         .operand2(operand2),
         .bc_enable(branch_true),
-        .opcode,
-        .bc_out
+        .opcode(opcode),
+        .bc_out(branch_info)
     )
     
     ALU_Control ALU_Control(
