@@ -106,9 +106,9 @@ module Head(
 
 // TODO: will add after branch contorl is done 
 // //branch
-// wire    [2:0]                   funct3;
-// wire                            branch_true;
-// wire                            alu_true;
+    wire    [2:0]                   funct3;
+    wire                            branch_true;
+    wire                            alu_true;
     //////////////////////////////////////////////////////////////////////////////////
     //Module
     //////////////////////////////////////////////////////////////////////////////////
@@ -176,6 +176,15 @@ module Head(
         .funct(funct),
         .imm_ext(imm_ext)
     );
+
+    Bracnh_Control Bracnh_Control(
+        .funct3(func3)
+         .operand1(operand1),
+        .operand2(operand2),
+        .bc_enable(branch_true),
+        .opcode,
+        .bc_out
+    )
     
     ALU_Control ALU_Control(
         .clk(clk),
@@ -184,9 +193,6 @@ module Head(
         .ALUop(ALUop),
         .funct3(funct3),
 
-        // ! the actual alu control do not has this yet, added here so I can write mux
-        .operand1(operand1),
-        .operand2(operand2),
         // output 
         .alu_ctrl(alu_ctrl)
     );
@@ -248,5 +254,5 @@ module Head(
         if(Data_s == 0) data_imm_S = dout
         else data_imm_S = alu_out
     end
-    
+
 endmodule
