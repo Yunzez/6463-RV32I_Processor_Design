@@ -183,7 +183,10 @@ module Head(
         .funct7(has_funct7),
         .ALUop(ALUop),
         .funct3(funct3),
-        
+
+        // ! the actual alu control do not has this yet, added here so I can write mux
+        .operand1(operand1),
+        .operand2(operand2),
         // output 
         .alu_ctrl(alu_ctrl)
     );
@@ -205,5 +208,35 @@ module Head(
      .opc_in(opc_in),
      .dout(dout)
     );
+
+    // ! for data imm mux output
+
+    reg data_imm_S;
+
+    // ! here we will start implement muxes that are needed for different area 
+
+    // *pc_adder
+        reg added4_pc = PC_outputAddress + 4
+
+    // *pc_mux
+    // ! the input address will get assigned to output directly
+        if(PC_s == 0) PC_inputAddress = added4_pc
+        else PC_inputAddress = alu_out
+
+    // *regfile mux
+        if(RegFile_s == 0) readRd = added4_pc
+        else readRd = data_imm_S
+    
+    // *ALU mux 1
+        if(ALU_s1 == 0) operand1 = rs1
+        else operand1 = PC_inputAddress
+
+    // *ALU mux 2
+        if(ALU_s2 == 0) operand2 = rs2
+        else operand2 = imm_ext
+
+    // *Data mem mux
+        if(Data_s == 0) data_imm_S = dout
+        else data_imm_S = alu_out
     
 endmodule
