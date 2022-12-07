@@ -56,7 +56,7 @@ module ControlUnit(
         INITALIZE: begin
         // we set:
                 PC_s_temp = 1'b1; // we set when pc s is 1; program counter plus 4
-                PC_we_temp = 1'b1; // allow adder write to pc  
+                PC_we_temp = 1'b0; // allow adder write to pc  
                 Instr_rd_temp = 1'b1; // get the current memory
                 RegFile_s_temp = 1'b0; 
                 // that's all the signal we need to get the command 
@@ -74,7 +74,25 @@ module ControlUnit(
         end
         
         FETCH_INSTRUCTION: begin
-                 PC_s_temp = 1'b1; // we set when pc s is 1; program counter plus 4
+                PC_s_temp = 1'b0; 
+                PC_we_temp = 1'b0; // allow adder write to pc  
+                Instr_rd_temp = 1'b1; // get the current memory
+                RegFile_s_temp = 1'b0; 
+                // that's all the signal we need to get the command 
+                RegFile_we_temp = 1'b0; 
+                Imm_op_temp = 1'b0; 
+                ALU_s1_temp = 1'b0; 
+                ALU_s2_temp = 1'b0; 
+                ALU_op_temp = 2'b00;
+                DataMem_rd_temp = 1'b0; 
+                Data_op_temp = 2'b00; 
+                Data_s_temp = 1'b0;
+                Data_we_temp = 1'b0;
+                Bc_Op_temp = 1'b0;
+        end
+        
+        FETCH_DECODE: begin
+                PC_s_temp = 1'b0; 
                 PC_we_temp = 1'b0; // allow adder write to pc  
                 Instr_rd_temp = 1'b1; // get the current memory
                 RegFile_s_temp = 1'b0; 
@@ -93,14 +111,14 @@ module ControlUnit(
         
         EXECUTION: begin 
             case(opcode)
-                7'b0010011: begin // R-type
+                7'b0110011: begin // R-type
                 //rd = rs1 + rs2
                     PC_s_temp = 1'b0; 
                     PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b0; 
+                    RegFile_s_temp = 1'b1; 
 
-                    RegFile_we_temp = 1'b0;  
+                    RegFile_we_temp = 1'b1;  
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; // let both s1 s2 take in rs data
                     ALU_s2_temp = 1'b1; 
@@ -109,7 +127,7 @@ module ControlUnit(
                     // we do store in next stage
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // set data swith to 1 so we get alu output
                     Data_we_temp = 1'b0; 
                     Bc_Op_temp = 1'b0;
                 end
@@ -230,10 +248,10 @@ module ControlUnit(
         MEMWRITE: begin
             // this stage stores data back to reg or mem
             case(opcode)
-                7'b0010011: begin // R-type
+                7'b0110011: begin // R-type
                 //rd = rs1 + rs2
-                    PC_s_temp = 1'b0; 
-                    PC_we_temp = 1'b0; 
+                    PC_s_temp = 1'b1; 
+                    PC_we_temp = 1'b1; // add pc counter while store value, so we can continue
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select alu result
 

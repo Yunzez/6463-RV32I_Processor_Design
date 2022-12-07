@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Head(
+ module Head(
     input   clk,
     input   rst_n
     );
@@ -44,6 +44,7 @@ module Head(
     //TODO: add data memory read/write enable
 
 // pc  
+    wire [31:0] current_pc;
     wire [31:0]PC_inputAddress;
     wire [31:0]PC_outputAddress;
     
@@ -55,19 +56,12 @@ module Head(
 
 //registor_file
     
-    
-    wire [4:0]readS1;
-    wire [4:0]readS2;
-    wire [4:0]readRd;
-    wire [31:0] data_in;
     // output
     wire [31:0] rs1;
     wire [31:0] rs2;
 
 //instruction decode
-    
-    wire [31:0]instr_in;
-    
+  
     // output
     wire [4:0] rd_addr;
     wire [4:0] rs1_addr;
@@ -94,8 +88,6 @@ module Head(
 //data_mem
     wire    [2:0]                   w_mode;
     wire    [2:0]                   r_mode;
-    wire    [31:0]                  data_addr_in;
-    wire    [31:0]                  din;
     wire    [9:0]                   opc_in;
 
     // dout 
@@ -103,12 +95,11 @@ module Head(
 
 // testing variable 
     
-    wire [2:0] control_stage_carry;
-
-
-
+    wire [2:0] control_next_stage;
+     wire [31:0] instr_mem_addr_test;
 
 // TODO: will add after branch contorl is done 
+
 // //branch
     
     wire                            branch_true;
@@ -120,7 +111,7 @@ module Head(
     // input
     .clk                         (clk                ),
     .rst                         (rst_n              ),
-    .opcode                      (opcode   ),
+    .opcode                      (opcode   ), // £¡this will get opcode (last 7 bits of instr output from memory)
     .bc                          (branch_info),
     
     //output
@@ -139,23 +130,28 @@ module Head(
     .Data_we(Data_we),
     
     // ! testing purpose only 
-    .testing_stage(control_stage_carry)
+    .testing_stage(control_next_stage)
     );
 
     ProgramCounter ProgramCounter(
         .clk                         (clk                ),
         .rst                         (rst_n              ),
-        .en                          (PC_we              ),
+        .write_en                    (PC_we              ),
         .PC_inputAddress             (PC_inputAddress             ),
         // output
         .PC_outputAddress            (PC_outputAddress                 )
     );
+    assign current_pc = PC_inputAddress;
+    
     
     Instruction Instruction(
         .clk                         (clk                ),
         .rst                         (rst_n              ),
         .read_instr                  (Instr_rd),
         .addr_in(PC_outputAddress),
+        
+        
+        .test_addr(instr_mem_addr_test),
 
         // output
         .instr_out(mem_instr_out)
@@ -165,10 +161,12 @@ module Head(
         .clk  (clk),
         .rst  (rst_n),
         .en   (RegFile_we), 
-        .readS1 (readS1),
-        .readS2(readS2),
-        .readRd(readRd),
-        .data_in(data_in),
+        .readS1(rs1_addr), // take it from instr_decode
+        .readS2(rs2_addr), // take it from instr_decode
+        .readRd(rd_addr),// take it from instr_decode
+        .data_in(readRd), // this is generated in reg mux
+        
+        //output 
         .rs1(rs1),
         .rs2(rs2)
     );
@@ -204,7 +202,7 @@ module Head(
     
     ALU_Control ALU_Control(
         .clk(clk),
-        .rst(rst),
+        .rst(rst_n),
         .funct7(has_funct7),
         .ALUop(ALUop),
         .funct3(funct3),
@@ -217,16 +215,17 @@ module Head(
         .alu_ctrl(alu_ctrl),
         .operand1(operand1),
         .operand2(operand2),
+        // output
         .alu_out(alu_out)
     );
     
     Data Data(
      .clk(clk),
-     .rst(data_rst),
+     .rst(rst_n),
      .w_mode(w_mode),
      .r_mode(r_mode),
-     .addr_in(data_addr_in),
-     .din(din),
+     .addr_in(alu_out), // alu output will be send to data as address
+     .din(rs2), // reg 2 will be send as data in 
      .opc_in(opc_in),
      .dout(dout)
     );
@@ -236,8 +235,7 @@ module Head(
     reg [31:0] data_imm_s;
 
     // ! here we will start implement muxes that are needed for different area 
-    
-    
+
     // mux variable 
     reg [31:0] PC_input_addr_temp;
     reg [4:0] readRd_temp;
@@ -245,7 +243,7 @@ module Head(
     reg [31:0] operand2_temp;
 
     // *pc_adder
-    assign added4_pc = PC_inputAddress + 32'd4;
+    assign added4_pc = PC_outputAddress + 32'd4;
         
     // *pc_mux
     // ! the input address will get assigned to output directly
