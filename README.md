@@ -2,7 +2,7 @@
 
 ---
 
-- Fred Zhao, netId: yz8751. Components: Control Unit, Mux, PC, Top Level Head 
+- Fred Zhao, netId: yz8751. Components: Control Unit, Mux, PC, Instruction Decode, imm_extension, Top Level Head 
 - Rongze LI, netId: rl4670. Components: ALU, ALU control, 
 - Junqing Zhao, netId: jz5954.  Components: Instr Mem, Data Mem, 
 ---
