@@ -62,8 +62,8 @@ The testbench of the register file test if the register file can store the data 
 ---
 5. Instruction Memory 
 - Variables:
-takes in read_instr(read command), addr_in, addr_in2(only for testing), read_enable(read memory)
-returns instr_out, instr_out2 (only for testing)
+takes in read_instr(read instruction), addr_in
+returns instr_out
 
 - Des:
 The instruction memory is a ROM which means the memory file cannot be load or delete. The instruction memory can store up to 512 32-bits instructions. These instruction read from memory. We still have some testing variables in here. 
@@ -74,7 +74,7 @@ The test file instruction.mem contain memory data for test. You might need to re
 ---
 6. Data Memory
 - Variables:
-takes in w_mode, r_mode, addr_in, din
+takes in w_mode, r_mode, addr_in, din, func3
 returns dout
 
 - Des:
