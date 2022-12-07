@@ -1,13 +1,13 @@
 `timescale 1ns / 1ps
 
-module Data(clk, rst, w_mode, r_mode, addr_in, din, opc_in, dout);
+module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
    input         clk;
    input         rst;
    input [2:0]   w_mode;
    input [2:0]   r_mode;
    input [31:0]  addr_in;
    input [31:0]  din;
-   input [9:0]   opc_in;
+   input [2:0]   func3;
    output [31:0] dout;
    
    reg [7:0]     dmem1[0:1023] ;
@@ -31,21 +31,15 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, opc_in, dout);
    reg [31:0]    dO;
    reg [31:0]    d_t;
    wire          dout_se;
-   wire [9:0]    opcode;
-   wire [6:0]    func7;
-   wire [2:0]    func3;
    
    assign addr_dmem = (addr_in & ((~32'h80000000)));
    assign row[31:0] = {2'b0,addr_dmem[31:2]};
    assign index_dmem = (addr_in & 32'h00000003);
    assign index = index_dmem;
-   
-   assign opcode = opc_in;
-   assign dout_se = (opcode == 10'b0000000011 || opcode == 10'b0010000011) ? 1'b1 : 
+
+   assign dout_se = (func3 == 10'b000 || func3 == 10'b001) ? 1'b1 : 
                     1'b0;
    
-   assign func7 = opc_in[6:0];
-   assign func3 = opc_in[9:7];
    
    
    always @(negedge rst or posedge clk)
@@ -105,7 +99,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, opc_in, dout);
       end
    
    
-   always @(opc_in or dout_se or dO)
+   always @(dout_se or dO)
       if (dout_se == 1'b1)
          case (func3)
             3'b000 :

@@ -25,7 +25,7 @@
     input   rst_n
     );
 
-//processor_ctrl
+// * processor_ctrl
 // output wire
     wire PC_s; 
     wire PC_we; // pc enable signal
@@ -43,24 +43,24 @@
 
     //TODO: add data memory read/write enable
 
-// pc  
+// * pc  
     wire [31:0] current_pc;
     wire [31:0]PC_inputAddress;
     wire [31:0]PC_outputAddress;
     
     wire [31:0] added4_pc;
  
-//instr_mem
+// * instr_mem
     wire [31:0]mem_instr_out;
 
 
-//registor_file
+// * registor_file
     
     // output
     wire [31:0] rs1;
     wire [31:0] rs2;
 
-//instruction decode
+// * instruction decode
   
     // output
     wire [4:0] rd_addr;
@@ -70,7 +70,7 @@
     wire [2:0] funct3;
     wire [31:0] imm_ext_data;
 
-//alu_ctrl
+// * alu_ctrl
     wire    [1:0]                   ALUop;
     wire                            has_funct7;
 
@@ -78,14 +78,14 @@
     wire     [3:0]                   alu_ctrl;
 
 
-//alu
+//* alu
     wire    [31:0]                  operand1;
     wire    [31:0]                  operand2;
 
     // output
     wire     [31:0]                  alu_out;
 
-//data_mem
+// * data_mem
     wire    [2:0]                   w_mode;
     wire    [2:0]                   r_mode;
     wire    [9:0]                   opc_in;
@@ -93,7 +93,7 @@
     // dout 
     wire    [31:0]                  dout;                  
 
-// testing variable 
+// * testing variable 
     
     wire [2:0] control_next_stage;
      wire [31:0] instr_mem_addr_test;
@@ -111,7 +111,7 @@
     // input
     .clk                         (clk                ),
     .rst                         (rst_n              ),
-    .opcode                      (opcode   ), // £¡this will get opcode (last 7 bits of instr output from memory)
+    .opcode                      (opcode   ), // ! this will get opcode (last 7 bits of instr output from memory)
     .bc                          (branch_info),
     
     //output
@@ -226,7 +226,7 @@
      .r_mode(r_mode),
      .addr_in(alu_out), // alu output will be send to data as address
      .din(rs2), // reg 2 will be send as data in 
-     .opc_in(opc_in),
+     .func3(funct3),
      .dout(dout)
     );
 
@@ -236,7 +236,7 @@
 
     // ! here we will start implement muxes that are needed for different area 
 
-    // mux variable 
+    // * mux variable 
     reg [31:0] PC_input_addr_temp;
     reg [4:0] readRd_temp;
     reg [31:0] operand1_temp;
