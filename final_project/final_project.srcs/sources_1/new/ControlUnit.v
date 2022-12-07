@@ -331,7 +331,7 @@ module ControlUnit(
                     // may need to wait here 
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b1; // select ALU cal
+                    Data_s_temp = bc; // ! branch info based on branch control 
                     Data_we_temp = 4'b0000; // TODO: check value 
                     Bc_Op_temp = 1'b1; // use branch control
                 end

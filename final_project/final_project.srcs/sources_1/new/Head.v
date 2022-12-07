@@ -137,9 +137,9 @@
         .clk                         (clk                ),
         .rst                         (rst_n              ),
         .write_en                    (PC_we              ),
-        .PC_inputAddress             (PC_inputAddress             ),
+        .PC_inputAddress             (PC_inputAddress    ),
         // output
-        .PC_outputAddress            (PC_outputAddress                 )
+        .PC_outputAddress            (PC_outputAddress   )
     );
     assign current_pc = PC_inputAddress;
     
@@ -195,8 +195,8 @@
     Branch_control Branch_control(
         .operand1(operand1),
         .operand2(operand2),
-        .bc_enable(branch_true),
-        .opcode(funct3),
+        .bc_enable(Bc_Op),// take in control unit branch enable
+        .funct3(funct3),
         .bc_out(branch_info)
     );
     
