@@ -166,7 +166,7 @@ module ControlUnit(
                     Imm_op_temp = 1'b1; 
                     ALU_s1_temp = 1'b0;  // get rs 1
                     ALU_s2_temp = 1'b0;  // get imm
-                    ALU_op_temp = 2'b10;  // add two address
+                    ALU_op_temp = 2'b00;  // add two address
 
                     // we need to wait for this step and then store
                     DataMem_rd_temp = 1'b0; // store to data

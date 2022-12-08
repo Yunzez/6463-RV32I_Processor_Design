@@ -1,10 +1,9 @@
 `timescale 1ns / 1ps
 
-module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
+module Data(clk, rst, mode, addr_in, din, func3, dout);
    input         clk;
    input         rst;
-   input [2:0]   w_mode;
-   input [2:0]   r_mode;
+   input [3:0]   mode;
    input [31:0]  addr_in;
    input [31:0]  din;
    input [2:0]   func3;
@@ -37,7 +36,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
    assign index_dmem = (addr_in & 32'h00000003);
    assign index = index_dmem;
 
-   assign dout_se = (func3 == 10'b000 || func3 == 10'b001) ? 1'b1 : 
+   assign dout_se = (func3 == 3'b000 || func3 == 3'b001) ? 1'b1 : 
                     1'b0;
    
    
@@ -49,7 +48,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
       begin
          if (addr_dmem < 4096)
          begin
-            if (r_mode == 3'b001)
+            if (mode == 4'b0001)
                case (index)
                   0 :
                      dO <= {24'h000000, dmem1[row]};
@@ -63,7 +62,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
                      ;
                endcase
             
-            else if (r_mode == 3'b011)
+            else if (mode == 4'b0010)
                case (index)
                   0 :
                      dO <= {16'h0000, dmem2[row], dmem1[row]};
@@ -77,7 +76,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
                      ;
                endcase
             
-            else if (r_mode == 3'b111)
+            else if (mode == 4'b0011)
                case (index)
                   0 :
                      dO <= {dmem4[row], dmem3[row], dmem2[row], dmem1[row]};
@@ -126,13 +125,13 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
       begin
          if (addr_dmem < 4096)
          begin
-            if (w_mode == 3'b001)
+            if (mode == 4'b0100)
             begin
                if (index == 0)
                   dmem1[row] <= din[7:0];
             end
             
-            else if (w_mode == 3'b011)
+            else if (mode == 4'b1000)
                case (index)
                   0 :
                      dmem1[row] <= din[7:0];
@@ -142,7 +141,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
                      ;
                endcase
             
-            else if (w_mode == 3'b111)
+            else if (mode == 4'b1100)
                case (index)
                   0 :
                      dmem1[row] <= din[7:0];
@@ -164,13 +163,13 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
       begin
          if (addr_dmem < 4096)
          begin
-            if (w_mode == 3'b001)
+            if (mode == 4'b0100)
             begin
                if (index == 1)
                   dmem2[row] <= din[7:0];
             end
             
-            else if (w_mode == 3'b011)
+            else if (mode == 4'b1000)
                case (index)
                   1 :
                      dmem2[row] <= din[7:0];
@@ -180,7 +179,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
                      ;
                endcase
             
-            else if (w_mode == 3'b111)
+            else if (mode == 4'b1100)
                case (index)
                   1 :
                      dmem2[row] <= din[7:0];
@@ -202,13 +201,13 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
       begin
          if (addr_dmem < 4096)
          begin
-            if (w_mode == 3'b001)
+            if (mode == 4'b0100)
             begin
                if (index == 2)
                   dmem3[row] <= din[7:0];
             end
             
-            else if (w_mode == 3'b011)
+            else if (mode == 4'b1000)
                case (index)
                   2 :
                      dmem3[row] <= din[7:0];
@@ -218,7 +217,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
                      ;
                endcase
             
-            else if (w_mode == 3'b111)
+            else if (mode == 4'b1100)
                case (index)
                   2 :
                      dmem3[row] <= din[7:0];
@@ -240,13 +239,13 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
       begin
          if (addr_dmem < 4096)
          begin
-            if (w_mode == 3'b001)
+            if (mode == 4'b0100)
             begin
                if (index == 3)
                   dmem4[row] <= din[7:0];
             end
             
-            else if (w_mode == 3'b011)
+            else if (mode == 4'b1000)
                case (index)
                   3 :
                      dmem4[row] <= din[7:0];
@@ -256,7 +255,7 @@ module Data(clk, rst, w_mode, r_mode, addr_in, din, func3, dout);
                      ;
                endcase
             
-            else if (w_mode == 3'b111)
+            else if (mode == 4'b1100)
                case (index)
                   3 :
                      dmem4[row] <= din[7:0];
