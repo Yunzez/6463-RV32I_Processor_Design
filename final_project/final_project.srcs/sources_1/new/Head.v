@@ -92,7 +92,8 @@
 
     // dout 
     wire    [31:0]                  dout;                  
-
+// * data ext 
+    wire    [31:0]                  dout_ext;
 // * testing variable 
     
     wire [2:0] control_next_stage;
@@ -222,12 +223,17 @@
     Data Data(
      .clk(clk),
      .rst(rst_n),
-     .w_mode(w_mode),
-     .r_mode(r_mode),
+     .mode(w_mode),
      .addr_in(alu_out), // alu output will be send to data as address
      .din(rs2), // reg 2 will be send as data in 
      .func3(funct3),
      .dout(dout)
+    );
+    
+    data_ext data_ext(
+        data_in(dout),
+        funt3(funct3),
+        data_out(dout_ext)
     );
 
     // ! for data imm mux output
@@ -277,7 +283,7 @@
     
     // *Data mem mux
     always @(posedge clk or negedge rst_n) begin
-        if(Data_s == 0) data_imm_s = dout;
+        if(Data_s == 0) data_imm_s = dout_ext;
         else data_imm_s = alu_out;
     end
 
