@@ -9,8 +9,6 @@ module data(
     output wire [31:0]   dmem_out
     );
     
-    //declaraction
-    parameter   depth = 1024;
     reg     [31:0]  dmem [1023:0];
     reg     [31:0]  rom  [0:7];
     wire    [9:0]   dmem_addr;
@@ -24,23 +22,24 @@ module data(
     reg     [31:0]  data_out;
 
 
-    //initialize data memory and rom    
+    //initialize data memory, set all 1024 memory to zero 
     initial begin
-        $readmemh("dmem_zeros.txt",dmem);
+        $readmemh("initialize.txt",dmem);
     end
 
     (*rom_style = "block" *) reg [32:0] rom_data;
     always @(posedge clk) begin
         if(re)
             case(addr[3:2])
-                2'b00: rom_data <=32'd11311762;
-                2'b01: rom_data <=32'd19816562;
+                //load N number
+                2'b00: rom_data <=32'd13000639;
+                2'b01: rom_data <=32'd10923038;
                 2'b10: rom_data <=32'd17003972;        
                 2'b11: rom_data <=32'd0;
             endcase
     end
 
-    //STORE INSTRUCTION DECODE
+    //store decode
     assign w_en = we == 4'b0000;
     assign dmem_addr = addr[11:2];
 
@@ -48,9 +47,9 @@ module data(
     assign dmem_in_1 = we[1] ? dmem_in[15:8] : dmem[dmem_addr][15:8];
     assign dmem_in_2 = we[2] ? dmem_in[23:16] : dmem[dmem_addr][23:16];
     assign dmem_in_3 = we[3] ? dmem_in[31:24] : dmem[dmem_addr][31:24];
-    assign dmem_tmp   = {dmem_in_3,dmem_in_2,dmem_in_1,dmem_in_0};
+    assign dmem_tmp  = {dmem_in_3,dmem_in_2,dmem_in_1,dmem_in_0};
 
-    //DATA MEMORY 
+    //data memory 
     always@(posedge clk) begin
         if(we) begin
             dmem[dmem_addr]    <= dmem_tmp;
