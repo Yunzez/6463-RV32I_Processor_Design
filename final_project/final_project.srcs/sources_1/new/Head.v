@@ -220,20 +220,22 @@
         .alu_out(alu_out)
     );
     
-    Data Data(
+    data data(     
      .clk(clk),
-     .rst(rst_n),
-     .mode(w_mode),
-     .addr_in(alu_out), // alu output will be send to data as address
-     .din(rs2), // reg 2 will be send as data in 
-     .func3(funct3),
-     .dout(dout)
+     .we_en(Data_we),
+     .func3(funct3),   //0001--SB, 0011--SH, 1111--SW, 0000--write disable
+     .re(DataMem_rd),
+     .addr(alu_out), // alu output will be send to data as address
+     .dmem_in(rs2), // reg 2 will be send as data in 
+     
+     // output 
+     .dmem_out(dout)
     );
     
     data_ext data_ext(
-        data_in(dout),
-        funt3(funct3),
-        data_out(dout_ext)
+        .data_in(dout),
+        .funt3(funct3),
+        .data_out(dout_ext)
     );
 
     // ! for data imm mux output
@@ -276,7 +278,7 @@
      
     // *ALU mux 2
     always @(posedge clk or negedge rst_n) begin
-        if(ALU_s2 == 0) operand2_temp = rs2;
+        if(ALU_s2 == 1) operand2_temp = rs2;
         else operand2_temp = imm_ext_data;
     end
     assign operand2 = operand2_temp;

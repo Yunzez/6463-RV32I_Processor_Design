@@ -26,7 +26,7 @@ module ControlUnit(
 //    input [2:0]funct3,
     input bc, // branch info
     output [2:0] testing_stage,
-    output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op, Data_we,
+    output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op,Data_we,
     output reg [1:0]ALU_op
     );
     
@@ -38,10 +38,11 @@ module ControlUnit(
     parameter FETCH_DECODE  = 3'b010;
     parameter EXECUTION    = 3'b011;
     parameter MEMWRITE    = 3'b100;
-   
+    parameter HALT  = 3'b101;
    
    reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
-   reg [1:0]ALU_op_temp;           
+   reg [1:0] ALU_op_temp;      
+ 
     assign testing_stage = curr_state;
     always @(posedge clk or negedge rst) begin
         if(!rst)
@@ -147,7 +148,7 @@ module ControlUnit(
                     ALU_s2_temp = 1'b0; // load imm
                     ALU_op_temp = 2'b00; // indicate store
 
-                    DataMem_rd_temp = 1'b0; 
+                    DataMem_rd_temp = 1'b1; 
                     Data_op_temp = 1'b1; // enable data ext
                     Data_s_temp = 1'b0; // load data
                     Data_we_temp = 1'b0; 
@@ -172,7 +173,7 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // store to data
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0; // TODO: check value  
+                    Data_we_temp = 1'b1; // TODO: check value  
                     Bc_Op_temp = 1'b0;
                 end
                 
@@ -213,10 +214,10 @@ module ControlUnit(
                     ALU_s2_temp = 1'b0; // select imm
                     ALU_op_temp = 2'b00; // alu load
 
-                    DataMem_rd_temp = 1'b0; 
+                    DataMem_rd_temp = 1'b1; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 4'b0000;  
+                    Data_we_temp = 1'b0;  
                     Bc_Op_temp = 1'b0;
                 end
 
@@ -310,7 +311,7 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b1; // store to data
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 1'b1; // TODO: check value  may depend on funct3
+                    Data_we_temp = 1'b0; // TODO: check value  may depend on funct3
                     Bc_Op_temp = 1'b0;
                 end
 
@@ -332,7 +333,7 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = bc; // ! branch info based on branch control 
-                    Data_we_temp = 4'b0000; // TODO: check value 
+                    Data_we_temp = 1'b0; // TODO: check value 
                     Bc_Op_temp = 1'b1; // use branch control
                 end
 
@@ -353,7 +354,7 @@ module ControlUnit(
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b1; // choose alu
-                    Data_we_temp = 4'b0000;
+                    Data_we_temp = 1'b0;
                     Bc_Op_temp = 1'b0;
                 end
 
@@ -439,6 +440,8 @@ always @(*) begin
         FETCH_DECODE: 
             if(!rst)
                 next_state = INITALIZE;
+            else if(opcode == 7'b1110011)
+                next_state = HALT;
             else
                 next_state = EXECUTION;
                 
@@ -447,6 +450,13 @@ always @(*) begin
                 next_state = INITALIZE;
             else
                 next_state = MEMWRITE;
+                 
+         HALT:
+            if(!rst_n)
+                next_state = INIT;
+            else
+                next_state = HALT;
+                
         default:
             next_state = INITALIZE;
     endcase

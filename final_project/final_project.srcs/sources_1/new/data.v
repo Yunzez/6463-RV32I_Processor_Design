@@ -3,21 +3,17 @@
 module data(
     input wire          clk,
     input wire [31:0]   addr,
-    input wire [3:0]    we,             //0001--SB, 0011--SH, 1111--SW, 0000--write disable
+    input wire [2:0]    func3,   
+    input wire          we_en,
     input wire          re,
     input wire [31:0]   dmem_in,
     output wire [31:0]   dmem_out
     );
     
     reg     [31:0]  dmem [1023:0];
-    reg     [31:0]  rom  [0:7];
+//    reg     [31:0]  rom  [0:7];
     wire    [9:0]   dmem_addr;
     wire    [31:0]  dmem_out_tmp;
-    wire            w_en;
-    wire    [7:0]   dmem_in_0;
-    wire    [7:0]   dmem_in_1;
-    wire    [7:0]   dmem_in_2;
-    wire    [7:0]   dmem_in_3;
     wire    [31:0]  dmem_tmp;
     reg     [31:0]  data_out;
 
@@ -40,18 +36,48 @@ module data(
     end
 
     //store decode
-    assign w_en = we == 4'b0000;
+    reg [7:0] dmem_in_0_temp;
+    reg [7:0] dmem_in_1_temp;
+    reg [7:0] dmem_in_2_temp;
+    reg [7:0] dmem_in_3_temp;
     assign dmem_addr = addr[11:2];
-
-    assign dmem_in_0 = we[0] ? dmem_in[7:0] : dmem[dmem_addr][7:0];
-    assign dmem_in_1 = we[1] ? dmem_in[15:8] : dmem[dmem_addr][15:8];
-    assign dmem_in_2 = we[2] ? dmem_in[23:16] : dmem[dmem_addr][23:16];
-    assign dmem_in_3 = we[3] ? dmem_in[31:24] : dmem[dmem_addr][31:24];
-    assign dmem_tmp  = {dmem_in_3,dmem_in_2,dmem_in_1,dmem_in_0};
+    
+    always @(posedge clk) begin
+        case(func3)
+            3'b000 || 3'b100: 
+            begin// load byte
+                dmem_in_0_temp = dmem_in[7:0];
+                dmem_in_1_temp = dmem[dmem_addr][15:8];
+                dmem_in_2_temp = dmem[dmem_addr][23:16];
+                dmem_in_3_temp = dmem[dmem_addr][31:24];
+            end
+            
+            3'b001 || 3'b101: // load half, 2 bytes
+            begin 
+                dmem_in_0_temp = dmem_in[7:0];
+                dmem_in_1_temp = dmem_in[15:8];
+                dmem_in_2_temp = dmem[dmem_addr][23:16];
+                dmem_in_3_temp = dmem[dmem_addr][31:24];
+            end
+            
+            3'b010: // load word, 4 byte
+            begin
+                dmem_in_0_temp = dmem_in[7:0];
+                dmem_in_1_temp = dmem_in[15:8];
+                dmem_in_2_temp = dmem_in[23:16];
+                dmem_in_3_temp = dmem_in[31:24];
+            end
+        endcase 
+    end
+//    assign dmem_in_0 = we[0] ? dmem_in[7:0] : dmem[dmem_addr][7:0];
+//    assign dmem_in_1 = we[1] ? dmem_in[15:8] : dmem[dmem_addr][15:8];
+//    assign dmem_in_2 = we[2] ? dmem_in[23:16] : dmem[dmem_addr][23:16];
+//    assign dmem_in_3 = we[3] ? dmem_in[31:24] : dmem[dmem_addr][31:24];
+    assign dmem_tmp  = {dmem_in_3_temp,dmem_in_2_temp,dmem_in_1_temp,dmem_in_0_temp};
 
     //data memory 
     always@(posedge clk) begin
-        if(we) begin
+        if(we_en) begin
             dmem[dmem_addr]    <= dmem_tmp;
         end
     end
