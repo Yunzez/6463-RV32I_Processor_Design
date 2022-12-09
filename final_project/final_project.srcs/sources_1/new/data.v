@@ -30,8 +30,8 @@ module data(
                 //load N number
                 2'b00: rom_data <=32'd13000639;
                 2'b01: rom_data <=32'd10923038;
-                2'b10: rom_data <=32'd17003972;        
-                2'b11: rom_data <=32'd0;
+                2'b10: rom_data <=32'd19039807;        
+                2'b11: rom_data <=32'd00000000;
             endcase
     end
 
