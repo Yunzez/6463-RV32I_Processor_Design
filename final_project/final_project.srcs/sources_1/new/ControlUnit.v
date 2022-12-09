@@ -154,6 +154,27 @@ module ControlUnit(
                     Data_we_temp = 1'b0; 
                     Bc_Op_temp = 1'b0;
                 end
+                
+                 7'b0010011 || 7'b0001111: begin // for I type addi, ORI... 
+                 // ! also implement fence here since it says to do the same as addi.
+
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b0;  
+                    Imm_op_temp = 1'b1; 
+                    ALU_s1_temp = 1'b0; // load rs1
+                    ALU_s2_temp = 1'b0; // load imm
+                    ALU_op_temp = 2'b00; // indicate store
+
+                    DataMem_rd_temp = 1'b1; 
+                    Data_op_temp = 1'b1; // enable data ext
+                    Data_s_temp = 1'b0; // load data
+                    Data_we_temp = 1'b0; 
+                    Bc_Op_temp = 1'b0;
+                end
 
                  7'b0100011: begin // S-type store 
                  //e.g. data[rs1+sign_ext(imm)][7:0] = rs2[7:0]
@@ -275,7 +296,27 @@ module ControlUnit(
                 //rd=sign_ext(data[rs1+sign_ext(imm)][7:0])
 
                     PC_s_temp = 1'b0; 
-                    PC_we_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select data 
+
+                    RegFile_we_temp = 1'b1;  // write data to reg
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00; 
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0; 
+                    Data_we_temp = 1'b0;
+                    Bc_Op_temp = 1'b0;
+                end
+                
+                7'b0010011|| 7'b0001111: begin // I-type addi ori andi ....
+                // ! also implement fence here since it says to do the same as addi.
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select data 
 
@@ -297,7 +338,7 @@ module ControlUnit(
                  //e.g. data[rs1+sign_ext(imm)][7:0] = rs2[7:0]
 
                     PC_s_temp = 1'b0; 
-                    PC_we_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
@@ -341,7 +382,7 @@ module ControlUnit(
                   7'b0110111: begin // U-type load
                     //e.g. rd={imm[31:12]; 12'b0}
                     PC_s_temp = 1'b1; 
-                    PC_we_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select ALu
 

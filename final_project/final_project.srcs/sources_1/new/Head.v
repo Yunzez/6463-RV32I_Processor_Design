@@ -55,7 +55,7 @@
 
 
 // * registor_file
-    
+    wire [4:0]readRd;
     // output
     wire [31:0] rs1;
     wire [31:0] rs2;
@@ -103,7 +103,6 @@
 // //branch
     
     wire                            branch_true;
-    wire                            alu_true;
     //////////////////////////////////////////////////////////////////////////////////
     //Module
     //////////////////////////////////////////////////////////////////////////////////
@@ -205,7 +204,7 @@
         .clk(clk),
         .rst(rst_n),
         .funct7(funct7),
-        .ALUop(ALUop),
+        .opcode(opcode),
         .funct3(funct3),
 
         // output 
