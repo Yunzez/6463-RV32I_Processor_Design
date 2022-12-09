@@ -1,31 +1,12 @@
 Vivado Simulator v2022.1
 Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot head_test_behav xil_defaultlib.head_test xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Head_behav xil_defaultlib.Head xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'data_in' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:168]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:99]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:100]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:101]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:102]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:103]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:104]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:105]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:106]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:107]
-WARNING: [VRFC 10-8967] first argument of $fatal is invalid; expected 0, 1 or 2 [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:108]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'data_in' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:167]
+WARNING: [VRFC 10-3091] actual bit length 7 differs from formal bit length 1 for port 'funct7' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:207]
 Completed static elaboration
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 99, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 100, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 101, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 102, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 103, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 104, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 105, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 106, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 107, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
-INFO: [XSIM 43-4329] Assuming default value 1 for the first arguement of $fatal at Line 108, File C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
@@ -41,6 +22,5 @@ Compiling module xil_defaultlib.ALU
 Compiling module xil_defaultlib.data
 Compiling module xil_defaultlib.data_ext
 Compiling module xil_defaultlib.Head
-Compiling module xil_defaultlib.head_test
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot head_test_behav
+Built simulation snapshot Head_behav

@@ -27,7 +27,8 @@ module Instruction_decode(
     output [4:0]rs1_addr,
     output [4:0]rs2_addr,
     output [6:0]opcode,
-    output [2:0]funct
+    output [2:0]funct,
+    output [6:0]funct7
     );
 
        assign opcode   = instr_in[6:0];
@@ -35,5 +36,5 @@ module Instruction_decode(
        assign rd_addr  = instr_in[11:7];
        assign rs1_addr = instr_in[19:15];
        assign rs2_addr = instr_in[24:20];
-   
+       assign funct7 = instr_in[31:25];
 endmodule

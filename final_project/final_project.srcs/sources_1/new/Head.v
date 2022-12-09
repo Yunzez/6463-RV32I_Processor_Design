@@ -68,11 +68,12 @@
     wire [4:0] rs2_addr;
     wire [6:0] opcode;
     wire [2:0] funct3;
+    wire [6:0] funct7;
     wire [31:0] imm_ext_data;
 
 // * alu_ctrl
     wire    [1:0]                   ALUop;
-    wire                            has_funct7;
+
 
     // output 
     wire     [3:0]                   alu_ctrl;
@@ -86,8 +87,6 @@
     wire     [31:0]                  alu_out;
 
 // * data_mem
-    wire    [2:0]                   w_mode;
-    wire    [2:0]                   r_mode;
     wire    [9:0]                   opc_in;
 
     // dout 
@@ -180,7 +179,8 @@
         .rs1_addr(rs1_addr),
         .rs2_addr(rs2_addr),
         .opcode(opcode),
-        .funct(funct3)
+        .funct(funct3),
+        .funct7(funct7)
     );
     
     // after decode, we will go to imm_ext if needed
@@ -200,11 +200,11 @@
         .funct3(funct3),
         .bc_out(branch_info)
     );
-    
+
     ALU_Control ALU_Control(
         .clk(clk),
         .rst(rst_n),
-        .funct7(opcode? 1'b1: 1'b0),
+        .funct7(funct7),
         .ALUop(ALUop),
         .funct3(funct3),
 
