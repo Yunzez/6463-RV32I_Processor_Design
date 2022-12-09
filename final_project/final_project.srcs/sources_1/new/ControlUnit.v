@@ -452,8 +452,8 @@ always @(*) begin
                 next_state = MEMWRITE;
                  
          HALT:
-            if(!rst_n)
-                next_state = INIT;
+            if(!rst)
+                next_state = INITALIZE;
             else
                 next_state = HALT;
                 

@@ -204,7 +204,7 @@
     ALU_Control ALU_Control(
         .clk(clk),
         .rst(rst_n),
-        .funct7(has_funct7),
+        .funct7(opcode? 1'b1: 1'b0),
         .ALUop(ALUop),
         .funct3(funct3),
 
