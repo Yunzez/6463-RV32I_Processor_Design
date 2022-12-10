@@ -57,7 +57,7 @@ module ControlUnit(
      case(curr_state)
         INITALIZE: begin
         // we set:
-                PC_s_temp = 1'b1; // we set when pc s is 1; program counter plus 4
+                PC_s_temp = 1'b0; // we set when pc s is 1; program counter plus 4
                 PC_we_temp = 1'b0; // allow adder write to pc  
                 Instr_rd_temp = 1'b1; // get the current memory
                 RegFile_s_temp = 1'b0; 
@@ -118,9 +118,9 @@ module ControlUnit(
                     PC_s_temp = 1'b0; 
                     PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; 
+                    RegFile_s_temp = 1'b0; 
 
-                    RegFile_we_temp = 1'b1;  
+                    RegFile_we_temp = 1'b0;  
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; // let both s1 s2 take in rs data
                     ALU_s2_temp = 1'b1; 
@@ -294,15 +294,15 @@ module ControlUnit(
             case(opcode)
                 7'b0110011: begin // R-type
                 //rd = rs1 + rs2
-                    PC_s_temp = 1'b1; 
+                    PC_s_temp = 1'b0; 
                     PC_we_temp = 1'b0; // add pc counter while store value, so we can continue
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; // select alu result
+                    RegFile_s_temp = 1'b0; // select alu result
 
-                    RegFile_we_temp = 1'b1;  // write alu result
+                    RegFile_we_temp = 1'b0;  // write alu result
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0;  
-                    ALU_s2_temp = 1'b0; 
+                    ALU_s2_temp = 1'b1; 
                     ALU_op_temp = 1'b00; 
 
                     //store 
@@ -320,9 +320,9 @@ module ControlUnit(
                     PC_s_temp = 1'b0; 
                     PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; // select data 
+                    RegFile_s_temp = 1'b0; // select data 
 
-                    RegFile_we_temp = 1'b1;  // write data to reg
+                    RegFile_we_temp = 1'b0;  // write data to reg
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
                     ALU_s2_temp = 1'b0;
@@ -340,9 +340,9 @@ module ControlUnit(
                     PC_s_temp = 1'b0; 
                     PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; // select data 
+                    RegFile_s_temp = 1'b0; // select data 
 
-                    RegFile_we_temp = 1'b1;  // write data to reg
+                    RegFile_we_temp = 1'b0;  // write data to reg
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
                     ALU_s2_temp = 1'b0;
@@ -360,9 +360,9 @@ module ControlUnit(
                     PC_s_temp = 1'b0; 
                     PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; // select data 
+                    RegFile_s_temp = 1'b0; // select data 
 
-                    RegFile_we_temp = 1'b1;  // write data to reg
+                    RegFile_we_temp = 1'b0;  // write data to reg
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
                     ALU_s2_temp = 1'b0;
@@ -425,9 +425,9 @@ module ControlUnit(
                     PC_s_temp = 1'b1; 
                     PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b1; // select ALu
+                    RegFile_s_temp = 1'b0; // select ALu
 
-                    RegFile_we_temp = 1'b1; // enable reg write
+                    RegFile_we_temp = 1'b0; // enable reg write
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
                     ALU_s2_temp = 1'b0; 
@@ -450,27 +450,6 @@ module ControlUnit(
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
-                    RegFile_we_temp = 1'b1; // write  PC=PC+sign_ext
-                    Imm_op_temp = 1'b0;
-                    ALU_s1_temp = 1'b0;
-                    ALU_s2_temp = 1'b0;
-                    ALU_op_temp = 2'b00;
-
-                    DataMem_rd_temp = 1'b0; 
-                    Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b0; //select ALU
-                    Data_we_temp = 1'b0; // need to double check 
-                    Bc_Op_temp = 1'b0;
-                end    
-            endcase
-        end
-        
-        WRITEBACK: begin
-                    PC_s_temp = 1'b0; // choose alu value
-                    PC_we_temp = 1'b1; // write alu value to pc
-                    Instr_rd_temp = 1'b0;
-                    RegFile_s_temp = 1'b0; 
-
                     RegFile_we_temp = 1'b0; // write  PC=PC+sign_ext
                     Imm_op_temp = 1'b0;
                     ALU_s1_temp = 1'b0;
@@ -482,7 +461,184 @@ module ControlUnit(
                     Data_s_temp = 1'b0; //select ALU
                     Data_we_temp = 1'b0; // need to double check 
                     Bc_Op_temp = 1'b0;
-             end
+                end  
+            endcase
+        end
+        
+        WRITEBACK: begin
+                   case(opcode)
+                7'b0110011: begin // R-type
+                //rd = rs1 + rs2
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; // add pc counter while store value, so we can continue
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select alu result
+
+                    RegFile_we_temp = 1'b1;  // write alu result
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0;  
+                    ALU_s2_temp = 1'b1; 
+                    ALU_op_temp = 1'b00; 
+
+                    //store 
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take ALU result
+                    Data_we_temp = 1'b0; 
+                    Bc_Op_temp = 1'b0;
+                end
+
+               7'b0000011: begin // I-type load and store in rd
+
+                //rd=sign_ext(data[rs1+sign_ext(imm)][7:0])
+
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select data 
+
+                    RegFile_we_temp = 1'b1;  // write data to reg
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00; 
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0; 
+                    Data_we_temp = 1'b0;
+                    Bc_Op_temp = 1'b0;
+                end
+                
+                7'b0010011: begin // I-type addi ori andi ....
+                // ! also implement fence here since it says to do the same as addi.
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select data 
+
+                    RegFile_we_temp = 1'b1;  // write data to reg
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00; 
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take alu cal output 
+                    Data_we_temp = 1'b0;
+                    Bc_Op_temp = 1'b0;
+                end
+                
+                7'b0001111: begin // this is the same as above
+                // ! also implement fence here since it says to do the same as addi.
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select data 
+
+                    RegFile_we_temp = 1'b1;  // write data to reg
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00; 
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take alu cal output 
+                    Data_we_temp = 1'b0;
+                    Bc_Op_temp = 1'b0;
+                end
+
+                 7'b0100011: begin // S-type store 
+                 //e.g. data[rs1+sign_ext(imm)][7:0] = rs2[7:0]
+
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b0; 
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0;  
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00;  // store 
+                    
+                    // we need to wait for this step and then store
+                    DataMem_rd_temp = 1'b1; // store to data
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0;
+                    Data_we_temp = 1'b0; // TODO: check value  may depend on funct3
+                    Bc_Op_temp = 1'b0;
+                end
+
+                 7'b1100011: begin // B-type Store ... of rs2 to memory
+                // e.g. PC=(rs1==rs2) ? PC+sign_ext(imm) : PC+4
+
+                    PC_s_temp = bc; // choose what to take base on bc
+                    PC_we_temp = 1'b1; // write pc 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b0; 
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0; 
+                    ALU_op_temp = 2'b01; // cal: check branch
+
+                    // may need to wait here 
+                    DataMem_rd_temp = 1'b0; // 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = bc; // ! branch info based on branch control 
+                    Data_we_temp = 1'b0; // TODO: check value 
+                    Bc_Op_temp = 1'b1; // use branch control
+                end
+
+
+                  7'b0110111: begin // U-type load
+                    //e.g. rd={imm[31:12]; 12'b0}
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b1; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select ALu
+
+                    RegFile_we_temp = 1'b1; // enable reg write
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0; 
+                    ALU_op_temp = 2'b00; // alu load
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // choose alu
+                    Data_we_temp = 1'b0;
+                    Bc_Op_temp = 1'b0;
+                end
+
+
+                7'b1101111: begin // J-type jump and link 
+
+                //rd=PC+4; PC=PC+sign_ext(imm)
+                    // we do PC=PC+sign_ext(imm) this step
+                    PC_s_temp = 1'b1; // choose alu value
+                    PC_we_temp = 1'b1; // write alu value to pc
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b1; // write  PC=PC+sign_ext
+                    Imm_op_temp = 1'b0;
+                    ALU_s1_temp = 1'b0;
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00;
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0; //select ALU
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end  
+            endcase
+        end
     endcase
    end
    

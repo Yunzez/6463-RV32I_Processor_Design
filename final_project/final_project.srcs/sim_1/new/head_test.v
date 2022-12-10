@@ -22,7 +22,7 @@
 
 module head_test();
     // original wire 
-parameter f = 100;                   //Mhz
+parameter f = 200;                   //Mhz
 parameter PERIOD = 1/(f*0.001);
 reg clk = 0;
 reg rst = 0;
@@ -60,7 +60,7 @@ wire [31:0] r11 = Head.RegisterFile.rf[11];
 wire [31:0] r12 = Head.RegisterFile.rf[12]; 
 //Rst
 initial begin
-    #5 
+    #100
     rst = 1;
 end 
 
@@ -73,17 +73,23 @@ reg [31:0] operand2 = 32'b000001100100;
 // initial load command
 initial begin
      $display("add insttuction to memory");
-    Head.Instruction.rom_words[0] = {operand1[11:0],20'b00001_000_00001_0010011}; // addi x1,x1,50
+    Head.Instruction.rom_words[0] = 32'b00000011001000001_000_00001_0010011; // addi x1,x1,50
     $display("%b", Head.Instruction.rom_words[0]);
     Head.Instruction.rom_words[1] = {operand2[11:0],20'b00010_000_00010_0010011}; // addi x2,x2,100
     Head.Instruction.rom_words[2] = 32'b0000000_00010_00001_000_00011_0110011;    // add x3,x1,x2
     Head.Instruction.rom_words[3] = 32'b0100000_00010_00001_000_00100_0110011;    // sub x4,x1,x2
+    
     Head.Instruction.rom_words[4] = 32'b0000000_00010_00001_001_00101_0110011;    // sll x5,x1,x2  
     Head.Instruction.rom_words[5] = 32'b0000000_00010_00001_010_00110_0110011;    // slt x6,x1,x2  
+    
     Head.Instruction.rom_words[6] = 32'b0000000_00010_00001_011_00111_0110011;    // sltu x7,x1,x2  
+    
     Head.Instruction.rom_words[7] = 32'b0000000_00010_00001_100_01000_0110011;    // xor x8,x1,x2 
+    
     Head.Instruction.rom_words[8] = 32'b0000000_00010_00001_101_01001_0110011;    // srl x9,x1,4 
+    
     Head.Instruction.rom_words[9] = 32'b0100000_00010_00001_101_01010_0110011;    // sra x10,x1,x2 
+    
     Head.Instruction.rom_words[10]= 32'b0000000_00010_00001_110_01011_0110011;    // or x11,x1,x2 
     Head.Instruction.rom_words[11]= 32'b0000000_00010_00001_111_01100_0110011;    // and x12,x1,x2 
     $display("add insttuction successfully");
@@ -96,8 +102,9 @@ wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};
 initial begin   
     #1500;
     $display("waited 1500ns, start testing");
-    if(r3 != signed_op1 + signed_op2)                       $display("Test case 'add' failed, actual value %b", r3, "  operand value: 1, 2  %d", operand1, "%d", operand2);
-    if(r4 != signed_op1 - signed_op2)                       $display("Test case 'sub' failed");
+    $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );
+    if(r3 != signed_op1 + signed_op2)                       $display("Test case 'add' failed, actual value %d", r3, "  operand value: %d", operand1, "%d", operand2);
+    if(r4 != signed_op1 - signed_op2)                       $display("Test case 'sub' failed,  operand value: 1, 2  %d", operand1, "%d", operand2, "expected %d", signed_op1 + signed_op2);
     if(r5 != signed_op1 << signed_op2[4:0])                 $display("Test case 'sll' failed");
     if(r6 != $signed(signed_op1) < $signed(signed_op2))     $display("Test case 'slt' failed");
     if(r7 != signed_op1 < signed_op2)                       $display("Test case 'sltu' failed");

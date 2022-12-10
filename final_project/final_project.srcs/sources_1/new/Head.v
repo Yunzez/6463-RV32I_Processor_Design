@@ -90,7 +90,19 @@
     
     wire [2:0] control_next_stage;
      wire [31:0] instr_mem_addr_test;
-
+wire [31:0] r0 = RegisterFile.rf[0]; 
+wire [31:0] r1 = RegisterFile.rf[1]; 
+wire [31:0] r2 = RegisterFile.rf[2];  
+wire [31:0] r3 = RegisterFile.rf[3]; 
+wire [31:0] r4 = RegisterFile.rf[4]; 
+wire [31:0] r5 = RegisterFile.rf[5]; 
+wire [31:0] r6 = RegisterFile.rf[6];  
+wire [31:0] r7 = RegisterFile.rf[7]; 
+wire [31:0] r8 = RegisterFile.rf[8]; 
+wire [31:0] r9 = RegisterFile.rf[9]; 
+wire [31:0] r10 =RegisterFile.rf[10]; 
+wire [31:0] r11 =RegisterFile.rf[11];  
+wire [31:0] r12 =RegisterFile.rf[12]; 
 // TODO: will add after branch contorl is done 
 
 // //branch
@@ -252,23 +264,12 @@
     assign readRd = RegFile_s? data_imm_s: added4_pc;
         
     // *ALU mux 1
-    always @(posedge clk or negedge rst_n) begin
-        if(ALU_s1 == 0) operand1_temp = rs1;
-        else operand1_temp = PC_inputAddress;
-    end
-    assign operand1 = operand1_temp;
+    assign operand1 = ALU_s1? PC_inputAddress : rs1;
      
     // *ALU mux 2
-    always @(posedge clk or negedge rst_n) begin
-        if(ALU_s2 == 1) operand2_temp = rs2;
-        else operand2_temp = imm_ext_data;
-    end
-    assign operand2 = operand2_temp;
+
+    assign operand2 = ALU_s2? rs2 : imm_ext_data;
     
     // *Data mem mux
-    always @(posedge clk or negedge rst_n) begin
-        if(Data_s == 0) data_imm_s_temp = dout_ext;
-        else data_imm_s_temp = alu_out;
-    end
-    assign data_imm_s = data_imm_s_temp;
+    assign data_imm_s = Data_s? alu_out: dout_ext;
 endmodule
