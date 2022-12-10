@@ -32,6 +32,7 @@ Head Head(
     .rst_n      (rst    )
 );
 
+reg [4:0] round_count = 4'b0;
 // load values
 wire [31:0]pc_address_load = Head.ProgramCounter.PC_outputAddress;
 wire [31:0]instr_address_load = Head.Instruction.read_instr;
@@ -64,7 +65,42 @@ initial begin
     rst = 1;
 end 
 
-
+always @(*) begin
+    if(next_state  == 3'b010) round_count = round_count + 1'b1;
+    $display("current cycle %d", round_count - 1'b1);
+    if(round_count == 13) begin
+        $display("current cycle %d", round_count - 1'b1, "enetering check for R-type");
+        $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );
+        if(r3 != signed_op1 + signed_op2)                       $display("Test case 'add' failed, actual value %d", r3, "  operand value: %d", operand1, "%d", operand2); // add x3,x1,x2
+        if(r4 != signed_op1 - signed_op2)                       $display("Test case 'sub' failed,  operand value: 1, 2  %d", operand1, "%d", operand2, "expected %d", signed_op1 + signed_op2); // sub x4,x1,x2
+        if(r5 != signed_op1 << signed_op2[4:0])                 $display("Test case 'sll' failed"); // sll x5,x1,x2 
+        if(r6 != $signed(signed_op1) < $signed(signed_op2))     $display("Test case 'slt' failed");// slt x6,x1,x2 
+        if(r7 != signed_op1 < signed_op2)                       $display("Test case 'sltu' failed");// sltu x7,x1,x2 
+        if(r8 != (signed_op1 ^ signed_op2))                     $display("Test case 'xor' failed");// xor x8,x1,x2 
+        if(r9 != signed_op1 >> signed_op2[4:0])                 $display("Test case 'srl' failed");// srl x9,x1,4 
+        if(r10!= ($signed(signed_op1)) >>> signed_op2[4:0])     $display("Test case 'sra' failed");// sra x10,x1,x2 
+        if(r11!= (signed_op1 | signed_op2))                     $display("Test case 'or' failed");// or x11,x1,x2 
+        if(r12!= (signed_op1 & signed_op2))                     $display("Test case 'and' failed");// and x12,x1,x2 
+        #100
+        $display("Rtype Test case passed");
+        $finish;
+    end 
+    
+//    $display("After Rtype Test, RESET");
+//    rst = 1;
+    
+//     $display("Running Rtype Test, RESET");
+    //     03208093	// addi x1,x1,50
+    //81408113	// addi x2,x1,-2028
+    //8140A193	// slti x3,x1,-2028
+    //8140B213	// sltiu x4,x1,-2028
+    //8140C293	// xori x5,x1,-2028
+    //8140E313	// ori x6,x1,-2028
+    //8140F393	// andi x7,x1,-2028
+    //00311413	// slli x8,x2,3
+    //00315493	// srli x9,x2,3
+    
+end 
 //Instruction Memory Initialisation
 reg [31:0] test =  Head.Instruction.rom_words[0];
 reg [31:0] operand1 = 32'b000000110010;
@@ -99,38 +135,11 @@ reg [31:0] operand2 = 32'b000001100100;
 wire [31:0] signed_op1 = {{20{operand1[11]}},operand1[11:0]};
 wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};
 
-initial begin   
-    #500;
-    $display("waited 500ns, start testing");
-    $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );
-    if(r3 != signed_op1 + signed_op2)                       $display("Test case 'add' failed, actual value %d", r3, "  operand value: %d", operand1, "%d", operand2); // add x3,x1,x2
-    if(r4 != signed_op1 - signed_op2)                       $display("Test case 'sub' failed,  operand value: 1, 2  %d", operand1, "%d", operand2, "expected %d", signed_op1 + signed_op2); // sub x4,x1,x2
-    if(r5 != signed_op1 << signed_op2[4:0])                 $display("Test case 'sll' failed"); // sll x5,x1,x2 
-    if(r6 != $signed(signed_op1) < $signed(signed_op2))     $display("Test case 'slt' failed");// slt x6,x1,x2 
-    if(r7 != signed_op1 < signed_op2)                       $display("Test case 'sltu' failed");// sltu x7,x1,x2 
-    if(r8 != (signed_op1 ^ signed_op2))                     $display("Test case 'xor' failed");// xor x8,x1,x2 
-    if(r9 != signed_op1 >> signed_op2[4:0])                 $display("Test case 'srl' failed");// srl x9,x1,4 
-    if(r10!= ($signed(signed_op1)) >>> signed_op2[4:0])     $display("Test case 'sra' failed");// sra x10,x1,x2 
-    if(r11!= (signed_op1 | signed_op2))                     $display("Test case 'or' failed");// or x11,x1,x2 
-    if(r12!= (signed_op1 & signed_op2))                     $display("Test case 'and' failed");// and x12,x1,x2 
-    #100
-    $display("Rtype Test case passed");
-    
-    $display("After Rtype Test, RESET");
-    rst = 1;
-    
-     $display("Running Rtype Test, RESET");
-    //     03208093	// addi x1,x1,50
-    //81408113	// addi x2,x1,-2028
-    //8140A193	// slti x3,x1,-2028
-    //8140B213	// sltiu x4,x1,-2028
-    //8140C293	// xori x5,x1,-2028
-    //8140E313	// ori x6,x1,-2028
-    //8140F393	// andi x7,x1,-2028
-    //00311413	// slli x8,x2,3
-    //00315493	// srli x9,x2,3
-    $finish;
-end
+
+
+   
+   
+
 
 
 //clk
