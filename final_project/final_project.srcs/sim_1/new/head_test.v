@@ -59,6 +59,19 @@ wire [31:0] r9 = Head.RegisterFile.rf[9];
 wire [31:0] r10 = Head.RegisterFile.rf[10]; 
 wire [31:0] r11 = Head.RegisterFile.rf[11];  
 wire [31:0] r12 = Head.RegisterFile.rf[12]; 
+wire [31:0] r13 = Head.RegisterFile.rf[13]; 
+wire [31:0] r14 = Head.RegisterFile.rf[14]; 
+wire [31:0] r15= Head.RegisterFile.rf[15];  
+wire [31:0] r16 = Head.RegisterFile.rf[16]; 
+wire [31:0] r17 = Head.RegisterFile.rf[17]; 
+wire [31:0] r18 = Head.RegisterFile.rf[18]; 
+wire [31:0] r19 = Head.RegisterFile.rf[19];  
+wire [31:0] r20 = Head.RegisterFile.rf[20]; 
+wire [31:0] r21 = Head.RegisterFile.rf[21]; 
+wire [31:0] r22 = Head.RegisterFile.rf[22]; 
+wire [31:0] r23 = Head.RegisterFile.rf[23]; 
+wire [31:0] r24 = Head.RegisterFile.rf[24];  
+wire [31:0] r25 = Head.RegisterFile.rf[25]; 
 //Rst
 initial begin
     #100
