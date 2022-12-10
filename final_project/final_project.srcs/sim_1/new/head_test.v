@@ -26,7 +26,7 @@ parameter f = 200;                   //Mhz
 parameter PERIOD = 1/(f*0.001);
 reg clk = 0;
 reg rst = 0;
-
+reg reset_mem = 0;
 Head Head(
     .clk        (clk    ), 
     .rst_n      (rst    )
@@ -78,6 +78,15 @@ initial begin
     rst = 1;
 end 
 
+//Instruction Memory Initialisation
+reg [31:0] test =  Head.Instruction.rom_words[0];
+reg [31:0] operand1 = 32'b000000110010;
+reg [31:0] operand2 = 32'b000001100100;
+
+//Verify
+wire [31:0] signed_op1 = {{20{operand1[11]}},operand1[11:0]};
+wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};     
+
 always @(*) begin
     if(next_state  == 3'b010) round_count = round_count + 1'b1;
     $display("current cycle %d", round_count - 1'b1);
@@ -95,9 +104,24 @@ always @(*) begin
         if(r11!= (signed_op1 | signed_op2))                     $display("Test case 'or' failed");// or x11,x1,x2 
         if(r12!= (signed_op1 & signed_op2))                     $display("Test case 'and' failed");// and x12,x1,x2 
         #100
-        $display("Rtype Test case passed");
-        $finish;
+        
+        $display("Rtype Test case passed, refresh reg memory");
     end 
+    if(round_count == 24) begin
+        $display("current cycle %d", round_count - 1'b1, "enetering check for I-type");
+        
+        //03260613	// addi rd[12],rs1[12],50
+        //81468693	// addi rd[13],rs1[13],-2028
+        //81472713	// slti rd[14],rs1[14],-2028
+        //8147B793	// sltiu rd[15],rs1[15],-2028
+        //81484813	// xori rd[16],rs1[16],-2028
+        //8148E893	// ori rd[17],rs1[17],-2028
+        //81497913	// andi rd[18],rs1[18],-2028
+        //00261413	// slli rd[19],rs2[12],2
+        //0026D493	// srli rd[20],rs2[13],2
+        //40275513	// srai rd[21],rs2[14],clk 
+        $finish;
+    end
     
 //    $display("After Rtype Test, RESET");
 //    rst = 1;
@@ -114,10 +138,7 @@ always @(*) begin
     //00315493	// srli x9,x2,3
     
 end 
-//Instruction Memory Initialisation
-reg [31:0] test =  Head.Instruction.rom_words[0];
-reg [31:0] operand1 = 32'b000000110010;
-reg [31:0] operand2 = 32'b000001100100;
+
 
 // initial load command
 //initial begin
@@ -144,9 +165,7 @@ reg [31:0] operand2 = 32'b000001100100;
 //    $display("add insttuction successfully");
 //end
 
-//Verify
-wire [31:0] signed_op1 = {{20{operand1[11]}},operand1[11:0]};
-wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};
+
 
 
 

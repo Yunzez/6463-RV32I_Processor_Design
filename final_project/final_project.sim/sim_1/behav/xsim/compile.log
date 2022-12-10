@@ -24,13 +24,3 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Proce
 INFO: [VRFC 10-311] analyzing module imm_ext
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module head_test
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:74]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:75]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:76]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:77]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:78]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:79]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:80]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:81]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:82]
-WARNING: [VRFC 10-3380] identifier 'signed_op1' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/head_test.v:83]
