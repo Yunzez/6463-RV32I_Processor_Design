@@ -37,8 +37,9 @@ module ControlUnit(
     parameter FETCH_INSTRUCTION  = 3'b001;
     parameter FETCH_DECODE  = 3'b010;
     parameter EXECUTION    = 3'b011;
-    parameter MEMWRITE    = 3'b100;
-    parameter HALT  = 3'b101;
+    parameter MEM    = 3'b100;
+    parameter WRITEBACK    = 3'b101;
+    parameter HALT  = 3'b110;
    
    reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
    reg [1:0] ALU_op_temp;      
@@ -155,7 +156,28 @@ module ControlUnit(
                     Bc_Op_temp = 1'b0;
                 end
                 
-                 7'b0010011 || 7'b0001111: begin // for I type addi, ORI... 
+                 7'b0010011: begin // for I type addi, ORI... 
+                 // ! also implement fence here since it says to do the same as addi.
+
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b0;  
+                    Imm_op_temp = 1'b1; 
+                    ALU_s1_temp = 1'b0; // load rs1
+                    ALU_s2_temp = 1'b0; // load imm
+                    ALU_op_temp = 2'b00; // indicate store
+
+                    DataMem_rd_temp = 1'b1; 
+                    Data_op_temp = 1'b1; // enable data ext
+                    Data_s_temp = 1'b0; // load data
+                    Data_we_temp = 1'b0; 
+                    Bc_Op_temp = 1'b0;
+                end
+                
+                7'b0001111: begin // this is the same as above 
                  // ! also implement fence here since it says to do the same as addi.
 
                     PC_s_temp = 1'b0; 
@@ -267,13 +289,13 @@ module ControlUnit(
         end
         
 
-        MEMWRITE: begin
+        MEM: begin
             // this stage stores data back to reg or mem
             case(opcode)
                 7'b0110011: begin // R-type
                 //rd = rs1 + rs2
                     PC_s_temp = 1'b1; 
-                    PC_we_temp = 1'b1; // add pc counter while store value, so we can continue
+                    PC_we_temp = 1'b0; // add pc counter while store value, so we can continue
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select alu result
 
@@ -296,7 +318,7 @@ module ControlUnit(
                 //rd=sign_ext(data[rs1+sign_ext(imm)][7:0])
 
                     PC_s_temp = 1'b0; 
-                    PC_we_temp = 1'b1; 
+                    PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select data 
 
@@ -313,10 +335,10 @@ module ControlUnit(
                     Bc_Op_temp = 1'b0;
                 end
                 
-                7'b0010011|| 7'b0001111: begin // I-type addi ori andi ....
+                7'b0010011: begin // I-type addi ori andi ....
                 // ! also implement fence here since it says to do the same as addi.
                     PC_s_temp = 1'b0; 
-                    PC_we_temp = 1'b1; 
+                    PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select data 
 
@@ -328,17 +350,36 @@ module ControlUnit(
 
                     DataMem_rd_temp = 1'b0; 
                     Data_op_temp = 1'b0; 
-                    Data_s_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take alu cal output 
                     Data_we_temp = 1'b0;
                     Bc_Op_temp = 1'b0;
                 end
+                
+                7'b0001111: begin // this is the same as above
+                // ! also implement fence here since it says to do the same as addi.
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // select data 
 
+                    RegFile_we_temp = 1'b1;  // write data to reg
+                    Imm_op_temp = 1'b0; 
+                    ALU_s1_temp = 1'b0; 
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00; 
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take alu cal output 
+                    Data_we_temp = 1'b0;
+                    Bc_Op_temp = 1'b0;
+                end
 
                  7'b0100011: begin // S-type store 
                  //e.g. data[rs1+sign_ext(imm)][7:0] = rs2[7:0]
 
                     PC_s_temp = 1'b0; 
-                    PC_we_temp = 1'b1; 
+                    PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
@@ -360,7 +401,7 @@ module ControlUnit(
                 // e.g. PC=(rs1==rs2) ? PC+sign_ext(imm) : PC+4
 
                     PC_s_temp = bc; // choose what to take base on bc
-                    PC_we_temp = 1'b1; // write pc 
+                    PC_we_temp = 1'b0; // write pc 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
@@ -382,7 +423,7 @@ module ControlUnit(
                   7'b0110111: begin // U-type load
                     //e.g. rd={imm[31:12]; 12'b0}
                     PC_s_temp = 1'b1; 
-                    PC_we_temp = 1'b1; 
+                    PC_we_temp = 1'b0; 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b1; // select ALu
 
@@ -405,7 +446,7 @@ module ControlUnit(
                 //rd=PC+4; PC=PC+sign_ext(imm)
                     // we do PC=PC+sign_ext(imm) this step
                     PC_s_temp = 1'b0; // choose alu value
-                    PC_we_temp = 1'b1; // write alu value to pc
+                    PC_we_temp = 1'b0; // write alu value to pc
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
@@ -420,10 +461,28 @@ module ControlUnit(
                     Data_s_temp = 1'b0; //select ALU
                     Data_we_temp = 1'b0; // need to double check 
                     Bc_Op_temp = 1'b0;
-                end
-            
+                end    
             endcase
         end
+        
+        WRITEBACK: begin
+                    PC_s_temp = 1'b0; // choose alu value
+                    PC_we_temp = 1'b1; // write alu value to pc
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b0; // write  PC=PC+sign_ext
+                    Imm_op_temp = 1'b0;
+                    ALU_s1_temp = 1'b0;
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00;
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0; //select ALU
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+             end
     endcase
    end
    
@@ -490,8 +549,19 @@ always @(*) begin
             if(!rst)
                 next_state = INITALIZE;
             else
-                next_state = MEMWRITE;
-                 
+                next_state = MEM;
+                
+        MEM : 
+         if(!rst)
+                next_state = INITALIZE;
+         else
+                next_state = WRITEBACK;
+                
+        WRITEBACK  : 
+         if(!rst)
+                next_state = INITALIZE;
+         else
+                next_state = FETCH_INSTRUCTION;
          HALT:
             if(!rst)
                 next_state = INITALIZE;

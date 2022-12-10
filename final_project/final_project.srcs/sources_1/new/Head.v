@@ -55,7 +55,7 @@
 
 
 // * registor_file
-    wire [4:0]readRd;
+    wire [31:0]readRd;// data goes in, 32 bits
     // output
     wire [31:0] rs1;
     wire [31:0] rs2;
@@ -71,9 +71,6 @@
     wire [6:0] funct7;
     wire [31:0] imm_ext_data;
 
-// * alu_ctrl
-    wire    [1:0]                   ALUop;
-
 
     // output 
     wire     [3:0]                   alu_ctrl;
@@ -85,10 +82,6 @@
 
     // output
     wire     [31:0]                  alu_out;
-
-// * data_mem
-    wire    [9:0]                   opc_in;
-
     // dout 
     wire    [31:0]                  dout;                  
 // * data ext 
@@ -239,34 +232,24 @@
 
     // ! for data imm mux output
 
-    reg [31:0] data_imm_s;
-
+    wire [31:0] data_imm_s;
+    reg [31:0] data_imm_s_temp;
     // ! here we will start implement muxes that are needed for different area 
 
     // * mux variable 
     reg [31:0] PC_input_addr_temp;
-    reg [4:0] readRd_temp;
+    reg [31:0] readRd_temp;
     reg [31:0] operand1_temp;
     reg [31:0] operand2_temp;
-
-    // *pc_adder
+    
+     // *pc_adder
     assign added4_pc = PC_outputAddress + 32'd4;
         
     // *pc_mux
-    // ! the input address will get assigned to output directly
-    always @(posedge clk or negedge rst_n) begin
-        if(PC_s == 0) PC_input_addr_temp = added4_pc;
-        else PC_input_addr_temp = alu_out;
-    end
+    assign PC_inputAddress = PC_s? alu_out: added4_pc;
     
-    assign PC_inputAddress = PC_input_addr_temp;
-
     // *regfile mux
-    always @(posedge clk or negedge rst_n) begin
-        if(RegFile_s == 0) readRd_temp = added4_pc;
-        else readRd_temp = data_imm_s;
-    end
-    assign readRd = readRd_temp;
+    assign readRd = RegFile_s? data_imm_s: added4_pc;
         
     // *ALU mux 1
     always @(posedge clk or negedge rst_n) begin
@@ -284,8 +267,8 @@
     
     // *Data mem mux
     always @(posedge clk or negedge rst_n) begin
-        if(Data_s == 0) data_imm_s = dout_ext;
-        else data_imm_s = alu_out;
+        if(Data_s == 0) data_imm_s_temp = dout_ext;
+        else data_imm_s_temp = alu_out;
     end
-
+    assign data_imm_s = data_imm_s_temp;
 endmodule
