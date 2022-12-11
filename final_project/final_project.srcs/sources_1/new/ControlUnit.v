@@ -213,10 +213,10 @@ module ControlUnit(
                     ALU_op_temp = 2'b00;  // add two address
 
                     // we need to wait for this step and then store
-                    DataMem_rd_temp = 1'b0; // store to data
-                    Data_op_temp = 1'b0; 
+                    DataMem_rd_temp = 1'b1; // store to data
+                    Data_op_temp = 1'b1; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 1'b1; // TODO: check value  
+                    Data_we_temp = 1'b0; // TODO: check value  
                     Bc_Op_temp = 1'b0;
                 end
                 
@@ -264,7 +264,7 @@ module ControlUnit(
                     Bc_Op_temp = 1'b0;
                 end
 
-                7'b1101111: begin // J-type jump and link 
+                7'b1101111: begin // JAL-type jump and link 
                     
                 //rd=PC+4; PC=PC+sign_ext(imm)
                     // we do rd=PC+4 this step
@@ -285,6 +285,46 @@ module ControlUnit(
                     Data_we_temp = 1'b0; // need to double check 
                     Bc_Op_temp = 1'b0;
                 end
+                
+                 7'b1100111: begin // JALR-type jump and link 
+                    
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // take alu 
+
+                    RegFile_we_temp = 1'b0; // write pc + 4
+                    Imm_op_temp = 1'b1; // set since we load imm
+                    ALU_s1_temp = 1'b0; // select Reg1
+                    ALU_s2_temp = 1'b0; // select imm
+                    ALU_op_temp = 2'b10; // alu do plus
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0;
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end
+                
+                7'b0010111: begin // AUIPC  
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; // take alu 
+
+                    RegFile_we_temp = 1'b0; // write pc + 4
+                    Imm_op_temp = 1'b1; // set since we load imm
+                    ALU_s1_temp = 1'b1; // select Reg1
+                    ALU_s2_temp = 1'b0; // select imm
+                    ALU_op_temp = 2'b10; // alu do plus
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0;
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end
+                
             endcase
         end
         
@@ -390,7 +430,7 @@ module ControlUnit(
                     ALU_op_temp = 2'b00;  // store 
                     
                     // we need to wait for this step and then store
-                    DataMem_rd_temp = 1'b1; // store to data
+                    DataMem_rd_temp = 1'b0; // store to data
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
                     Data_we_temp = 1'b0; // TODO: check value  may depend on funct3
@@ -462,6 +502,45 @@ module ControlUnit(
                     Data_we_temp = 1'b0; // need to double check 
                     Bc_Op_temp = 1'b0;
                 end  
+                
+                7'b1100111: begin // JALR 
+
+                    PC_s_temp = 1'b0; // choose alu value
+                    PC_we_temp = 1'b0; // write alu value to pc
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; 
+
+                    RegFile_we_temp = 1'b0; // write  PC=PC+sign_ext
+                    Imm_op_temp = 1'b0;
+                    ALU_s1_temp = 1'b0;
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00;
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b0; //select ALU
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end  
+                
+                 7'b0010111: begin // AUIPC  
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b0; // take alu 
+
+                    RegFile_we_temp = 1'b0; // write pc + 4
+                   Imm_op_temp = 1'b1; // set since we load imm
+                    ALU_s1_temp = 1'b1; // select Reg1
+                    ALU_s2_temp = 1'b0; // select imm
+                    ALU_op_temp = 2'b10; // alu do plus
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take alu 
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end
             endcase
         end
         
@@ -565,10 +644,10 @@ module ControlUnit(
                     ALU_op_temp = 2'b00;  // store 
                     
                     // we need to wait for this step and then store
-                    DataMem_rd_temp = 1'b1; // store to data
+                    DataMem_rd_temp = 1'b0; // store to data
                     Data_op_temp = 1'b0; 
                     Data_s_temp = 1'b0;
-                    Data_we_temp = 1'b0; // TODO: check value  may depend on funct3
+                    Data_we_temp = 1'b1; // TODO: check value  may depend on funct3
                     Bc_Op_temp = 1'b0;
                 end
 
@@ -637,6 +716,45 @@ module ControlUnit(
                     Data_we_temp = 1'b0; // need to double check 
                     Bc_Op_temp = 1'b0;
                 end  
+                
+                 7'b1100111: begin // JALR
+
+                    PC_s_temp = 1'b1; // choose alu value
+                    PC_we_temp = 1'b1; // write alu value to pc
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // write  PC=PC+sign_ext
+
+                    RegFile_we_temp = 1'b1; // write  PC=PC+sign_ext
+                    Imm_op_temp = 1'b0;
+                    ALU_s1_temp = 1'b0;
+                    ALU_s2_temp = 1'b0;
+                    ALU_op_temp = 2'b00;
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; //select ALU
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end 
+                
+                7'b0010111: begin // AUIPC  
+                    PC_s_temp = 1'b0; 
+                    PC_we_temp = 1'b0; 
+                    Instr_rd_temp = 1'b0;
+                    RegFile_s_temp = 1'b1; // take alu 
+
+                    RegFile_we_temp = 1'b1; // write alu output 
+                    Imm_op_temp = 1'b1; // set since we load imm
+                    ALU_s1_temp = 1'b1; // select Reg1
+                    ALU_s2_temp = 1'b0; // select imm
+                    ALU_op_temp = 2'b10; // alu do plus
+
+                    DataMem_rd_temp = 1'b0; 
+                    Data_op_temp = 1'b0; 
+                    Data_s_temp = 1'b1; // take alu 
+                    Data_we_temp = 1'b0; // need to double check 
+                    Bc_Op_temp = 1'b0;
+                end
             endcase
         end
     endcase

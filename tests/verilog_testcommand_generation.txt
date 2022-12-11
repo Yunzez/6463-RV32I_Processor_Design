@@ -1,0 +1,34 @@
+/* 
+ * Do not change Module name 
+*/
+module main;
+ //Instruction Memory Initialisation
+        parameter [31:0] operand1 = 32'b000000110010;
+        parameter [31:0] operand2 = 32'b000000010100;
+        parameter [20:0] jimm = 21'b0000000010000;         //+16
+        parameter [31:0] imm = 32'h1000_0000;
+        parameter [11:0] simm = 12'd12;
+        
+        wire [31:0] Jtype1;
+        wire [31:0] Jtype2;
+        wire [31:0] Jtype3;
+        
+            //Jtype test
+       assign Jtype1 = {{jimm[20],jimm[10:1],jimm[11],jimm[19:12]},12'b00101_1101111};       // jal  x5,16       [4]to[8]    (pc+16=0x0100_0010)
+        assign Jtype2 = {jimm[11:0],20'b00100_000_00110_1100111};                             // jalr x6,x4,16    [8]to[13]   (rs1+16=0x0100_0034)
+    
+        assign Jtype3 = {imm[31:12],12'b00111_0010111};                                      // auipc x7,imm     ($7 = pc+{imm[31:12], 12'b0})
+  initial 
+    begin
+        
+       
+           $display("%h", Jtype1);
+        $display("%h", Jtype2);
+          $display("%h", Jtype3);
+     
+      $finish ;
+      
+   
+          
+    end
+endmodule

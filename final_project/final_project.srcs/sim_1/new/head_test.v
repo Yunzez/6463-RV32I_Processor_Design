@@ -32,6 +32,17 @@ Head Head(
     .rst_n      (rst    )
 );
 
+//Data Memory Initialisation
+reg [31:0] data0 = 32'b1;
+reg [31:0] data1 = 32'b1111;
+reg [31:0] data2 = 32'b1;
+
+initial begin
+    Head.data.dmem[0] = data0;
+    Head.data.dmem[1] = data1;
+    Head.data.dmem[2] = data2; 
+end
+
 reg [6:0] round_count = 4'b0;
 // load values
 wire [31:0]pc_address_load = Head.ProgramCounter.PC_outputAddress;
@@ -73,19 +84,24 @@ wire [31:0] r23 = Head.RegisterFile.rf[23];
 wire [31:0] r24 = Head.RegisterFile.rf[24];  
 wire [31:0] r25 = Head.RegisterFile.rf[25]; 
 
-wire [31:0] d1 = Head.data.dmem[1];
-wire [31:0] d2 = Head.data.dmem[2];
+//wire [31:0] d1 = Head.data.dmem[1];
+//wire [31:0] d2 = Head.data.dmem[2];
 wire [31:0] d3 = Head.data.dmem[3];
 wire [31:0] d4 = Head.data.dmem[4];
 wire [31:0] d5 = Head.data.dmem[5];
 
 wire [31:0] alu_out = Head.ALU.alu_out;
-wire [31:0] dPeak = Head.data.dmem_in;
+wire [31:0] dmem_val_in = Head.data.dmem_in;
+wire [2:0] dmem_func3_in = Head.data.func3;
+wire [31:0] dmem_tmp = Head.data.dmem_tmp;
+wire  dmem_rd = Head.ControlUnit.DataMem_rd;
+
 wire [31:0] rs2_val = Head.RegisterFile.rs2; 
 wire [31:0] rs1_val = Head.RegisterFile.rs1; 
+
+wire Data_we = Head.ControlUnit.Data_we;
 //value converting holder 
 
-reg [31:0] holder1;
 
 //Rst
 initial begin
@@ -152,7 +168,7 @@ always @(*) begin
         #100;
     end
     // start at memory file line 27 for branch test
-    else if(round_count == 6'd38) begin // ! we only wait till 38 because some command is jumped 
+    else if(round_count == 6'd35) begin // ! we only wait till 35 because some command is jumped 
     // only one addi get executed 
     // r5 should be 1 
         if(r5 != 32'b1) $display("branch not passed");
@@ -162,21 +178,43 @@ always @(*) begin
         if(r3 != 32'd10923038) $display("did not load second n-number passed");
         if(r4 != 32'd19039807) $display("did not load third n-number passed");
         else $display("load n number passed");
-        #100;
-         $finish;
          
     end
     // branch tests instruction at line 48 
      
      // store command tests starts at line 49 
-     else if(round_count == 42) begin
-//        if(Head.data.dmem[3] != {{24{1'b0}},data2[7:0]})     $fatal("Test case 'SB' failed"); 
-//        if(Head.data.dmem[4] != {{16{1'b0}},data2[15:0]})    $fatal("Test case 'SH' failed"); 
-//        if(Head.data.dmem[5] != data2)                     $fatal("Test case 'SW' failed"); 
-     $finish;
+     else if(round_count == 39) begin
+        if(Head.data.dmem[3] != {{24{1'b0}},data2[7:0]})     $display("Test case 'SB' failed"); 
+        if(Head.data.dmem[4] != {{16{1'b0}},data2[15:0]})    $display("Test case 'SH' failed"); 
+        if(Head.data.dmem[5] != data2)                     $display("Test case 'SW' failed"); 
+        $display("store passed");
      end
+     // store command ends at line 51
      
      
+     else if(round_count == 41) begin
+//010002ef jump 4, store pc+ 4
+//00000000
+//00000000
+//00000000
+//00000000
+        if(r5 != 32'h010000d0) $display("JAL not working");
+//01020367
+        if(r6 != 32'h0122864f) $display("JALR not working"); // r4 + 16
+//00000000
+//00000000
+//00000000
+//10000397 
+       if(r6 != 32'h110000f0) $display("AUIPC not working"); // r4 + 16
+        $display("Jtype test passed");
+        
+     end 
+     
+     else if (round_count == 42) begin
+     $display("automatic halt --- ");
+     $display("there are three fake instruction after halt, halt fails if see the commands 00000001, 00000002, 00000003");
+     $finish;
+     end 
      else begin 
      end
 end 

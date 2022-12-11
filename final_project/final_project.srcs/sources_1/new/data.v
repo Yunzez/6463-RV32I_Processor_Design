@@ -44,7 +44,15 @@ module data(
     
     always @(posedge clk) begin
         case(func3)
-            3'b000 || 3'b100: 
+            3'b000:
+            begin// load byte
+                dmem_in_0_temp = dmem_in[7:0];
+                dmem_in_1_temp = dmem[dmem_addr][15:8];
+                dmem_in_2_temp = dmem[dmem_addr][23:16];
+                dmem_in_3_temp = dmem[dmem_addr][31:24];
+            end
+            
+            3'b100: 
             begin// load byte
                 dmem_in_0_temp = dmem_in[7:0];
                 dmem_in_1_temp = dmem[dmem_addr][15:8];
