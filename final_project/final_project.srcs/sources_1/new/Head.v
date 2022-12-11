@@ -90,19 +90,9 @@
     
     wire [2:0] control_next_stage;
      wire [31:0] instr_mem_addr_test;
-wire [31:0] r0 = RegisterFile.rf[0]; 
-wire [31:0] r1 = RegisterFile.rf[1]; 
-wire [31:0] r2 = RegisterFile.rf[2];  
+     
+wire [31:0] r18 = RegisterFile.rf[18]; 
 wire [31:0] r3 = RegisterFile.rf[3]; 
-wire [31:0] r4 = RegisterFile.rf[4]; 
-wire [31:0] r5 = RegisterFile.rf[5]; 
-wire [31:0] r6 = RegisterFile.rf[6];  
-wire [31:0] r7 = RegisterFile.rf[7]; 
-wire [31:0] r8 = RegisterFile.rf[8]; 
-wire [31:0] r9 = RegisterFile.rf[9]; 
-wire [31:0] r10 =RegisterFile.rf[10]; 
-wire [31:0] r11 =RegisterFile.rf[11];  
-wire [31:0] r12 =RegisterFile.rf[12]; 
 // TODO: will add after branch contorl is done 
 
 // //branch
@@ -258,7 +248,7 @@ wire [31:0] r12 =RegisterFile.rf[12];
     assign added4_pc = PC_outputAddress + 32'd4;
         
     // *pc_mux
-    assign PC_inputAddress = PC_s? alu_out: added4_pc;
+    assign PC_inputAddress = PC_s? PC_outputAddress + imm_ext_data: added4_pc;
     
     // *regfile mux
     assign readRd = RegFile_s? data_imm_s: added4_pc;

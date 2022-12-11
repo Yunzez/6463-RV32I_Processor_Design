@@ -400,7 +400,7 @@ module ControlUnit(
                  7'b1100011: begin // B-type Store ... of rs2 to memory
                 // e.g. PC=(rs1==rs2) ? PC+sign_ext(imm) : PC+4
 
-                    PC_s_temp = bc; // choose what to take base on bc
+                    PC_s_temp = 1'b0; // choose what to take base on bc
                     PC_we_temp = 1'b0; // write pc 
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
@@ -408,13 +408,13 @@ module ControlUnit(
                     RegFile_we_temp = 1'b0; 
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
-                    ALU_s2_temp = 1'b0; 
+                    ALU_s2_temp = 1'b1; 
                     ALU_op_temp = 2'b01; // cal: check branch
 
                     // may need to wait here 
                     DataMem_rd_temp = 1'b0; // 
                     Data_op_temp = 1'b0; 
-                    Data_s_temp = bc; // ! branch info based on branch control 
+                    Data_s_temp = 1'b0; // ! branch info based on branch control 
                     Data_we_temp = 1'b0; // TODO: check value 
                     Bc_Op_temp = 1'b1; // use branch control
                 end

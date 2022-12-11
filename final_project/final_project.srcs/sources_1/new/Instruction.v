@@ -10,7 +10,7 @@ module Instruction
 reg [31:0] rom_words[0:511];
 
 initial begin
-	 $readmemh ("instruction.mem", rom_words);
+	 $readmemh ("branchTest.mem", rom_words);
 end 
 wire [31:0] addr1 ;
 assign addr1 = addr_in & (~(32'h01000000));

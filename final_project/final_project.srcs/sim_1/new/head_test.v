@@ -72,11 +72,30 @@ wire [31:0] r22 = Head.RegisterFile.rf[22];
 wire [31:0] r23 = Head.RegisterFile.rf[23]; 
 wire [31:0] r24 = Head.RegisterFile.rf[24];  
 wire [31:0] r25 = Head.RegisterFile.rf[25]; 
+
+
+//value converting holder 
+
+reg [31:0] holder1;
+
 //Rst
 initial begin
     #100
     rst = 1;
 end 
+
+//Data Memory Initialisation
+reg [31:0] data0 = 32'b1;
+reg [31:0] data1 = 32'b1111;
+reg [31:0] data2 = 32'b1;
+
+initial begin
+    Head.data.dmem[0] = data0;
+    Head.data.dmem[1] = data1;
+    Head.data.dmem[2] = data2; 
+end
+
+
 
 //Instruction Memory Initialisation
 reg [31:0] test =  Head.Instruction.rom_words[0];
@@ -89,7 +108,6 @@ wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};
 
 always @(*) begin
     if(next_state  == 3'b010) round_count = round_count + 1'b1;
-    $display("current cycle %d", round_count - 1'b1);
     if(round_count == 13) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for R-type");
         $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );
@@ -105,38 +123,40 @@ always @(*) begin
         if(r12!= (signed_op1 & signed_op2))                     $display("Test case 'and' failed");// and x12,x1,x2 
         #100
         
-        $display("Rtype Test case passed, refresh reg memory");
+        $display("Rtype Test case passed");
     end 
     if(round_count == 24) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for I-type");
+        if(32'd50 != r13 )          $display("Ityp, addi failed");
+        if(32'hfffff814 != r14 )          $display("Ityp, addi 2 failed");
+        if(32'b0 != r15 )          $display("Ityp, slti failed");
+        if(32'b1 != r16 )          $display("Ityp, sltiu failed");
+        if(32'hfffff814 != r17 )          $display("Ityp, xori failed");
+        if(32'hfffff814 != r18 )          $display("Ityp, ori failed");
+        if(32'b0 != r19 )          $display("Ityp, andi failed");
+        if(32'b11001000 != r20 )          $display("Ityp, slli failed");
+        if(32'h3ffffe05 != r21 )          $display("Ityp, srli failed");
+        if(32'b0 != r22 )          $display("Ityp, srai failed");
+        $display("Itype test case passed");
         
-        //03260613	// addi rd[12],rs1[12],50
-        //81468693	// addi rd[13],rs1[13],-2028
-        //81472713	// slti rd[14],rs1[14],-2028
-        //8147B793	// sltiu rd[15],rs1[15],-2028
-        //81484813	// xori rd[16],rs1[16],-2028
-        //8148E893	// ori rd[17],rs1[17],-2028
-        //81497913	// andi rd[18],rs1[18],-2028
-        //00261413	// slli rd[19],rs2[12],2
-        //0026D493	// srli rd[20],rs2[13],2
-        //40275513	// srai rd[21],rs2[14],clk 
-        $finish;
     end
     
-//    $display("After Rtype Test, RESET");
-//    rst = 1;
+    if(round_count == 28) begin 
+    $display("testing LUI");   // lui  x1, imm,  10000000000000000001
+    // lui stored restore value in x1  
+    if(32'b10000000000000000001000000000000 != r1 ) $display("LUI failed");
+    else  $display("LUI passed");
+    $display("testing Load");
+    if(32'b1 != r2) $display("Load word to r2 failed");
+    if(32'b1111 != r3) $display("Load half to r3 failed");
+    if(32'b1 != r4) $display("Load byte to r4 failed");
+    $display("testing Load passed");
     
-//     $display("Running Rtype Test, RESET");
-    //     03208093	// addi x1,x1,50
-    //81408113	// addi x2,x1,-2028
-    //8140A193	// slti x3,x1,-2028
-    //8140B213	// sltiu x4,x1,-2028
-    //8140C293	// xori x5,x1,-2028
-    //8140E313	// ori x6,x1,-2028
-    //8140F393	// andi x7,x1,-2028
-    //00311413	// slli x8,x2,3
-    //00315493	// srli x9,x2,3
-    
+    end
+    // start at memory file line 27 for branch test
+    if(round_count == 49) begin
+    $finish;
+    end
 end 
 
 

@@ -30,3 +30,16 @@
 00269A13	// slli rd[20],rs1[13],2  11001000
 00275A93	// srli rd[21],rs1[14],2  001000000101
 4027DB13	// srai rd[22],rs1[15],2  100000000101
+
+
+
+
+10000000000000000000000000000000
+    //lui test
+    processor.instr_mem.imem[0] = {32'b10000000000000000001_00001_0110111};           // lui  x1, imm 
+    //load data from data memory to registor file
+    //load test
+000000000000 00001 010 00010 0000011
+    processor.instr_mem.imem[1] = {32'b000000000000_00001_010_00010_0000011};       // lw x2,x1(0) data memory address start at 0x80000000
+    processor.instr_mem.imem[2] = {32'b000000000100_00001_001_00011_0000011};       // lh x3,x1(4)
+    processor.instr_mem.imem[3] = {32'b000000001000_00001_000_00100_0000011};       // lb x4,x1(8)
