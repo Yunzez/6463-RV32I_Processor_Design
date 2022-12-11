@@ -2,18 +2,18 @@
 
 ---
 
-- Fred Zhao, netId: yz8751. Components: Control Unit, Mux, PC, Instruction Decode, imm_extension, Top Level Head 
-- Rongze LI, netId: rl4670. Components: ALU, ALU control, 
-- Junqing Zhao, netId: jz5954.  Components: Instr Mem, Data Mem, 
+- **Yunze(Fred) Zhao**, netId: yz8751. 
+>Control Unit, all multiplexer, Program Counter, Instruction Decode, mem_imm_extension, Top Level Head 
+- **Junqing Zhao**, netId: jz5954.  
+> Instruction Memory, Data Memory
+- **Rongze LI**, netId: rl4670. 
+> ALU, ALU control, Regfile 
+
 ---
-The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I
-instruction set. 
+**The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I instruction set.** 
 ---
 ***module***
 1. ALU 
-- Variables:
-takes in alu_ctrl, operand1, operand2
-returns alu_out
 
 - Des:
 ALU implements the four categories calculation according to the ALU control obtained from ALU control including addition, substraction, AND and OR.
@@ -23,9 +23,6 @@ The testbench of the ALU go through all the basic calculation. The outputs are a
 
 ---
 2. ALU Control 
-- Variables:
-takes in clk, rst, ALUop, funct3, funct7
-returns alu_ctrl
 
 - Des:
 ALU Control implements the calculation instruction recognition according to the input instruction, which includes add, sub, and, or calculation.
@@ -35,14 +32,10 @@ The testbench of the ALU go through all the instruction combination basically. T
 
 ---
 3. Control Unit 
-- Variables: 
-takes in Opcode, reset, enable, branch control signal;
-returns PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op, Data_we, ALU_op
 
 - Des: 
 Control unit is a FSM that indicates what to do for the whole CPU by giving singal to different components. 
-For now the Control Unit will only has 3 stages, we will add more stages if we realized more stages will be beneficial. 
-The 3 stages are: Fetch, Execute, Write Memory.
+The control unit will have 6 stages in total, the first stage, INTITIALIZE will only appear when user resets the CPU. 
 
 - Testbench: 
 The testbench of the Control unit go through all the opcode of all R, I, S, B, U, J types command. They all output the correct values as expected, even though the expected values may be changed in the future for design needs or when stages are added, but right now they all work as intended.  
@@ -84,5 +77,20 @@ The functions of data memory include stroing, reading and resetting operations. 
 The testbench testing the memory program by storing data into different place by using various addresses, then read the data and check if read data match with expected value. 
 
 ---
-7. Other small components: PC, MUX will not be tested for milestone 1. 
+7. Branch Control
+
+- Des: Branch control will returns branch information back to control unit when branching is required. Branch control unit also does computation but less than ALU as it only cares branch computations
+   
+---
+8. Data extension:
+   
+- Des: data extension extends the output from data memory
+
+---
+9. Head (Top level)
+
+- Des: the top level file combined all the components together. All the muxes are implemented here as well. 
+
+- **Testbench**: 
+    the testbench of the Head, top level file is a testbench of the whole program. The testbench instructions are written in instructions.mem and the testbench executes them in order to see if all types of command can be carried out correctly. The instructions.mem file contains all the commands that the CPU can execute on. 
 
