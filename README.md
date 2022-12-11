@@ -11,6 +11,9 @@
 
 ---
 **The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I instruction set.** 
+
+*Below is the data path of the CPU implementation*
+![RISC-5_cpu](RISC-5_cpu.jpeg)
 ---
 ***module***
 1. ALU 
