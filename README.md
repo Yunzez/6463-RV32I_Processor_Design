@@ -1,20 +1,20 @@
-# NYU-6463-RV32I_Processor_Design
-
+# **NYU-6463-RV32I_Processor_Design**
+---
+## **The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I instruction set.**<br>
 ---
 ## Engineers : 
->### **Yunze(Fred) Zhao**, netId: yz8751. 
+>### **[Yunze (Fred) Zhao](https://github.com/Yunzez/)**, netId: yz8751.  https://github.com/Yunzez/
 >Tasks: **Control Unit, all multiplexer, Program Counter, Instruction Decode, mem_imm_extension, Top Level Head** 
 
->### **Junqing Zhao**, netId: jz5954.  
+>### **[Junqing Zhao](https://github.com/Junqing54)**, netId: jz5954.  
 >Tasks:  **Instruction Memory, Data Memory**
 
-> ### **Rongze LI**, netId: rl4670. 
+> ### **[Rongze LI](https://github.com/Lee-RZE)**, netId: rl4670. 
 >Tasks: **ALU, ALU control, Regfile** 
 
----
-# **The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I instruction set.**<br>
+<br></br>
 
-> ## the spec of this project can be seen in [Here](Project_2022_spec.pdf)
+## the spec of this project can be seen in [Here](Project_2022_spec.pdf)
 > <br>
 
 <br></br>
