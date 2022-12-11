@@ -1,20 +1,28 @@
 # NYU-6463-RV32I_Processor_Design
 
 ---
+## Engineers : 
+>### **Yunze(Fred) Zhao**, netId: yz8751. 
+>Tasks: **Control Unit, all multiplexer, Program Counter, Instruction Decode, mem_imm_extension, Top Level Head** 
 
-- **Yunze(Fred) Zhao**, netId: yz8751. 
->Control Unit, all multiplexer, Program Counter, Instruction Decode, mem_imm_extension, Top Level Head 
-- **Junqing Zhao**, netId: jz5954.  
-> Instruction Memory, Data Memory
-- **Rongze LI**, netId: rl4670. 
-> ALU, ALU control, Regfile 
+>### **Junqing Zhao**, netId: jz5954.  
+>Tasks:  **Instruction Memory, Data Memory**
+
+> ### **Rongze LI**, netId: rl4670. 
+>Tasks: **ALU, ALU control, Regfile** 
 
 ---
-**The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I instruction set.** 
+# **The NYU-6463-RV32I processor is a 32-bit architecture which executes a subset of the open source RISC-V RV32I instruction set.**<br>
 
+> ## the spec of this project can be seen in [Here](Project_2022_spec.pdf)
+> <br>
+
+<br></br>
 *Below is the data path of the CPU implementation*
 ![RISC-5_cpu](RISC-5_cpu.jpeg)
 ---
+<br></br>
+
 ***module***
 1. ALU 
 
@@ -39,9 +47,10 @@ The testbench of the ALU go through all the instruction combination basically. T
 - Des: 
 Control unit is a FSM that indicates what to do for the whole CPU by giving singal to different components. 
 The control unit will have 6 stages in total, the first stage, INTITIALIZE will only appear when user resets the CPU. 
+The five stages are: Intruction fetch, instruction decode, execution, memory access, and write back. Some of the command will not need all of the five stages but the 5 stages will still happen in order. 
 
 - Testbench: 
-The testbench of the Control unit go through all the opcode of all R, I, S, B, U, J types command. They all output the correct values as expected, even though the expected values may be changed in the future for design needs or when stages are added, but right now they all work as intended.  
+The testbench of the Control unit go through all the opcode of all R, I, S, B, U, J types command. They all output the correct values as expected, even though the expected values may be changed in the future for design needs or when stages are added, but right now they all work as intended.  *The testbench is deprecated after the top-level file is implemented as some variables may have different names and slight nuances in outputm, this could be used as a reference overall but may not be all correct values.* 
 
 ---
 4. Register File
@@ -90,10 +99,12 @@ The testbench testing the memory program by storing data into different place by
 - Des: data extension extends the output from data memory
 
 ---
-9. Head (Top level)
+<br></br>
+**The Head (Top level file)**
 
 - Des: the top level file combined all the components together. All the muxes are implemented here as well. 
 
-- **Testbench**: 
+**Testbench**: 
     the testbench of the Head, top level file is a testbench of the whole program. The testbench instructions are written in instructions.mem and the testbench executes them in order to see if all types of command can be carried out correctly. The instructions.mem file contains all the commands that the CPU can execute on. 
+
 
