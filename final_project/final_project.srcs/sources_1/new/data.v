@@ -40,7 +40,7 @@ module data(
     reg [7:0] dmem_in_1_temp;
     reg [7:0] dmem_in_2_temp;
     reg [7:0] dmem_in_3_temp;
-    assign dmem_addr = addr[11:2];
+    assign dmem_addr = addr[11:2]; // 000000001101 will be 0000000011
     
     always @(posedge clk) begin
         case(func3)

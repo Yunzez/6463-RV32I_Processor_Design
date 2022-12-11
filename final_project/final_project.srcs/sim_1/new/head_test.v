@@ -32,7 +32,7 @@ Head Head(
     .rst_n      (rst    )
 );
 
-reg [4:0] round_count = 4'b0;
+reg [6:0] round_count = 4'b0;
 // load values
 wire [31:0]pc_address_load = Head.ProgramCounter.PC_outputAddress;
 wire [31:0]instr_address_load = Head.Instruction.read_instr;
@@ -73,7 +73,16 @@ wire [31:0] r23 = Head.RegisterFile.rf[23];
 wire [31:0] r24 = Head.RegisterFile.rf[24];  
 wire [31:0] r25 = Head.RegisterFile.rf[25]; 
 
+wire [31:0] d1 = Head.data.dmem[1];
+wire [31:0] d2 = Head.data.dmem[2];
+wire [31:0] d3 = Head.data.dmem[3];
+wire [31:0] d4 = Head.data.dmem[4];
+wire [31:0] d5 = Head.data.dmem[5];
 
+wire [31:0] alu_out = Head.ALU.alu_out;
+wire [31:0] dPeak = Head.data.dmem_in;
+wire [31:0] rs2_val = Head.RegisterFile.rs2; 
+wire [31:0] rs1_val = Head.RegisterFile.rs1; 
 //value converting holder 
 
 reg [31:0] holder1;
@@ -84,21 +93,9 @@ initial begin
     rst = 1;
 end 
 
-//Data Memory Initialisation
-reg [31:0] data0 = 32'b1;
-reg [31:0] data1 = 32'b1111;
-reg [31:0] data2 = 32'b1;
-
-initial begin
-    Head.data.dmem[0] = data0;
-    Head.data.dmem[1] = data1;
-    Head.data.dmem[2] = data2; 
-end
-
 
 
 //Instruction Memory Initialisation
-reg [31:0] test =  Head.Instruction.rom_words[0];
 reg [31:0] operand1 = 32'b000000110010;
 reg [31:0] operand2 = 32'b000001100100;
 
@@ -108,7 +105,8 @@ wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};
 
 always @(*) begin
     if(next_state  == 3'b010) round_count = round_count + 1'b1;
-    if(round_count == 13) begin
+    
+    if(round_count == 6'd13) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for R-type");
         $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );
         if(r3 != signed_op1 + signed_op2)                       $display("Test case 'add' failed, actual value %d", r3, "  operand value: %d", operand1, "%d", operand2); // add x3,x1,x2
@@ -121,11 +119,11 @@ always @(*) begin
         if(r10!= ($signed(signed_op1)) >>> signed_op2[4:0])     $display("Test case 'sra' failed");// sra x10,x1,x2 
         if(r11!= (signed_op1 | signed_op2))                     $display("Test case 'or' failed");// or x11,x1,x2 
         if(r12!= (signed_op1 & signed_op2))                     $display("Test case 'and' failed");// and x12,x1,x2 
-        #100
         
         $display("Rtype Test case passed");
     end 
-    if(round_count == 24) begin
+    
+    else if(round_count == 6'd24) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for I-type");
         if(32'd50 != r13 )          $display("Ityp, addi failed");
         if(32'hfffff814 != r14 )          $display("Ityp, addi 2 failed");
@@ -138,25 +136,49 @@ always @(*) begin
         if(32'h3ffffe05 != r21 )          $display("Ityp, srli failed");
         if(32'b0 != r22 )          $display("Ityp, srai failed");
         $display("Itype test case passed");
-        
+        #100;
     end
     
-    if(round_count == 28) begin 
-    $display("testing LUI");   // lui  x1, imm,  10000000000000000001
-    // lui stored restore value in x1  
-    if(32'b10000000000000000001000000000000 != r1 ) $display("LUI failed");
-    else  $display("LUI passed");
-    $display("testing Load");
-    if(32'b1 != r2) $display("Load word to r2 failed");
-    if(32'b1111 != r3) $display("Load half to r3 failed");
-    if(32'b1 != r4) $display("Load byte to r4 failed");
-    $display("testing Load passed");
-    
+    else if(round_count == 6'd28) begin 
+        $display("testing LUI");   // lui  x1, imm,  10000000000000000001
+        // lui stored restore value in x1  
+        if(32'b10000000000000000001000000000000 != r1 ) $display("LUI failed");
+        else  $display("LUI passed");
+        $display("testing Load");
+        if(32'b1 != r2) $display("Load word to r2 failed");
+        if(32'b1111 != r3) $display("Load half to r3 failed");
+        if(32'b1 != r4) $display("Load byte to r4 failed");
+        $display("testing Load passed");
+        #100;
     end
     // start at memory file line 27 for branch test
-    if(round_count == 49) begin
-    $finish;
+    else if(round_count == 6'd38) begin // ! we only wait till 38 because some command is jumped 
+    // only one addi get executed 
+    // r5 should be 1 
+        if(r5 != 32'b1) $display("branch not passed");
+        else $display("branch passed");
+        
+        if(r2 != 32'd13000639) $display("did not load first n-number passed");
+        if(r3 != 32'd10923038) $display("did not load second n-number passed");
+        if(r4 != 32'd19039807) $display("did not load third n-number passed");
+        else $display("load n number passed");
+        #100;
+         $finish;
+         
     end
+    // branch tests instruction at line 48 
+     
+     // store command tests starts at line 49 
+     else if(round_count == 42) begin
+//        if(Head.data.dmem[3] != {{24{1'b0}},data2[7:0]})     $fatal("Test case 'SB' failed"); 
+//        if(Head.data.dmem[4] != {{16{1'b0}},data2[15:0]})    $fatal("Test case 'SH' failed"); 
+//        if(Head.data.dmem[5] != data2)                     $fatal("Test case 'SW' failed"); 
+     $finish;
+     end
+     
+     
+     else begin 
+     end
 end 
 
 

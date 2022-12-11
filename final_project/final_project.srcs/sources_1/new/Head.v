@@ -91,9 +91,17 @@
     wire [2:0] control_next_stage;
      wire [31:0] instr_mem_addr_test;
      
-wire [31:0] r18 = RegisterFile.rf[18]; 
+wire [31:0] r1 = RegisterFile.rf[3]; 
+wire [31:0] r2 = RegisterFile.rf[3]; 
 wire [31:0] r3 = RegisterFile.rf[3]; 
-// TODO: will add after branch contorl is done 
+wire [31:0] r4 = RegisterFile.rf[3]; 
+wire [31:0] r5 = RegisterFile.rf[3]; 
+wire [31:0] r6 = RegisterFile.rf[3]; 
+wire [31:0] r7 = RegisterFile.rf[3]; 
+
+wire [31:0] d1 = data.dmem[1];
+wire [31:0] d2 = data.dmem[2];
+wire [31:0] d3 = data.dmem[3];
 
 // //branch
     
@@ -217,7 +225,7 @@ wire [31:0] r3 = RegisterFile.rf[3];
     data data(     
      .clk(clk),
      .we_en(Data_we),
-     .func3(funct3),   //0001--SB, 0011--SH, 1111--SW, 0000--write disable
+     .func3(funct3), 
      .re(DataMem_rd),
      .addr(alu_out), // alu output will be send to data as address
      .dmem_in(rs2), // reg 2 will be send as data in 

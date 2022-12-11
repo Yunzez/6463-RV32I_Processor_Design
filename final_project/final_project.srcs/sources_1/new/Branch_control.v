@@ -21,7 +21,7 @@
 
 
 module Branch_control(
-   input bc_enable,
+    input bc_enable,
     input wire [2:0] funct3,
     input wire [31:0] operand1,
     input wire [31:0] operand2,

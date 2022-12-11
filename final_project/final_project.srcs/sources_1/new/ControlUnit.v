@@ -408,7 +408,7 @@ module ControlUnit(
                     RegFile_we_temp = 1'b0; 
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
-                    ALU_s2_temp = 1'b1; 
+                    ALU_s2_temp = 1'b0; 
                     ALU_op_temp = 2'b01; // cal: check branch
 
                     // may need to wait here 
