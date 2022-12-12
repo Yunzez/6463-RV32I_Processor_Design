@@ -94,24 +94,21 @@
     wire    [31:0]                  dout_ext;
 // * testing variable 
     
-    wire [2:0] control_next_stage;
-     wire [31:0] instr_mem_addr_test;
+ //   wire [2:0] control_next_stage;
+ //    wire [31:0] instr_mem_addr_test;
      
-wire [31:0] r1 = RegisterFile.rf[3]; 
-wire [31:0] r2 = RegisterFile.rf[3]; 
-wire [31:0] r3 = RegisterFile.rf[3]; 
-wire [31:0] r4 = RegisterFile.rf[3]; 
-wire [31:0] r5 = RegisterFile.rf[3]; 
-wire [31:0] r6 = RegisterFile.rf[3]; 
-wire [31:0] r7 = RegisterFile.rf[3]; 
+// wire [31:0] r1 = RegisterFile.rf[3]; 
+//wire [31:0] r2 = RegisterFile.rf[3]; 
+//wire [31:0] r3 = RegisterFile.rf[3]; 
+//wire [31:0] r4 = RegisterFile.rf[3]; 
+//wire [31:0] r5 = RegisterFile.rf[3]; 
+//wire [31:0] r6 = RegisterFile.rf[3]; 
+//wire [31:0] r7 = RegisterFile.rf[3]; 
 
-wire [31:0] d1 = data.dmem[1];
-wire [31:0] d2 = data.dmem[2];
-wire [31:0] d3 = data.dmem[3];
+//wire [31:0] d1 = data.dmem[1];
+//wire [31:0] d2 = data.dmem[2];
+//wire [31:0] d3 = data.dmem[3];
 
-// //branch
-    
-    wire                            branch_true;
     //////////////////////////////////////////////////////////////////////////////////
     //Module
     //////////////////////////////////////////////////////////////////////////////////
@@ -135,10 +132,8 @@ wire [31:0] d3 = data.dmem[3];
     .Data_op(Data_op), 
     .Data_s(Data_s), 
     .Bc_Op(Bc_Op), 
-    .Data_we(Data_we),
+    .Data_we(Data_we)
     
-    // ! testing purpose only 
-    .testing_stage(control_next_stage)
     );
 
     ProgramCounter ProgramCounter(

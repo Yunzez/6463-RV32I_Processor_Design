@@ -25,7 +25,6 @@ module ControlUnit(
     input [6:0]opcode,
 //    input [2:0]funct3,
     input bc, // branch info
-    output [2:0] testing_stage,
     output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op,Data_we,
     output reg [1:0]ALU_op
     );
@@ -44,7 +43,6 @@ module ControlUnit(
    reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
    reg [1:0] ALU_op_temp;      
  
-    assign testing_stage = curr_state;
     always @(posedge clk or negedge rst) begin
         if(!rst)
             curr_state   <= INITALIZE;

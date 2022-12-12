@@ -1,0 +1,124 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
+| Date         : Mon Dec 12 05:28:45 2022
+| Host         : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Board_control_sets_placed.rpt
+| Design       : Board
+| Device       : xc7a35ti
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    46 |
+|    Minimum number of control sets                        |    46 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    34 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    46 |
+| >= 0 to < 4        |     1 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    43 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              50 |           14 |
+| No           | No                    | Yes                    |              26 |           11 |
+| No           | Yes                   | No                     |               5 |            1 |
+| Yes          | No                    | No                     |             117 |           69 |
+| Yes          | No                    | Yes                    |            1088 |          566 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
+|       Clock Signal      |               Enable Signal               |           Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
+|  Head/ControlUnit/Bc_Op |                                           |                                     |                1 |              1 |         1.00 |
+|  slowclock_BUFG         |                                           | Head/Instruction/instr_out_reg[1]_0 |                1 |              5 |         5.00 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[6]_0       |                                     |                3 |             11 |         3.67 |
+|  CLK100MHZ_IBUF_BUFG    |                                           |                                     |                6 |             24 |         4.00 |
+|  slowclock_BUFG         |                                           |                                     |                7 |             25 |         3.57 |
+|  slowclock_BUFG         |                                           | Head/RegisterFile/sw[0]             |               11 |             26 |         2.36 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_8[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  slowclock_BUFG         | Head/ControlUnit/DataMem_rd_reg_0[0]      |                                     |               28 |             32 |         1.14 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[13]_0[0]   |                                     |               25 |             32 |         1.28 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_10[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
+|  slowclock_BUFG         | Head/ControlUnit/PC_we                    | Head/RegisterFile/sw[0]             |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_6[0]  | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
+|  slowclock_BUFG         | Head/Instruction/E[0]                     | Head/RegisterFile/sw[0]             |               23 |             32 |         1.39 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_7[0]  | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_15[0] | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_12[0] | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_2[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_0[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_4[0]  | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_9[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_21[0] | Head/RegisterFile/sw[0]             |               23 |             32 |         1.39 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_1[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_19[0] | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_23[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_25[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_20[0] | Head/RegisterFile/sw[0]             |               22 |             32 |         1.45 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_13[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_24[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_16[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_26[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_28[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_5[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_27[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_14[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_11[0] | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv[0]    | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_22[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_17[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_3[0]  | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_18[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
+|  slowclock_BUFG         | Head/ControlUnit/E[0]                     |                                     |               13 |             42 |         3.23 |
+|  slowclock_BUFG         | Head/ControlUnit/p_0_in                   | Head/RegisterFile/sw[0]             |               27 |             64 |         2.37 |
+|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_2            |                                     |               32 |            128 |         4.00 |
+|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_1            |                                     |               32 |            128 |         4.00 |
+|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_4            |                                     |               32 |            128 |         4.00 |
+|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_3            |                                     |               32 |            128 |         4.00 |
++-------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
+
+

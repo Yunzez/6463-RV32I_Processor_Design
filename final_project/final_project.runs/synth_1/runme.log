@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log Head.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Head.tcl
+    with args -log Board.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Board.tcl
 
 
 
@@ -9,34 +9,42 @@
   **** IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 
-source Head.tcl -notrace
-Command: synth_design -top Head -part xc7a35ticpg236-1L
+source Board.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/utils_1/imports/synth_1/Head.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/utils_1/imports/synth_1/Head.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top Board -part xc7a35ticpg236-1L
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
 INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
-INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 4000
+INFO: [Synth 8-7075] Helper process launched with PID 1064
+WARNING: [Synth 8-6901] identifier 'opcode' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:30]
+WARNING: [Synth 8-6901] identifier 'DataMem_rd' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:31]
+WARNING: [Synth 8-6901] identifier 'Data_we' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:32]
+WARNING: [Synth 8-6901] identifier 'funct3' is used before its declaration [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:33]
+WARNING: [Synth 8-2277] keyword 'unsigned' is not allowed here in this mode of verilog [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Board.v:28]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1285.062 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1294.391 ; gain = 0.000
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Board' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Board.v:23]
 INFO: [Synth 8-6157] synthesizing module 'Head' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:23]
-INFO: [Synth 8-6085] Hierarchical reference on 'rf' stops possible memory inference [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/RegisterFile.v:45]
-INFO: [Synth 8-6085] Hierarchical reference on 'dmem' stops possible memory inference [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:13]
 INFO: [Synth 8-6157] synthesizing module 'ControlUnit' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:23]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:115]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:334]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:548]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:57]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:113]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:332]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:546]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:55]
 INFO: [Synth 8-6155] done synthesizing module 'ControlUnit' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:23]
-WARNING: [Synth 8-7071] port 'ALU_op' of module 'ControlUnit' is unconnected for instance 'ControlUnit' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:112]
-WARNING: [Synth 8-7023] instance 'ControlUnit' of module 'ControlUnit' has 19 connections declared, but only 18 given [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:112]
+WARNING: [Synth 8-7071] port 'ALU_op' of module 'ControlUnit' is unconnected for instance 'ControlUnit' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:115]
+WARNING: [Synth 8-7023] instance 'ControlUnit' of module 'ControlUnit' has 18 connections declared, but only 17 given [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:115]
 INFO: [Synth 8-6157] synthesizing module 'ProgramCounter' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ProgramCounter.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'ProgramCounter' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ProgramCounter.v:23]
 INFO: [Synth 8-6157] synthesizing module 'Instruction' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:1]
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'instruction.mem'; please make sure the file is added to project and has read permission, ignoring [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:13]
+INFO: [Synth 8-3876] $readmem data file 'instruction.mem' is read successfully [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'Instruction' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:1]
+WARNING: [Synth 8-689] width (1) of port connection 'test_addr' does not match port width (32) of module 'Instruction' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:157]
 INFO: [Synth 8-6157] synthesizing module 'RegisterFile' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/RegisterFile.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'RegisterFile' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/RegisterFile.v:23]
 INFO: [Synth 8-6157] synthesizing module 'Instruction_decode' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction_decode.v:23]
@@ -51,119 +59,16 @@ INFO: [Synth 8-6155] done synthesizing module 'ALU_Control' (0#1) [C:/Users/frez
 INFO: [Synth 8-6157] synthesizing module 'ALU' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU.v:23]
 INFO: [Synth 8-6157] synthesizing module 'data' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:3]
-INFO: [Synth 8-6085] Hierarchical reference on 'dmem' stops possible memory inference [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:13]
 INFO: [Synth 8-3876] $readmem data file 'initialize.txt' is read successfully [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:23]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:46]
 INFO: [Synth 8-6155] done synthesizing module 'data' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:3]
 INFO: [Synth 8-6157] synthesizing module 'data_ext' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data_ext.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'data_ext' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data_ext.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'Head' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:23]
-WARNING: [Synth 8-7137] Register ALU_op_reg in module ControlUnit has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:790]
-WARNING: [Synth 8-4767] Trying to implement RAM ' ' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-	1: Unable to determine number of words or word size in RAM. 
-	2: No valid read/write found for RAM. 
-RAM dissolved into registers
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-WARNING: [Synth 8-3848] Net rom_words in module/entity Instruction does not have driver. [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:10]
-INFO: [Common 17-14] Message 'Synth 8-3848' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-689] width (8) of port connection 'lightLED_opcode' does not match port width (7) of module 'Head' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Board.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'Board' (0#1) [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Board.v:23]
+WARNING: [Synth 8-7137] Register ALU_op_reg in module ControlUnit has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:788]
+WARNING: [Synth 8-3917] design Board has port LED[15] driven by constant 0
 WARNING: [Synth 8-7129] Port addr[30] in module data is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[29] in module data is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[28] in module data is either unconnected or has no load
@@ -199,141 +104,42 @@ WARNING: [Synth 8-7129] Port instr_in[1] in module imm_ext is either unconnected
 WARNING: [Synth 8-7129] Port instr_in[0] in module imm_ext is either unconnected or has no load
 WARNING: [Synth 8-7129] Port clk in module Instruction_decode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port rst in module Instruction is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[7] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[3] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[2] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[15] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[14] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[13] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[12] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[11] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[10] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[9] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[8] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[7] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[6] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[5] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[4] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[3] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[2] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[1] in module Board is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1422.781 ; gain = 137.719
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1294.391 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1422.781 ; gain = 137.719
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1294.391 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1422.781 ; gain = 137.719
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1294.391 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.627 . Memory (MB): peak = 1422.781 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1294.391 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc]
-WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:7]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:7]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:8]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:8]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:9]
-CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports CLK100MHZ]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:9]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:12]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:12]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:13]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:13]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:14]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:14]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:15]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:15]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[0]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:47]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:47]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[0]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:48]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:48]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[1]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:49]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:49]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[1]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:50]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:50]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[2]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:51]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:51]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[2]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:52]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:52]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[3]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:53]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:53]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[3]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:54]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:54]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[4]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:55]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:55]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[4]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:56]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:56]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[5]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:57]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:57]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[5]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:58]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:58]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[6]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:59]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:59]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[6]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:60]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:60]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[7]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:61]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:61]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[7]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:62]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:62]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[8]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:63]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:63]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[8]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:64]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:64]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[9]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:65]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:65]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[9]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:66]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:66]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[10]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:67]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:67]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[10]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:68]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:68]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[11]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:69]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:69]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[11]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:70]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:70]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[12]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:71]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:71]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[12]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:72]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:72]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[13]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:73]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:73]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[13]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:74]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:74]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[14]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:75]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:75]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[14]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:76]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:76]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[15]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:77]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:77]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[15]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:78]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:78]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 WARNING: [Vivado 12-584] No ports matched 'seg[0]'. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:82]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:82]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
@@ -455,20 +261,44 @@ WARNING: [Vivado 12-584] No ports matched 'vauxn15'. [C:/Users/frezy/OneDrive/桌
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc:231]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/frezy/OneDrive/桌面/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Board_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Board_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1613.988 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1327.141 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.260 . Memory (MB): peak = 1613.988 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1327.141 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1327.141 ; gain = 32.750
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35ticpg236-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1327.141 ; gain = 32.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1327.141 ; gain = 32.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Preparing Guide Design
+---------------------------------------------------------------------------------
+got a mismatch ControlUnit
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1327.141 ; gain = 32.750
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6702] IncrSynth : Over 50% of partitions are impacted by design changes. Reverting to default synthesis
+WARNING: [Synth 8-6702] IncrSynth : Reverting to default synthesis
+---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1329.688 ; gain = 35.297
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'ControlUnit'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -483,8 +313,18 @@ Loading part: xc7a35ticpg236-1L
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'one-hot' in module 'ControlUnit'
 WARNING: [Synth 8-327] inferring latch for variable 'bc_out_reg' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Branch_control.v:39]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:50 ; elapsed = 00:00:56 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1329.688 ; gain = 35.297
 ---------------------------------------------------------------------------------
+
+
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: no
+
+   Reason for not running incremental synthesis : Change is too high
+
+
+INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -496,31 +336,33 @@ Detailed RTL Component Info :
 	   2 Input     32 Bit         XORs := 1     
 +---Registers : 
 	               33 Bit    Registers := 1     
-	               32 Bit    Registers := 1062  
+	               32 Bit    Registers := 38    
 	               30 Bit    Registers := 1     
 	                8 Bit    Registers := 4     
 	                4 Bit    Registers := 1     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 26    
++---RAMs : 
+	              32K Bit	(1024 X 32 bit)          RAMs := 1     
 +---ROMs : 
 	                    ROMs := 1     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 2095  
+	  65 Input   32 Bit        Muxes := 1     
 	   9 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 10    
 	   5 Input    8 Bit        Muxes := 3     
 	   7 Input    7 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 8     
 	   2 Input    4 Bit        Muxes := 1     
 	  11 Input    4 Bit        Muxes := 1     
-	   7 Input    3 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 1     
 	  11 Input    2 Bit        Muxes := 1     
 	   7 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 1     
-	   5 Input    1 Bit        Muxes := 1     
 	  11 Input    1 Bit        Muxes := 12    
 	   7 Input    1 Bit        Muxes := 15    
-	   2 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 34    
+	   5 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -536,141 +378,81 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5546] ROM "PC_s_temp" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "PC_s_temp" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design Board has port LED[15] driven by constant 0
 WARNING: [Synth 8-7129] Port rst in module Instruction is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr_in[24] in module Instruction is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr_in[1] in module Instruction is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr_in[0] in module Instruction is either unconnected or has no load
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[8]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/test_addr_reg[22]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[9]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[10]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[11]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[7]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[25]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[26]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[27]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[28]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[29]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[15]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[16]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[17]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[18]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[19]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[31]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[3]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[2]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[1]' (FDE) to 'Instruction/instr_out_reg[0]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[0]' (FDE) to 'Instruction/instr_out_reg[4]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[30]' (FDE) to 'Instruction/instr_out_reg[4]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[6]' (FDE) to 'Instruction/instr_out_reg[4]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[5]' (FDE) to 'Instruction/instr_out_reg[4]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[4]' (FDE) to 'Instruction/instr_out_reg[12]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[20]' (FDE) to 'Instruction/instr_out_reg[12]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[21]' (FDE) to 'Instruction/instr_out_reg[12]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[22]' (FDE) to 'Instruction/instr_out_reg[12]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[23]' (FDE) to 'Instruction/instr_out_reg[12]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[24]' (FDE) to 'Instruction/instr_out_reg[12]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[12]' (FDE) to 'Instruction/instr_out_reg[13]'
-INFO: [Synth 8-3886] merging instance 'Instruction/instr_out_reg[13]' (FDE) to 'Instruction/instr_out_reg[14]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (Instruction/\instr_out_reg[14] )
-INFO: [Synth 8-3886] merging instance 'ControlUnit/Data_s_temp_reg' (FDE) to 'ControlUnit/Bc_Op_temp_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/RegFile_s_temp_reg' (FDE) to 'ControlUnit/PC_we_temp_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/Bc_Op_temp_reg' (FDE) to 'ControlUnit/ALU_s2_temp_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/Data_s_reg' (FDC) to 'ControlUnit/Bc_Op_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/RegFile_s_reg' (FDC) to 'ControlUnit/PC_we_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/Bc_Op_reg' (FDC) to 'ControlUnit/ALU_s2_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/PC_we_temp_reg' (FDE) to 'ControlUnit/RegFile_we_temp_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/PC_we_reg' (FDC) to 'ControlUnit/RegFile_we_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/PC_s_temp_reg' (FDE) to 'ControlUnit/ALU_s2_temp_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/ALU_s1_temp_reg' (FDE) to 'ControlUnit/ALU_s2_temp_reg'
-INFO: [Synth 8-3886] merging instance 'ControlUnit/ALU_s2_temp_reg' (FDE) to 'ControlUnit/Data_we_temp_reg'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ControlUnit/Data_we_temp_reg )
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[31]' (FDCE) to 'RegisterFile/rs2_reg[31]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[31]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[0]' (FDCE) to 'RegisterFile/rs2_reg[0]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[1]' (FDCE) to 'RegisterFile/rs2_reg[1]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[2]' (FDCE) to 'RegisterFile/rs2_reg[2]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[3]' (FDCE) to 'RegisterFile/rs2_reg[3]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[4]' (FDCE) to 'RegisterFile/rs2_reg[4]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[5]' (FDCE) to 'RegisterFile/rs2_reg[5]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[6]' (FDCE) to 'RegisterFile/rs2_reg[6]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[7]' (FDCE) to 'RegisterFile/rs2_reg[7]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[8]' (FDCE) to 'RegisterFile/rs2_reg[8]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[9]' (FDCE) to 'RegisterFile/rs2_reg[9]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[10]' (FDCE) to 'RegisterFile/rs2_reg[10]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[11]' (FDCE) to 'RegisterFile/rs2_reg[11]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[12]' (FDCE) to 'RegisterFile/rs2_reg[12]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[13]' (FDCE) to 'RegisterFile/rs2_reg[13]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[14]' (FDCE) to 'RegisterFile/rs2_reg[14]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[15]' (FDCE) to 'RegisterFile/rs2_reg[15]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[16]' (FDCE) to 'RegisterFile/rs2_reg[16]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[17]' (FDCE) to 'RegisterFile/rs2_reg[17]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[18]' (FDCE) to 'RegisterFile/rs2_reg[18]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[19]' (FDCE) to 'RegisterFile/rs2_reg[19]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[20]' (FDCE) to 'RegisterFile/rs2_reg[20]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[21]' (FDCE) to 'RegisterFile/rs2_reg[21]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[22]' (FDCE) to 'RegisterFile/rs2_reg[22]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[23]' (FDCE) to 'RegisterFile/rs2_reg[23]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[24]' (FDCE) to 'RegisterFile/rs2_reg[24]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[25]' (FDCE) to 'RegisterFile/rs2_reg[25]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[26]' (FDCE) to 'RegisterFile/rs2_reg[26]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[27]' (FDCE) to 'RegisterFile/rs2_reg[27]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[28]' (FDCE) to 'RegisterFile/rs2_reg[28]'
-INFO: [Synth 8-3886] merging instance 'RegisterFile/rs1_reg[29]' (FDCE) to 'RegisterFile/rs2_reg[29]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[0]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[1]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[2]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[3]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[4]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[5]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[6]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[7]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[8]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[9]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[10]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[11]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[12]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[13]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[14]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[15]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[16]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[17]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[18]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[19]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[20]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[21]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[22]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[23]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Synth 8-3886] merging instance 'imm_ext/imm_temp_reg[24]' (FD) to 'imm_ext/imm_temp_reg[30]'
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\imm_ext/imm_temp_reg[30] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_14/\ProgramCounter/PC_outputAddress_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ControlUnit/Data_we_reg )
+WARNING: [Synth 8-7129] Port LED[7] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[3] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[2] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[15] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[14] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[13] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[12] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[11] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[10] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[9] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[8] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[7] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[6] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[5] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[4] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[3] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[2] in module Board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sw[1] in module Board is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:53 ; elapsed = 00:02:36 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1329.688 ; gain = 35.297
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+------------+-----------+----------------------+------------------+
+|Module Name | RTL Object | Inference | Size (Depth x Width) | Primitives       | 
++------------+------------+-----------+----------------------+------------------+
+|Head/data   | dmem_reg   | Implied   | 1 K x 32             | RAM256X1S x 128  | 
++------------+------------+-----------+----------------------+------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:58 ; elapsed = 00:02:42 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1329.688 ; gain = 35.297
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:59 ; elapsed = 00:02:42 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1330.113 ; gain = 35.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++------------+------------+-----------+----------------------+------------------+
+|Module Name | RTL Object | Inference | Size (Depth x Width) | Primitives       | 
++------------+------------+-----------+----------------------+------------------+
+|Head/data   | dmem_reg   | Implied   | 1 K x 32             | RAM256X1S x 128  | 
++------------+------------+-----------+----------------------+------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-7052] The timing for the instance datai_6/data/rom_data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance datai_6/data/rom_data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Head/data/rom_data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Head/data/rom_data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:10 ; elapsed = 00:02:59 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1393.609 ; gain = 99.219
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -688,37 +470,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:22 ; elapsed = 00:03:12 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.496 ; gain = 112.105
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:22 ; elapsed = 00:03:12 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.496 ; gain = 112.105
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:25 ; elapsed = 00:03:15 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.496 ; gain = 112.105
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:25 ; elapsed = 00:03:15 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.496 ; gain = 112.105
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:26 ; elapsed = 00:03:16 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.562 ; gain = 112.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:26 ; elapsed = 00:03:16 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.562 ; gain = 112.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -731,47 +513,54 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+------+------+
-|      |Cell  |Count |
-+------+------+------+
-|1     |BUFG  |     1|
-|2     |LUT1  |     2|
-|3     |LUT2  |  1287|
-|4     |LUT3  |   384|
-|5     |LUT4  |   422|
-|6     |LUT5  |    55|
-|7     |LUT6  |  7592|
-|8     |MUXF7 |  3264|
-|9     |MUXF8 |  1632|
-|10    |FDCE  |  1147|
-|11    |FDPE  |     2|
-|12    |FDRE  | 33161|
-|13    |IBUF  |     2|
-+------+------+------+
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |BUFG      |     2|
+|2     |CARRY4    |    52|
+|3     |LUT1      |     4|
+|4     |LUT2      |    77|
+|5     |LUT3      |   127|
+|6     |LUT4      |    59|
+|7     |LUT5      |   234|
+|8     |LUT6      |  1155|
+|9     |MUXF7     |   256|
+|10    |RAM256X1S |   128|
+|11    |RAMB18E1  |     1|
+|12    |FDCE      |  1109|
+|13    |FDPE      |     3|
+|14    |FDRE      |   162|
+|15    |LD        |     1|
+|16    |IBUF      |     2|
+|17    |OBUF      |    13|
+|18    |OBUFT     |     3|
++------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:26 ; elapsed = 00:03:16 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.562 ; gain = 112.172
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:02:10 ; elapsed = 00:03:09 . Memory (MB): peak = 1613.988 ; gain = 137.719
-Synthesis Optimization Complete : Time (s): cpu = 00:02:27 ; elapsed = 00:03:17 . Memory (MB): peak = 1613.988 ; gain = 328.926
+Synthesis finished with 0 errors, 0 critical warnings and 27 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:28 . Memory (MB): peak = 1406.562 ; gain = 79.422
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1406.562 ; gain = 112.172
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.581 . Memory (MB): peak = 1613.988 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 4896 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1418.570 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 438 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-WARNING: [Netlist 29-101] Netlist 'Head' is not ideal for floorplanning, since the cellview 'data' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1613.988 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1422.465 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 129 instances were transformed.
+  LD => LDCE: 1 instance 
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 128 instances
 
-Synth Design complete, checksum: 744f4f76
+Synth Design complete, checksum: 5bce0abf
 INFO: [Common 17-83] Releasing license: Synthesis
-161 Infos, 225 Warnings, 80 Critical Warnings and 0 Errors encountered.
+55 Infos, 132 Warnings, 40 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:34 ; elapsed = 00:03:32 . Memory (MB): peak = 1613.988 ; gain = 328.926
+synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1422.465 ; gain = 128.074
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-INFO: [Common 17-1381] The checkpoint 'C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.runs/synth_1/Head.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1613.988 ; gain = 0.000
-INFO: [runtcl-4] Executing : report_utilization -file Head_utilization_synth.rpt -pb Head_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Dec 11 04:50:32 2022...
+INFO: [Common 17-1381] The checkpoint 'C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.runs/synth_1/Board.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Board_utilization_synth.rpt -pb Board_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Dec 12 05:27:50 2022...

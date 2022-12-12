@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35ticpg236-1L" LaunchTime="1670752004">
-  <File Type="PA-TCL" Name="Head.tcl"/>
-  <File Type="REPORTS-TCL" Name="Head_reports.tcl"/>
-  <File Type="RDS-RDS" Name="Head.vds"/>
-  <File Type="RDS-UTIL" Name="Head_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="Head_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="Head.dcp"/>
+<GenRun Id="synth_1" LaunchPart="xc7a35ticpg236-1L" LaunchTime="1670840828" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Head.dcp">
+  <File Type="PA-TCL" Name="Board.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="Board_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="Board_reports.tcl"/>
+  <File Type="RDS-RDS" Name="Board.vds"/>
+  <File Type="RDS-UTIL" Name="Board_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Board_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="Board.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Board_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Board_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/ALU.v">
@@ -30,6 +33,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/ControlUnit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Head.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -85,16 +95,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/Head.v">
+    <File Path="$PSRCDIR/sources_1/new/Board.v">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/Mux.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -107,9 +109,15 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sim_1/new/instruction.mem">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="Head"/>
+      <Option Name="TopModule" Val="Board"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -126,6 +134,14 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/Head.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
