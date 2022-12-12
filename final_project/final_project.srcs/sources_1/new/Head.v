@@ -22,9 +22,15 @@
 
  module Head(
     input   clk,
-    input   rst_n
+    input   rst_n,
+    output lightLED_read,lightLED_write,
+    output [6:0] lightLED_opcode,
+    output [2:0] lightLED_func3
     );
-
+    assign lightLED_opcode = opcode;
+    assign lightLED_read = DataMem_rd;
+    assign lightLED_write = Data_we;
+    assign lightLED_func3 = funct3;
 // * processor_ctrl
 // output wire
     wire PC_s; 

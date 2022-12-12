@@ -205,7 +205,7 @@ always @(*) begin
 //00000000
 //00000000
 //10000397 
-       if(r6 != 32'h110000f0) $display("AUIPC not working"); // r4 + 16
+       if(r7 != 32'h110000f0) $display("AUIPC not working"); // r4 + 16
         $display("Jtype test passed");
         
      end 
