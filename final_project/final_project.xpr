@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.   -->
 
 <Project Version="7" Minor="60" Path="C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.xpr">
-  <DefaultLaunch Dir="C:/Users/frezy/NYU-6463-RV32I_Processor_Design"/>
+  <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="8c893d042cf24ef69e7514806cb21923"/>
     <Option Name="Part" Val="xc7a35ticpg236-1L"/>
@@ -334,7 +334,7 @@
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="C:/Users/frezy/NYU-6463-RV32I_Processor_Design" File="gen_run.xml"/>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2022"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
@@ -352,7 +352,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
-      <GeneratedRun Dir="C:/Users/frezy/NYU-6463-RV32I_Processor_Design" File="gen_run.xml"/>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>

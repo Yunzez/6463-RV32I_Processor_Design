@@ -34,8 +34,9 @@ module Board(
     Head Head(
         .rst_n(sw[0]),
         .clk(slowclock),
-        .lightLED_read(LED[0]),
-        .lightLED_write(LED[1]),
+        .lightLED_clock(LED[0]),
+        .lightLED_read(LED[1]),
+        .lightLED_write(LED[2]),
         .lightLED_opcode(LED[15:8]),
         .lightLED_func3(LED[6:4])
     );

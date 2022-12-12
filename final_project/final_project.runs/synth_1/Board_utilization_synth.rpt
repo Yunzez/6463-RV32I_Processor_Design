@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Mon Dec 12 05:27:50 2022
+| Date         : Mon Dec 12 14:26:45 2022
 | Host         : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Board_utilization_synth.rpt -pb Board_utilization_synth.pb
 | Design       : Board
@@ -164,10 +164,10 @@ Table of Contents
 | LUT2     |   77 |                 LUT |
 | LUT4     |   59 |                 LUT |
 | CARRY4   |   52 |          CarryLogic |
-| OBUF     |   13 |                  IO |
+| OBUF     |   14 |                  IO |
 | LUT1     |    4 |                 LUT |
-| OBUFT    |    3 |                  IO |
 | FDPE     |    3 |        Flop & Latch |
+| OBUFT    |    2 |                  IO |
 | IBUF     |    2 |                  IO |
 | BUFG     |    2 |               Clock |
 | RAMB18E1 |    1 |        Block Memory |

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Mon Dec 12 05:28:45 2022
+| Date         : Mon Dec 12 14:27:24 2022
 | Host         : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Board_control_sets_placed.rpt
 | Design       : Board
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              50 |           14 |
-| No           | No                    | Yes                    |              26 |           11 |
-| No           | Yes                   | No                     |               5 |            1 |
-| Yes          | No                    | No                     |             117 |           69 |
-| Yes          | No                    | Yes                    |            1088 |          566 |
+| No           | No                    | No                     |              50 |           16 |
+| No           | No                    | Yes                    |              26 |           13 |
+| No           | Yes                   | No                     |               5 |            2 |
+| Yes          | No                    | No                     |             117 |           74 |
+| Yes          | No                    | Yes                    |            1088 |          520 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -74,51 +74,51 @@ Table of Contents
 |       Clock Signal      |               Enable Signal               |           Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
 +-------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
 |  Head/ControlUnit/Bc_Op |                                           |                                     |                1 |              1 |         1.00 |
-|  slowclock_BUFG         |                                           | Head/Instruction/instr_out_reg[1]_0 |                1 |              5 |         5.00 |
-|  slowclock_BUFG         | Head/Instruction/instr_out_reg[6]_0       |                                     |                3 |             11 |         3.67 |
+|  LED_OBUF_BUFG[0]       |                                           | Head/Instruction/instr_out_reg[1]_0 |                2 |              5 |         2.50 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/instr_out_reg[6]_0       |                                     |                4 |             11 |         2.75 |
 |  CLK100MHZ_IBUF_BUFG    |                                           |                                     |                6 |             24 |         4.00 |
-|  slowclock_BUFG         |                                           |                                     |                7 |             25 |         3.57 |
-|  slowclock_BUFG         |                                           | Head/RegisterFile/sw[0]             |               11 |             26 |         2.36 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_8[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
-|  slowclock_BUFG         | Head/ControlUnit/DataMem_rd_reg_0[0]      |                                     |               28 |             32 |         1.14 |
-|  slowclock_BUFG         | Head/Instruction/instr_out_reg[13]_0[0]   |                                     |               25 |             32 |         1.28 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_10[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
-|  slowclock_BUFG         | Head/ControlUnit/PC_we                    | Head/RegisterFile/sw[0]             |                9 |             32 |         3.56 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_6[0]  | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
-|  slowclock_BUFG         | Head/Instruction/E[0]                     | Head/RegisterFile/sw[0]             |               23 |             32 |         1.39 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_7[0]  | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_15[0] | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_12[0] | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_2[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_0[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_4[0]  | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_9[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_21[0] | Head/RegisterFile/sw[0]             |               23 |             32 |         1.39 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_1[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_19[0] | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_23[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_25[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_20[0] | Head/RegisterFile/sw[0]             |               22 |             32 |         1.45 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_13[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_24[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_16[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_26[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_28[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_5[0]  | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_27[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_14[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_11[0] | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv[0]    | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_22[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_17[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_3[0]  | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
-|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_18[0] | Head/RegisterFile/sw[0]             |               20 |             32 |         1.60 |
-|  slowclock_BUFG         | Head/ControlUnit/E[0]                     |                                     |               13 |             42 |         3.23 |
-|  slowclock_BUFG         | Head/ControlUnit/p_0_in                   | Head/RegisterFile/sw[0]             |               27 |             64 |         2.37 |
-|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_2            |                                     |               32 |            128 |         4.00 |
-|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_1            |                                     |               32 |            128 |         4.00 |
-|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_4            |                                     |               32 |            128 |         4.00 |
-|  slowclock_BUFG         | Head/ControlUnit/Data_we_reg_3            |                                     |               32 |            128 |         4.00 |
+|  LED_OBUF_BUFG[0]       |                                           |                                     |                9 |             25 |         2.78 |
+|  LED_OBUF_BUFG[0]       |                                           | Head/RegisterFile/sw[0]             |               13 |             26 |         2.00 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/DataMem_rd_reg_0[0]      |                                     |               28 |             32 |         1.14 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/E[0]                     | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_1[0]  | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_22[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_14[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_8[0]  | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_0[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_11[0] | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_13[0] | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_9[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_10[0] | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_27[0] | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_6[0]  | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_26[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv[0]    | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_2[0]  | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_18[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_23[0] | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_28[0] | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_15[0] | Head/RegisterFile/sw[0]             |               12 |             32 |         2.67 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_3[0]  | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_16[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_12[0] | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_17[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_24[0] | Head/RegisterFile/sw[0]             |               14 |             32 |         2.29 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_7[0]  | Head/RegisterFile/sw[0]             |               19 |             32 |         1.68 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_4[0]  | Head/RegisterFile/sw[0]             |               18 |             32 |         1.78 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_20[0] | Head/RegisterFile/sw[0]             |               21 |             32 |         1.52 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_19[0] | Head/RegisterFile/sw[0]             |               13 |             32 |         2.46 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_21[0] | Head/RegisterFile/sw[0]             |               17 |             32 |         1.88 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_25[0] | Head/RegisterFile/sw[0]             |               16 |             32 |         2.00 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/RegFile_we_reg_inv_5[0]  | Head/RegisterFile/sw[0]             |               15 |             32 |         2.13 |
+|  LED_OBUF_BUFG[0]       | Head/Instruction/instr_out_reg[13]_0[0]   |                                     |               29 |             32 |         1.10 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/PC_we                    | Head/RegisterFile/sw[0]             |                9 |             32 |         3.56 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/E[0]                     |                                     |               13 |             42 |         3.23 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/p_0_in                   | Head/RegisterFile/sw[0]             |               24 |             64 |         2.67 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/Data_we_reg_3            |                                     |               32 |            128 |         4.00 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/Data_we_reg_1            |                                     |               32 |            128 |         4.00 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/Data_we_reg_2            |                                     |               32 |            128 |         4.00 |
+|  LED_OBUF_BUFG[0]       | Head/ControlUnit/Data_we_reg_4            |                                     |               32 |            128 |         4.00 |
 +-------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
 
 
