@@ -71,19 +71,19 @@ takes in read_instr(read instruction), addr_in
 returns instr_out
 
 - Des:
-The instruction memory is a ROM which means the memory file cannot be load or delete. The instruction memory can store up to 512 32-bits instructions. These instruction read from memory. We still have some testing variables in here. 
+The instruction memory is a read-only memory which means the memory file cannot be load or delete. All instructions are pre-loaded before the processor. The instruction memory can store up to 512 32-bits instructions. These instructions read from memory. We still have some testing variables in here. 
 
 - Testbench:
-The test file instruction.mem contain memory data for test. You might need to readded it manually to test it.
+The test file instruction.mem contain instructions for the processor. For custom fuctions, the modification of .mem file is necessary. User need to add instructions manually. Be advised, the maximum capacity of instruction read-only memory is 512 instructions.
 
 ---
 6. Data Memory
 - Variables:
-takes in w_mode, r_mode, addr_in, din, func3
+takes in we_en, re, addr_in, dmem_in, func3
 returns dout
 
 - Des:
-The functions of data memory include stroing, reading and resetting operations. User could switch read mode to read data or write mode to write data in memory file. This data memory program supports all byte-addressing operations.
+Data memory is a read-access memory. The functions of data memory include stroing, reading and resetting operations. User could enable read mode to read data or write mode to write data in memory file. This data memory program supports all byte-addressing operations. Everytime the processor restart, the data memory would initialize to set all memory to zero to get ready for read and write operations. The maximum capacity of each data memory is 1024 bits. The three N number strings of three group members are stored in data memory after the initialization. They stored as read-only data in address 0x00100000, 0x00100004, 0x00100008. 
 
 - Testbench:
 The testbench testing the memory program by storing data into different place by using various addresses, then read the data and check if read data match with expected value. 
