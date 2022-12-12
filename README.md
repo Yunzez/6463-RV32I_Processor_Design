@@ -18,7 +18,7 @@
 
 <br></br>
 
-## You can also checkout the bitstream file that is generated specifically for *BASYS3 Artix-7 FPGA (XC7A35T-ICPG236C)* [Here](~\final_project\final_project.runs\impl_1\Board.bit)
+## You can also checkout the bitstream file that is generated specifically for *BASYS3 Artix-7 FPGA (XC7A35T-ICPG236C)* [Here](\final_project\final_project.runs\impl_1\Board.bit)
 
 - more about *BASYS3 Artix-7 FPGA (XC7A35T-ICPG236C)*, you can find out [here](https://digilent.com/reference/programmable-logic/basys-3/start)
 
