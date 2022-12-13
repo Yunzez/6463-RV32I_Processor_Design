@@ -34,7 +34,16 @@ module data(
                 2'b11: rom_data <=32'd00000000;
             endcase
     end
-
+    
+    (*rom_style = "block" *) reg [32:0] board;
+    always @(posedge clk) begin
+        if(re)
+            case(addr[4:2])
+                3'b100: board <=32'h11111111;
+                3'b101: board <=32'h11111111;
+            endcase
+    end
+    
     //store decode
     reg [7:0] dmem_in_0_temp;
     reg [7:0] dmem_in_1_temp;
