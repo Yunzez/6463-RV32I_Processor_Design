@@ -39,8 +39,8 @@ module data(
     always @(posedge clk) begin
         if(re)
             case(addr[4:2])
-                3'b100: board <=32'h11111111;
-                3'b101: board <=32'h11111111;
+                3'b100: board <=32'h11111111; // switches
+                3'b101: board <=32'h11111111; // leds
             endcase
     end
     
