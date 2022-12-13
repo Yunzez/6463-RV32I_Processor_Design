@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date             : Mon Dec 12 14:27:44 2022
+| Date             : Mon Dec 12 19:38:43 2022
 | Host             : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command          : report_power -file Board_power_routed.rpt -pb Board_power_summary_routed.pb -rpx Board_power_routed.rpx
 | Design           : Board
@@ -54,14 +54,14 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |    <0.001 |        3 |       --- |             --- |
 | Slice Logic              |     0.013 |     4160 |       --- |             --- |
-|   LUT as Logic           |     0.009 |     1566 |     20800 |            7.53 |
+|   LUT as Logic           |     0.009 |     1565 |     20800 |            7.52 |
 |   LUT as Distributed RAM |     0.003 |      512 |      9600 |            5.33 |
 |   F7/F8 Muxes            |    <0.001 |      640 |     32600 |            1.96 |
 |   CARRY4                 |    <0.001 |       52 |      8150 |            0.64 |
 |   Register               |    <0.001 |     1286 |     41600 |            3.09 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
 |   Others                 |     0.000 |       13 |       --- |             --- |
-| Signals                  |     0.023 |     2660 |       --- |             --- |
+| Signals                  |     0.023 |     2656 |       --- |             --- |
 | Block RAM                |    <0.001 |      0.5 |        50 |            1.00 |
 | I/O                      |     0.015 |       18 |       106 |           16.98 |
 | Static Power             |     0.062 |          |           |                 |

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Mon Dec 12 14:27:44 2022
+| Date         : Mon Dec 12 19:38:44 2022
 | Host         : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file Board_timing_summary_routed.rpt -pb Board_timing_summary_routed.pb -rpx Board_timing_summary_routed.rpx -warn_on_violation
 | Design       : Board
@@ -1509,583 +1509,623 @@ Min Delay          8724 Endpoints
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[31][29]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[13][30]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.817ns  (logic 4.209ns (19.292%)  route 17.608ns (80.708%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.944ns  (logic 4.917ns (23.476%)  route 16.027ns (76.524%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.234    14.939    Head/data/rf_reg[30][0]
-    SLICE_X50Y62         LUT2 (Prop_lut2_I1_O)        0.150    15.089 r  Head/data/rf[1][31]_i_13/O
-                         net (fo=17, routed)          1.593    16.682    Head/data_ext/dout[8]
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.328    17.010 r  Head/data_ext/rf[1][29]_i_4/O
-                         net (fo=1, routed)           1.432    18.442    Head/ControlUnit/dout_ext[20]
-    SLICE_X44Y78         LUT6 (Prop_lut6_I3_O)        0.124    18.566 r  Head/ControlUnit/rf[1][29]_i_1/O
-                         net (fo=31, routed)          3.252    21.817    Head/RegisterFile/D[28]
-    SLICE_X51Y76         FDCE                                         r  Head/RegisterFile/rf_reg[31][29]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          2.362    20.944    Head/RegisterFile/D[29]
+    SLICE_X62Y76         FDCE                                         r  Head/RegisterFile/rf_reg[13][30]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[5][30]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[23][31]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.706ns  (logic 4.213ns (19.409%)  route 17.493ns (80.591%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.868ns  (logic 4.961ns (23.773%)  route 15.907ns (76.227%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=3 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.267    14.972    Head/data/rf_reg[30][0]
-    SLICE_X51Y60         LUT2 (Prop_lut2_I1_O)        0.150    15.122 r  Head/data/rf[1][7]_i_2/O
-                         net (fo=25, routed)          1.948    17.071    Head/data_ext/dout[0]
-    SLICE_X54Y70         LUT6 (Prop_lut6_I4_O)        0.332    17.403 r  Head/data_ext/rf[1][30]_i_4/O
-                         net (fo=1, routed)           1.137    18.540    Head/ControlUnit/dout_ext[21]
-    SLICE_X54Y75         LUT6 (Prop_lut6_I3_O)        0.124    18.664 r  Head/ControlUnit/rf[1][30]_i_1/O
-                         net (fo=31, routed)          3.042    21.706    Head/RegisterFile/D[29]
-    SLICE_X57Y79         FDCE                                         r  Head/RegisterFile/rf_reg[5][30]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          2.559    14.438    Head/data/alu_out[2]
+    SLICE_X54Y56         LUT3 (Prop_lut3_I1_O)        0.152    14.590 r  Head/data/rf[1][31]_i_34/O
+                         net (fo=1, routed)           1.166    15.757    Head/data/rf[1][31]_i_34_n_0
+    SLICE_X54Y60         LUT2 (Prop_lut2_I0_O)        0.376    16.133 r  Head/data/rf[1][31]_i_12/O
+                         net (fo=1, routed)           0.664    16.797    Head/data_ext/dout[24]
+    SLICE_X54Y62         LUT6 (Prop_lut6_I1_O)        0.348    17.145 r  Head/data_ext/rf[1][31]_i_4/O
+                         net (fo=1, routed)           1.024    18.169    Head/ControlUnit/dout_ext[22]
+    SLICE_X56Y70         LUT5 (Prop_lut5_I2_O)        0.124    18.293 r  Head/ControlUnit/rf[1][31]_i_2/O
+                         net (fo=31, routed)          2.575    20.868    Head/RegisterFile/D[30]
+    SLICE_X61Y77         FDCE                                         r  Head/RegisterFile/rf_reg[23][31]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[29][29]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[26][30]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.628ns  (logic 4.209ns (19.461%)  route 17.419ns (80.539%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.785ns  (logic 4.917ns (23.657%)  route 15.868ns (76.343%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.234    14.939    Head/data/rf_reg[30][0]
-    SLICE_X50Y62         LUT2 (Prop_lut2_I1_O)        0.150    15.089 r  Head/data/rf[1][31]_i_13/O
-                         net (fo=17, routed)          1.593    16.682    Head/data_ext/dout[8]
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.328    17.010 r  Head/data_ext/rf[1][29]_i_4/O
-                         net (fo=1, routed)           1.432    18.442    Head/ControlUnit/dout_ext[20]
-    SLICE_X44Y78         LUT6 (Prop_lut6_I3_O)        0.124    18.566 r  Head/ControlUnit/rf[1][29]_i_1/O
-                         net (fo=31, routed)          3.062    21.628    Head/RegisterFile/D[28]
-    SLICE_X50Y76         FDCE                                         r  Head/RegisterFile/rf_reg[29][29]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          2.202    20.785    Head/RegisterFile/D[29]
+    SLICE_X62Y73         FDCE                                         r  Head/RegisterFile/rf_reg[26][30]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[24][29]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[29][30]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.576ns  (logic 4.209ns (19.508%)  route 17.367ns (80.492%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.749ns  (logic 4.917ns (23.697%)  route 15.832ns (76.303%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.234    14.939    Head/data/rf_reg[30][0]
-    SLICE_X50Y62         LUT2 (Prop_lut2_I1_O)        0.150    15.089 r  Head/data/rf[1][31]_i_13/O
-                         net (fo=17, routed)          1.593    16.682    Head/data_ext/dout[8]
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.328    17.010 r  Head/data_ext/rf[1][29]_i_4/O
-                         net (fo=1, routed)           1.432    18.442    Head/ControlUnit/dout_ext[20]
-    SLICE_X44Y78         LUT6 (Prop_lut6_I3_O)        0.124    18.566 r  Head/ControlUnit/rf[1][29]_i_1/O
-                         net (fo=31, routed)          3.010    21.576    Head/RegisterFile/D[28]
-    SLICE_X53Y77         FDCE                                         r  Head/RegisterFile/rf_reg[24][29]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          2.167    20.749    Head/RegisterFile/D[29]
+    SLICE_X63Y76         FDCE                                         r  Head/RegisterFile/rf_reg[29][30]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[27][29]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[16][31]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.516ns  (logic 4.209ns (19.562%)  route 17.307ns (80.438%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.679ns  (logic 4.961ns (23.990%)  route 15.718ns (76.010%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=3 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.234    14.939    Head/data/rf_reg[30][0]
-    SLICE_X50Y62         LUT2 (Prop_lut2_I1_O)        0.150    15.089 r  Head/data/rf[1][31]_i_13/O
-                         net (fo=17, routed)          1.593    16.682    Head/data_ext/dout[8]
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.328    17.010 r  Head/data_ext/rf[1][29]_i_4/O
-                         net (fo=1, routed)           1.432    18.442    Head/ControlUnit/dout_ext[20]
-    SLICE_X44Y78         LUT6 (Prop_lut6_I3_O)        0.124    18.566 r  Head/ControlUnit/rf[1][29]_i_1/O
-                         net (fo=31, routed)          2.951    21.516    Head/RegisterFile/D[28]
-    SLICE_X51Y77         FDCE                                         r  Head/RegisterFile/rf_reg[27][29]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          2.559    14.438    Head/data/alu_out[2]
+    SLICE_X54Y56         LUT3 (Prop_lut3_I1_O)        0.152    14.590 r  Head/data/rf[1][31]_i_34/O
+                         net (fo=1, routed)           1.166    15.757    Head/data/rf[1][31]_i_34_n_0
+    SLICE_X54Y60         LUT2 (Prop_lut2_I0_O)        0.376    16.133 r  Head/data/rf[1][31]_i_12/O
+                         net (fo=1, routed)           0.664    16.797    Head/data_ext/dout[24]
+    SLICE_X54Y62         LUT6 (Prop_lut6_I1_O)        0.348    17.145 r  Head/data_ext/rf[1][31]_i_4/O
+                         net (fo=1, routed)           1.024    18.169    Head/ControlUnit/dout_ext[22]
+    SLICE_X56Y70         LUT5 (Prop_lut5_I2_O)        0.124    18.293 r  Head/ControlUnit/rf[1][31]_i_2/O
+                         net (fo=31, routed)          2.386    20.679    Head/RegisterFile/D[30]
+    SLICE_X60Y77         FDCE                                         r  Head/RegisterFile/rf_reg[16][31]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[30][29]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.484ns  (logic 4.209ns (19.591%)  route 17.275ns (80.409%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.234    14.939    Head/data/rf_reg[30][0]
-    SLICE_X50Y62         LUT2 (Prop_lut2_I1_O)        0.150    15.089 r  Head/data/rf[1][31]_i_13/O
-                         net (fo=17, routed)          1.593    16.682    Head/data_ext/dout[8]
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.328    17.010 r  Head/data_ext/rf[1][29]_i_4/O
-                         net (fo=1, routed)           1.432    18.442    Head/ControlUnit/dout_ext[20]
-    SLICE_X44Y78         LUT6 (Prop_lut6_I3_O)        0.124    18.566 r  Head/ControlUnit/rf[1][29]_i_1/O
-                         net (fo=31, routed)          2.918    21.484    Head/RegisterFile/D[28]
-    SLICE_X51Y75         FDCE                                         r  Head/RegisterFile/rf_reg[30][29]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[28][29]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.327ns  (logic 4.209ns (19.735%)  route 17.118ns (80.265%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.234    14.939    Head/data/rf_reg[30][0]
-    SLICE_X50Y62         LUT2 (Prop_lut2_I1_O)        0.150    15.089 r  Head/data/rf[1][31]_i_13/O
-                         net (fo=17, routed)          1.593    16.682    Head/data_ext/dout[8]
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.328    17.010 r  Head/data_ext/rf[1][29]_i_4/O
-                         net (fo=1, routed)           1.432    18.442    Head/ControlUnit/dout_ext[20]
-    SLICE_X44Y78         LUT6 (Prop_lut6_I3_O)        0.124    18.566 r  Head/ControlUnit/rf[1][29]_i_1/O
-                         net (fo=31, routed)          2.761    21.327    Head/RegisterFile/D[28]
-    SLICE_X50Y77         FDCE                                         r  Head/RegisterFile/rf_reg[28][29]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
   Destination:            Head/RegisterFile/rf_reg[7][30]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.318ns  (logic 4.213ns (19.762%)  route 17.105ns (80.238%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.597ns  (logic 4.917ns (23.872%)  route 15.680ns (76.128%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.267    14.972    Head/data/rf_reg[30][0]
-    SLICE_X51Y60         LUT2 (Prop_lut2_I1_O)        0.150    15.122 r  Head/data/rf[1][7]_i_2/O
-                         net (fo=25, routed)          1.948    17.071    Head/data_ext/dout[0]
-    SLICE_X54Y70         LUT6 (Prop_lut6_I4_O)        0.332    17.403 r  Head/data_ext/rf[1][30]_i_4/O
-                         net (fo=1, routed)           1.137    18.540    Head/ControlUnit/dout_ext[21]
-    SLICE_X54Y75         LUT6 (Prop_lut6_I3_O)        0.124    18.664 r  Head/ControlUnit/rf[1][30]_i_1/O
-                         net (fo=31, routed)          2.655    21.318    Head/RegisterFile/D[29]
-    SLICE_X59Y81         FDCE                                         r  Head/RegisterFile/rf_reg[7][30]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          2.015    20.597    Head/RegisterFile/D[29]
+    SLICE_X59Y76         FDCE                                         r  Head/RegisterFile/rf_reg[7][30]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[4][30]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[1][30]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.297ns  (logic 4.213ns (19.782%)  route 17.084ns (80.218%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.561ns  (logic 4.917ns (23.914%)  route 15.644ns (76.086%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.267    14.972    Head/data/rf_reg[30][0]
-    SLICE_X51Y60         LUT2 (Prop_lut2_I1_O)        0.150    15.122 r  Head/data/rf[1][7]_i_2/O
-                         net (fo=25, routed)          1.948    17.071    Head/data_ext/dout[0]
-    SLICE_X54Y70         LUT6 (Prop_lut6_I4_O)        0.332    17.403 r  Head/data_ext/rf[1][30]_i_4/O
-                         net (fo=1, routed)           1.137    18.540    Head/ControlUnit/dout_ext[21]
-    SLICE_X54Y75         LUT6 (Prop_lut6_I3_O)        0.124    18.664 r  Head/ControlUnit/rf[1][30]_i_1/O
-                         net (fo=31, routed)          2.634    21.297    Head/RegisterFile/D[29]
-    SLICE_X59Y80         FDCE                                         r  Head/RegisterFile/rf_reg[4][30]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          1.979    20.561    Head/RegisterFile/D[29]
+    SLICE_X58Y72         FDCE                                         r  Head/RegisterFile/rf_reg[1][30]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/imm_ext/imm_temp_reg[11]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/RegisterFile/rf_reg[3][30]/D
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[30][31]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        21.176ns  (logic 4.213ns (19.896%)  route 16.963ns (80.104%))
-  Logic Levels:           18  (CARRY4=7 FDRE=1 LUT2=3 LUT4=1 LUT5=2 LUT6=4)
+  Data Path Delay:        20.552ns  (logic 4.961ns (24.139%)  route 15.591ns (75.861%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=3 LUT6=3)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y55         FDRE                         0.000     0.000 r  Head/imm_ext/imm_temp_reg[11]/C
-    SLICE_X47Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  Head/imm_ext/imm_temp_reg[11]/Q
-                         net (fo=4, routed)           2.272     2.728    Head/ProgramCounter/imm_temp[10]
-    SLICE_X45Y72         LUT2 (Prop_lut2_I1_O)        0.124     2.852 r  Head/ProgramCounter/PC_outputAddress[5]_i_7/O
-                         net (fo=1, routed)           0.000     2.852    Head/ProgramCounter/PC_outputAddress[5]_i_7_n_0
-    SLICE_X45Y72         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     3.253 r  Head/ProgramCounter/PC_outputAddress_reg[5]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.253    Head/ProgramCounter/PC_outputAddress_reg[5]_i_6_n_0
-    SLICE_X45Y73         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.367 r  Head/ProgramCounter/PC_outputAddress_reg[9]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.367    Head/ProgramCounter/PC_outputAddress_reg[9]_i_6_n_0
-    SLICE_X45Y74         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.481 r  Head/ProgramCounter/PC_outputAddress_reg[13]_i_6/CO[3]
-                         net (fo=1, routed)           0.009     3.490    Head/ProgramCounter/PC_outputAddress_reg[13]_i_6_n_0
-    SLICE_X45Y75         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     3.604 r  Head/ProgramCounter/PC_outputAddress_reg[17]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     3.604    Head/ProgramCounter/PC_outputAddress_reg[17]_i_6_n_0
-    SLICE_X45Y76         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     3.843 r  Head/ProgramCounter/PC_outputAddress_reg[21]_i_6/O[2]
-                         net (fo=2, routed)           1.103     4.947    Head/ControlUnit/PC_inputAddress0[26]
-    SLICE_X48Y79         LUT5 (Prop_lut5_I0_O)        0.302     5.249 r  Head/ControlUnit/rf[1][27]_i_15/O
-                         net (fo=19, routed)          2.344     7.592    Head/ControlUnit/PC_s_reg_0[25]
-    SLICE_X43Y76         LUT5 (Prop_lut5_I0_O)        0.124     7.716 r  Head/ControlUnit/rf[1][27]_i_19/O
-                         net (fo=1, routed)           0.000     7.716    Head/ControlUnit/rf[1][27]_i_19_n_0
-    SLICE_X43Y76         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398     8.114 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
-                         net (fo=1, routed)           0.000     8.114    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
-    SLICE_X43Y77         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     8.427 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
-                         net (fo=1, routed)           0.953     9.380    Head/ALU_Control/data0[8]
-    SLICE_X39Y76         LUT4 (Prop_lut4_I3_O)        0.334     9.714 r  Head/ALU_Control/rf[1][31]_i_33/O
-                         net (fo=1, routed)           0.811    10.525    Head/ALU_Control/rf[1][31]_i_33_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I5_O)        0.326    10.851 r  Head/ALU_Control/rf[1][31]_i_11/O
-                         net (fo=1, routed)           0.942    11.793    Head/ALU_Control/rf[1][31]_i_11_n_0
-    SLICE_X35Y75         LUT6 (Prop_lut6_I5_O)        0.124    11.917 r  Head/ALU_Control/rf[1][31]_i_3/O
-                         net (fo=34, routed)          1.665    13.582    Head/ALU_Control/alu_out[0]
-    SLICE_X51Y71         LUT2 (Prop_lut2_I0_O)        0.124    13.706 r  Head/ALU_Control/rf[1][7]_i_4/O
-                         net (fo=32, routed)          1.267    14.972    Head/data/rf_reg[30][0]
-    SLICE_X51Y60         LUT2 (Prop_lut2_I1_O)        0.150    15.122 r  Head/data/rf[1][7]_i_2/O
-                         net (fo=25, routed)          1.948    17.071    Head/data_ext/dout[0]
-    SLICE_X54Y70         LUT6 (Prop_lut6_I4_O)        0.332    17.403 r  Head/data_ext/rf[1][30]_i_4/O
-                         net (fo=1, routed)           1.137    18.540    Head/ControlUnit/dout_ext[21]
-    SLICE_X54Y75         LUT6 (Prop_lut6_I3_O)        0.124    18.664 r  Head/ControlUnit/rf[1][30]_i_1/O
-                         net (fo=31, routed)          2.512    21.176    Head/RegisterFile/D[29]
-    SLICE_X60Y81         FDCE                                         r  Head/RegisterFile/rf_reg[3][30]/D
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          2.559    14.438    Head/data/alu_out[2]
+    SLICE_X54Y56         LUT3 (Prop_lut3_I1_O)        0.152    14.590 r  Head/data/rf[1][31]_i_34/O
+                         net (fo=1, routed)           1.166    15.757    Head/data/rf[1][31]_i_34_n_0
+    SLICE_X54Y60         LUT2 (Prop_lut2_I0_O)        0.376    16.133 r  Head/data/rf[1][31]_i_12/O
+                         net (fo=1, routed)           0.664    16.797    Head/data_ext/dout[24]
+    SLICE_X54Y62         LUT6 (Prop_lut6_I1_O)        0.348    17.145 r  Head/data_ext/rf[1][31]_i_4/O
+                         net (fo=1, routed)           1.024    18.169    Head/ControlUnit/dout_ext[22]
+    SLICE_X56Y70         LUT5 (Prop_lut5_I2_O)        0.124    18.293 r  Head/ControlUnit/rf[1][31]_i_2/O
+                         net (fo=31, routed)          2.259    20.552    Head/RegisterFile/D[30]
+    SLICE_X64Y80         FDCE                                         r  Head/RegisterFile/rf_reg[30][31]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[27][30]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        20.450ns  (logic 4.917ns (24.044%)  route 15.533ns (75.956%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          1.868    20.450    Head/RegisterFile/D[29]
+    SLICE_X58Y75         FDCE                                         r  Head/RegisterFile/rf_reg[27][30]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/ProgramCounter/PC_outputAddress_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Head/RegisterFile/rf_reg[17][30]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        20.449ns  (logic 4.917ns (24.045%)  route 15.532ns (75.955%))
+  Logic Levels:           19  (CARRY4=9 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y72         FDCE                         0.000     0.000 r  Head/ProgramCounter/PC_outputAddress_reg[1]/C
+    SLICE_X53Y72         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Head/ProgramCounter/PC_outputAddress_reg[1]/Q
+                         net (fo=4, routed)           1.731     2.187    Head/ProgramCounter/PC_outputAddress__0[1]
+    SLICE_X33Y64         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.656     2.843 r  Head/ProgramCounter/rf_reg[1][4]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.843    Head/ProgramCounter/rf_reg[1][4]_i_3_n_0
+    SLICE_X33Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     2.957 r  Head/ProgramCounter/rf_reg[1][8]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     2.957    Head/ProgramCounter/rf_reg[1][8]_i_3_n_0
+    SLICE_X33Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.071 r  Head/ProgramCounter/rf_reg[1][12]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.071    Head/ProgramCounter/rf_reg[1][12]_i_5_n_0
+    SLICE_X33Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.185 r  Head/ProgramCounter/rf_reg[1][16]_i_5/CO[3]
+                         net (fo=1, routed)           0.000     3.185    Head/ProgramCounter/rf_reg[1][16]_i_5_n_0
+    SLICE_X33Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     3.299 r  Head/ProgramCounter/rf_reg[1][20]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     3.299    Head/ProgramCounter/rf_reg[1][20]_i_4_n_0
+    SLICE_X33Y69         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     3.521 r  Head/ProgramCounter/rf_reg[1][24]_i_5/O[0]
+                         net (fo=2, routed)           1.424     4.945    Head/ControlUnit/added4_pc[20]
+    SLICE_X52Y71         LUT5 (Prop_lut5_I2_O)        0.299     5.244 r  Head/ControlUnit/rf[1][22]_i_19/O
+                         net (fo=17, routed)          2.505     7.749    Head/ControlUnit/PC_s_reg_0[20]
+    SLICE_X50Y69         LUT5 (Prop_lut5_I0_O)        0.124     7.873 r  Head/ControlUnit/rf[1][27]_i_26/O
+                         net (fo=1, routed)           0.000     7.873    Head/ControlUnit/rf[1][27]_i_26_n_0
+    SLICE_X50Y69         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     8.406 r  Head/ControlUnit/rf_reg[1][27]_i_14/CO[3]
+                         net (fo=1, routed)           0.000     8.406    Head/ControlUnit/rf_reg[1][27]_i_14_n_0
+    SLICE_X50Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.523 r  Head/ControlUnit/rf_reg[1][27]_i_6/CO[3]
+                         net (fo=1, routed)           0.000     8.523    Head/ControlUnit/rf_reg[1][27]_i_6_n_0
+    SLICE_X50Y71         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.838 r  Head/ControlUnit/rf_reg[1][30]_i_7/O[3]
+                         net (fo=1, routed)           0.841     9.679    Head/ALU_Control/data0[8]
+    SLICE_X45Y69         LUT4 (Prop_lut4_I3_O)        0.333    10.012 r  Head/ALU_Control/rf[1][31]_i_33/O
+                         net (fo=1, routed)           0.619    10.631    Head/ALU_Control/rf[1][31]_i_33_n_0
+    SLICE_X42Y70         LUT6 (Prop_lut6_I5_O)        0.326    10.957 r  Head/ALU_Control/rf[1][31]_i_11/O
+                         net (fo=1, routed)           0.798    11.755    Head/ALU_Control/rf[1][31]_i_11_n_0
+    SLICE_X41Y69         LUT6 (Prop_lut6_I5_O)        0.124    11.879 r  Head/ALU_Control/rf[1][31]_i_3/O
+                         net (fo=34, routed)          1.775    13.654    Head/data/alu_out[2]
+    SLICE_X48Y57         LUT3 (Prop_lut3_I1_O)        0.152    13.806 r  Head/data/rf[1][31]_i_35/O
+                         net (fo=1, routed)           0.800    14.606    Head/data/rf[1][31]_i_35_n_0
+    SLICE_X48Y58         LUT2 (Prop_lut2_I0_O)        0.354    14.960 r  Head/data/rf[1][31]_i_13/O
+                         net (fo=17, routed)          2.038    16.998    Head/data_ext/dout[8]
+    SLICE_X54Y60         LUT6 (Prop_lut6_I2_O)        0.326    17.324 r  Head/data_ext/rf[1][30]_i_4/O
+                         net (fo=1, routed)           1.134    18.458    Head/ControlUnit/dout_ext[21]
+    SLICE_X46Y71         LUT6 (Prop_lut6_I3_O)        0.124    18.582 r  Head/ControlUnit/rf[1][30]_i_1/O
+                         net (fo=31, routed)          1.867    20.449    Head/RegisterFile/D[29]
+    SLICE_X58Y74         FDCE                                         r  Head/RegisterFile/rf_reg[17][30]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -2095,173 +2135,173 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 Head/ControlUnit/Instr_rd_temp_reg/C
+  Source:                 Head/data/dmem_in_0_temp_reg[4]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            Head/ControlUnit/Instr_rd_reg/D
+  Destination:            Head/data/dmem_reg_768_1023_4_4/RAMS64E_A/I
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.242ns  (logic 0.128ns (52.976%)  route 0.114ns (47.024%))
+  Data Path Delay:        0.263ns  (logic 0.141ns (53.584%)  route 0.122ns (46.416%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X44Y51         FDRE                         0.000     0.000 r  Head/ControlUnit/Instr_rd_temp_reg/C
-    SLICE_X44Y51         FDRE (Prop_fdre_C_Q)         0.128     0.128 r  Head/ControlUnit/Instr_rd_temp_reg/Q
-                         net (fo=1, routed)           0.114     0.242    Head/ControlUnit/Instr_rd_temp__0
-    SLICE_X44Y50         FDCE                                         r  Head/ControlUnit/Instr_rd_reg/D
+    SLICE_X57Y52         FDRE                         0.000     0.000 r  Head/data/dmem_in_0_temp_reg[4]/C
+    SLICE_X57Y52         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_0_temp_reg[4]/Q
+                         net (fo=16, routed)          0.122     0.263    Head/data/dmem_reg_768_1023_4_4/D
+    SLICE_X56Y52         RAMS64E                                      r  Head/data/dmem_reg_768_1023_4_4/RAMS64E_A/I
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 Head/ControlUnit/Bc_Op_temp_reg/C
+  Source:                 Head/data/dmem_in_0_temp_reg[4]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            Head/ControlUnit/Bc_Op_reg/D
+  Destination:            Head/data/dmem_reg_768_1023_4_4/RAMS64E_B/I
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.247ns  (logic 0.128ns (51.722%)  route 0.119ns (48.278%))
+  Data Path Delay:        0.263ns  (logic 0.141ns (53.584%)  route 0.122ns (46.416%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X45Y52         FDRE                         0.000     0.000 r  Head/ControlUnit/Bc_Op_temp_reg/C
-    SLICE_X45Y52         FDRE (Prop_fdre_C_Q)         0.128     0.128 r  Head/ControlUnit/Bc_Op_temp_reg/Q
-                         net (fo=1, routed)           0.119     0.247    Head/ControlUnit/Bc_Op_temp__0
-    SLICE_X44Y53         FDCE                                         r  Head/ControlUnit/Bc_Op_reg/D
+    SLICE_X57Y52         FDRE                         0.000     0.000 r  Head/data/dmem_in_0_temp_reg[4]/C
+    SLICE_X57Y52         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_0_temp_reg[4]/Q
+                         net (fo=16, routed)          0.122     0.263    Head/data/dmem_reg_768_1023_4_4/D
+    SLICE_X56Y52         RAMS64E                                      r  Head/data/dmem_reg_768_1023_4_4/RAMS64E_B/I
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/data/dmem_in_0_temp_reg[4]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            Head/data/dmem_reg_768_1023_4_4/RAMS64E_C/I
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.263ns  (logic 0.141ns (53.584%)  route 0.122ns (46.416%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y52         FDRE                         0.000     0.000 r  Head/data/dmem_in_0_temp_reg[4]/C
+    SLICE_X57Y52         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_0_temp_reg[4]/Q
+                         net (fo=16, routed)          0.122     0.263    Head/data/dmem_reg_768_1023_4_4/D
+    SLICE_X56Y52         RAMS64E                                      r  Head/data/dmem_reg_768_1023_4_4/RAMS64E_C/I
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/data/dmem_in_0_temp_reg[4]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            Head/data/dmem_reg_768_1023_4_4/RAMS64E_D/I
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.263ns  (logic 0.141ns (53.584%)  route 0.122ns (46.416%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y52         FDRE                         0.000     0.000 r  Head/data/dmem_in_0_temp_reg[4]/C
+    SLICE_X57Y52         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_0_temp_reg[4]/Q
+                         net (fo=16, routed)          0.122     0.263    Head/data/dmem_reg_768_1023_4_4/D
+    SLICE_X56Y52         RAMS64E                                      r  Head/data/dmem_reg_768_1023_4_4/RAMS64E_D/I
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/data/dmem_in_3_temp_reg[7]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            Head/data/dmem_reg_512_767_31_31/RAMS64E_A/I
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.264ns  (logic 0.141ns (53.320%)  route 0.123ns (46.680%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y57         FDRE                         0.000     0.000 r  Head/data/dmem_in_3_temp_reg[7]/C
+    SLICE_X55Y57         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_3_temp_reg[7]/Q
+                         net (fo=16, routed)          0.123     0.264    Head/data/dmem_reg_512_767_31_31/D
+    SLICE_X56Y56         RAMS64E                                      r  Head/data/dmem_reg_512_767_31_31/RAMS64E_A/I
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/data/dmem_in_3_temp_reg[7]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            Head/data/dmem_reg_512_767_31_31/RAMS64E_B/I
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.264ns  (logic 0.141ns (53.320%)  route 0.123ns (46.680%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y57         FDRE                         0.000     0.000 r  Head/data/dmem_in_3_temp_reg[7]/C
+    SLICE_X55Y57         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_3_temp_reg[7]/Q
+                         net (fo=16, routed)          0.123     0.264    Head/data/dmem_reg_512_767_31_31/D
+    SLICE_X56Y56         RAMS64E                                      r  Head/data/dmem_reg_512_767_31_31/RAMS64E_B/I
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/data/dmem_in_3_temp_reg[7]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            Head/data/dmem_reg_512_767_31_31/RAMS64E_C/I
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.264ns  (logic 0.141ns (53.320%)  route 0.123ns (46.680%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y57         FDRE                         0.000     0.000 r  Head/data/dmem_in_3_temp_reg[7]/C
+    SLICE_X55Y57         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_3_temp_reg[7]/Q
+                         net (fo=16, routed)          0.123     0.264    Head/data/dmem_reg_512_767_31_31/D
+    SLICE_X56Y56         RAMS64E                                      r  Head/data/dmem_reg_512_767_31_31/RAMS64E_C/I
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Head/data/dmem_in_3_temp_reg[7]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            Head/data/dmem_reg_512_767_31_31/RAMS64E_D/I
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.264ns  (logic 0.141ns (53.320%)  route 0.123ns (46.680%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y57         FDRE                         0.000     0.000 r  Head/data/dmem_in_3_temp_reg[7]/C
+    SLICE_X55Y57         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_3_temp_reg[7]/Q
+                         net (fo=16, routed)          0.123     0.264    Head/data/dmem_reg_512_767_31_31/D
+    SLICE_X56Y56         RAMS64E                                      r  Head/data/dmem_reg_512_767_31_31/RAMS64E_D/I
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 Head/data/dmem_in_2_temp_reg[1]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_512_767_17_17/RAMS64E_A/I
+  Destination:            Head/data/dmem_reg_768_1023_17_17/RAMS64E_A/I
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.979%)  route 0.111ns (44.021%))
+  Data Path Delay:        0.266ns  (logic 0.141ns (52.940%)  route 0.125ns (47.060%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X45Y63         FDRE                         0.000     0.000 r  Head/data/dmem_in_2_temp_reg[1]/C
-    SLICE_X45Y63         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_2_temp_reg[1]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_512_767_17_17/D
-    SLICE_X46Y62         RAMS64E                                      r  Head/data/dmem_reg_512_767_17_17/RAMS64E_A/I
+    SLICE_X45Y59         FDRE                         0.000     0.000 r  Head/data/dmem_in_2_temp_reg[1]/C
+    SLICE_X45Y59         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_2_temp_reg[1]/Q
+                         net (fo=16, routed)          0.125     0.266    Head/data/dmem_reg_768_1023_17_17/D
+    SLICE_X46Y58         RAMS64E                                      r  Head/data/dmem_reg_768_1023_17_17/RAMS64E_A/I
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 Head/data/dmem_in_2_temp_reg[1]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_512_767_17_17/RAMS64E_B/I
+  Destination:            Head/data/dmem_reg_768_1023_17_17/RAMS64E_B/I
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.979%)  route 0.111ns (44.021%))
+  Data Path Delay:        0.266ns  (logic 0.141ns (52.940%)  route 0.125ns (47.060%))
   Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X45Y63         FDRE                         0.000     0.000 r  Head/data/dmem_in_2_temp_reg[1]/C
-    SLICE_X45Y63         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_2_temp_reg[1]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_512_767_17_17/D
-    SLICE_X46Y62         RAMS64E                                      r  Head/data/dmem_reg_512_767_17_17/RAMS64E_B/I
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/data/dmem_in_2_temp_reg[1]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_512_767_17_17/RAMS64E_C/I
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.979%)  route 0.111ns (44.021%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y63         FDRE                         0.000     0.000 r  Head/data/dmem_in_2_temp_reg[1]/C
-    SLICE_X45Y63         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_2_temp_reg[1]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_512_767_17_17/D
-    SLICE_X46Y62         RAMS64E                                      r  Head/data/dmem_reg_512_767_17_17/RAMS64E_C/I
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/data/dmem_in_2_temp_reg[1]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_512_767_17_17/RAMS64E_D/I
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.979%)  route 0.111ns (44.021%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y63         FDRE                         0.000     0.000 r  Head/data/dmem_in_2_temp_reg[1]/C
-    SLICE_X45Y63         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_2_temp_reg[1]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_512_767_17_17/D
-    SLICE_X46Y62         RAMS64E                                      r  Head/data/dmem_reg_512_767_17_17/RAMS64E_D/I
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/data/dmem_in_1_temp_reg[2]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_768_1023_10_10/RAMS64E_A/I
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.967%)  route 0.111ns (44.033%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y56         FDRE                         0.000     0.000 r  Head/data/dmem_in_1_temp_reg[2]/C
-    SLICE_X45Y56         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_1_temp_reg[2]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_768_1023_10_10/D
-    SLICE_X46Y55         RAMS64E                                      r  Head/data/dmem_reg_768_1023_10_10/RAMS64E_A/I
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/data/dmem_in_1_temp_reg[2]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_768_1023_10_10/RAMS64E_B/I
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.967%)  route 0.111ns (44.033%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y56         FDRE                         0.000     0.000 r  Head/data/dmem_in_1_temp_reg[2]/C
-    SLICE_X45Y56         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_1_temp_reg[2]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_768_1023_10_10/D
-    SLICE_X46Y55         RAMS64E                                      r  Head/data/dmem_reg_768_1023_10_10/RAMS64E_B/I
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/data/dmem_in_1_temp_reg[2]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_768_1023_10_10/RAMS64E_C/I
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.967%)  route 0.111ns (44.033%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y56         FDRE                         0.000     0.000 r  Head/data/dmem_in_1_temp_reg[2]/C
-    SLICE_X45Y56         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_1_temp_reg[2]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_768_1023_10_10/D
-    SLICE_X46Y55         RAMS64E                                      r  Head/data/dmem_reg_768_1023_10_10/RAMS64E_C/I
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 Head/data/dmem_in_1_temp_reg[2]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            Head/data/dmem_reg_768_1023_10_10/RAMS64E_D/I
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.252ns  (logic 0.141ns (55.967%)  route 0.111ns (44.033%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y56         FDRE                         0.000     0.000 r  Head/data/dmem_in_1_temp_reg[2]/C
-    SLICE_X45Y56         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_1_temp_reg[2]/Q
-                         net (fo=16, routed)          0.111     0.252    Head/data/dmem_reg_768_1023_10_10/D
-    SLICE_X46Y55         RAMS64E                                      r  Head/data/dmem_reg_768_1023_10_10/RAMS64E_D/I
+    SLICE_X45Y59         FDRE                         0.000     0.000 r  Head/data/dmem_in_2_temp_reg[1]/C
+    SLICE_X45Y59         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  Head/data/dmem_in_2_temp_reg[1]/Q
+                         net (fo=16, routed)          0.125     0.266    Head/data/dmem_reg_768_1023_17_17/D
+    SLICE_X46Y58         RAMS64E                                      r  Head/data/dmem_reg_768_1023_17_17/RAMS64E_B/I
   -------------------------------------------------------------------    -------------------
 
 
