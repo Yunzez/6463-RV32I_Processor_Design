@@ -111,5 +111,6 @@ module data(
 
     assign dmem_out = addr[31]? data_out
                     : addr[20]? rom_data
+                    : addr[20] | addr[4]? board
                     : 'hz;
 endmodule
