@@ -7,6 +7,8 @@ module data(
     input wire          we_en,
     input wire          re,
     input wire [31:0]   dmem_in,
+    input wire [15:0]   board_switches,
+    input wire [15:0]   board_LEDs,
     output wire [31:0]   dmem_out
     );
     
@@ -39,8 +41,10 @@ module data(
     always @(posedge clk) begin
         if(re)
             case(addr[4:2])
-                3'b100: board <=32'h11111111; // switches
-                3'b101: board <=32'h11111111; // leds
+                3'b100: board <= board_switches; // switches
+                3'b101: 
+                    if(we_en) begin board_LEDs <= board_switches; end
+                    else if(rd) begin board <= board_LEDs; end// leds
             endcase
     end
     
