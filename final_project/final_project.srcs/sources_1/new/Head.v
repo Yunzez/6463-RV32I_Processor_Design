@@ -23,17 +23,13 @@
  module Head(
     input   clk,
     input   rst_n,
-    output lightLED_read,lightLED_write,
-    output [6:0] lightLED_opcode,
-    output [2:0] lightLED_func3,
-    output lightLED_clock
+    input [15:0] boardSwitches,
+    
+    output [15:0] boardLEDs
+  
     );
-    assign lightLED_opcode = opcode;
-    assign lightLED_read = DataMem_rd;
-    assign lightLED_write = Data_we;
-    assign lightLED_func3 = funct3;
-    assign lightLED_clock = clk;
-// * processor_ctrl
+    
+
 // output wire
     wire PC_s; 
     wire PC_we; // pc enable signal
@@ -95,17 +91,17 @@
 // * data ext 
     wire    [31:0]                  dout_ext;
 // * testing variable 
-    
+    wire [2:0]testing_stage;
  //   wire [2:0] control_next_stage;
- //    wire [31:0] instr_mem_addr_test;
+     wire [31:0] instr_mem_addr_test;
      
-// wire [31:0] r1 = RegisterFile.rf[3]; 
-//wire [31:0] r2 = RegisterFile.rf[3]; 
-//wire [31:0] r3 = RegisterFile.rf[3]; 
-//wire [31:0] r4 = RegisterFile.rf[3]; 
-//wire [31:0] r5 = RegisterFile.rf[3]; 
-//wire [31:0] r6 = RegisterFile.rf[3]; 
-//wire [31:0] r7 = RegisterFile.rf[3]; 
+ wire [31:0] r1 = RegisterFile.rf[3]; 
+wire [31:0] r2 = RegisterFile.rf[3]; 
+wire [31:0] r3 = RegisterFile.rf[3]; 
+wire [31:0] r4 = RegisterFile.rf[3]; 
+wire [31:0] r5 = RegisterFile.rf[3]; 
+wire [31:0] r6 = RegisterFile.rf[3]; 
+wire [31:0] r7 = RegisterFile.rf[3]; 
 
 //wire [31:0] d1 = data.dmem[1];
 //wire [31:0] d2 = data.dmem[2];
@@ -134,7 +130,10 @@
     .Data_op(Data_op), 
     .Data_s(Data_s), 
     .Bc_Op(Bc_Op), 
-    .Data_we(Data_we)
+    .Data_we(Data_we),
+    
+    // testing only 
+    .test_state(testing_stage)
     
     );
 
@@ -232,6 +231,8 @@
      .re(DataMem_rd),
      .addr(alu_out), // alu output will be send to data as address
      .dmem_in(rs2), // reg 2 will be send as data in 
+     .board_switches(boardSwitches),
+     .board_LEDs(boardLEDs),
      
      // output 
      .dmem_out(dout)

@@ -27,9 +27,15 @@ parameter PERIOD = 1/(f*0.001);
 reg clk = 0;
 reg rst = 0;
 reg reset_mem = 0;
+
+
+wire [15:0] placeholderLEDs;
+wire [15:0] placeholderSwitches = 16'b0;
 Head Head(
     .clk        (clk    ), 
-    .rst_n      (rst    )
+    .rst_n      (rst    ),
+   .boardLEDs (placeholderLEDs), 
+   .boardSwitches(placeholderSwitches)
 );
 
 //Data Memory Initialisation
@@ -45,6 +51,8 @@ end
 
 reg [6:0] round_count = 4'b0;
 // load values
+
+wire [31:0] data_addr_in = Head.data.addr;
 wire [31:0]pc_address_load = Head.ProgramCounter.PC_outputAddress;
 wire [31:0]instr_address_load = Head.Instruction.read_instr;
 wire [31:0]instr_output_load = Head.Instruction.instr_out;
@@ -54,8 +62,6 @@ wire [31:0]decoded_rs1_addr_load = Head.Instruction_decode.rs1_addr;
 wire [31:0]decoded_rs2_addr_load = Head.Instruction_decode.rs2_addr;
 wire [6:0]decoded_opcode_load = Head.Instruction_decode.opcode;
 wire [2:0]decoded_funct3 = Head.Instruction_decode.funct;
-
-wire [2:0]next_state = Head.ControlUnit.testing_stage;
 
 wire [31:0] r0 = Head.RegisterFile.rf[0]; 
 wire [31:0] r1 = Head.RegisterFile.rf[1]; 
@@ -84,8 +90,8 @@ wire [31:0] r23 = Head.RegisterFile.rf[23];
 wire [31:0] r24 = Head.RegisterFile.rf[24];  
 wire [31:0] r25 = Head.RegisterFile.rf[25]; 
 
-//wire [31:0] d1 = Head.data.dmem[1];
-//wire [31:0] d2 = Head.data.dmem[2];
+wire [31:0] d1 = Head.data.dmem[1];
+wire [31:0] d2 = Head.data.dmem[2];
 wire [31:0] d3 = Head.data.dmem[3];
 wire [31:0] d4 = Head.data.dmem[4];
 wire [31:0] d5 = Head.data.dmem[5];
@@ -119,6 +125,8 @@ reg [31:0] operand2 = 32'b000001100100;
 wire [31:0] signed_op1 = {{20{operand1[11]}},operand1[11:0]};
 wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};     
 
+// testing stage 
+wire [2:0]next_state = Head.ControlUnit.test_state;
 always @(*) begin
     if(next_state  == 3'b010) round_count = round_count + 1'b1;
     

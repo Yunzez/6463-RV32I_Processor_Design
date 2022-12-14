@@ -8,7 +8,7 @@ module data(
     input wire          re,
     input wire [31:0]   dmem_in,
     input wire [15:0]   board_switches,
-    input wire [15:0]   board_LEDs,
+    output wire [15:0]   board_LEDs,
     output wire [31:0]   dmem_out
     );
     
@@ -19,7 +19,8 @@ module data(
     wire    [31:0]  dmem_tmp;
     reg     [31:0]  data_out;
 
-
+    reg [15:0] switch_values;
+    
     //initialize data memory, set all 1024 memory to zero 
     initial begin
         $readmemh("initialize.txt",dmem);
@@ -36,15 +37,18 @@ module data(
                 2'b11: rom_data <=32'd00000000;
             endcase
     end
-    
-    (*rom_style = "block" *) reg [32:0] board;
+                     
+    reg [15:0] LED_temp = 16'hF000;
+    // testing 
+    reg [2:0] checkAddr;
+    // testing end
+   (*rom_style = "block" *) reg [31:0] board; 
     always @(posedge clk) begin
-        if(re)
+        checkAddr = addr[4:2];
             case(addr[4:2])
-                3'b100: board <= board_switches; // switches
+                3'b100: if(re) begin board <= {16'b0, board_switches}; end // switches
                 3'b101: 
-                    if(we_en) begin board_LEDs <= board_switches; end
-                    else if(rd) begin board <= board_LEDs; end// leds
+                    if(re) begin board <=  dmem[addr[11:2]]; end // leds
             endcase
     end
     
@@ -96,9 +100,15 @@ module data(
 //    assign dmem_in_3 = we[3] ? dmem_in[31:24] : dmem[dmem_addr][31:24];
     assign dmem_tmp  = {dmem_in_3_temp,dmem_in_2_temp,dmem_in_1_temp,dmem_in_0_temp};
 
+    
+    
     //data memory 
     always@(posedge clk) begin
         if(we_en) begin
+            if (addr[4:2] == 3'b101) begin 
+                dmem[dmem_addr] <=  dmem_in[15:0]; 
+                LED_temp <= dmem_in[15:0];
+            end
             dmem[dmem_addr]    <= dmem_tmp;
         end
     end
@@ -108,9 +118,8 @@ module data(
             data_out <= dmem[dmem_addr];
         end
     end
-
+    assign board_LEDs = LED_temp;
     assign dmem_out = addr[31]? data_out
-                    : addr[20]? rom_data
-                    : addr[20] | addr[4]? board
+                    : addr[20]? (addr[4]? board : rom_data)
                     : 'hz;
 endmodule

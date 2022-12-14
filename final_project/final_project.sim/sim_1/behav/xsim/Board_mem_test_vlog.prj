@@ -1,0 +1,21 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../final_project.srcs/sources_1/new/ALU.v" \
+"../../../../final_project.srcs/sources_1/new/ALU_Control.v" \
+"../../../../final_project.srcs/sources_1/new/Branch_control.v" \
+"../../../../final_project.srcs/sources_1/new/ControlUnit.v" \
+"../../../../final_project.srcs/sources_1/new/Head.v" \
+"../../../../final_project.srcs/sources_1/new/Instruction.v" \
+"../../../../final_project.srcs/sources_1/new/Instruction_decode.v" \
+"../../../../final_project.srcs/sources_1/new/ProgramCounter.v" \
+"../../../../final_project.srcs/sources_1/new/RegisterFile.v" \
+"../../../../final_project.srcs/sources_1/new/data.v" \
+"../../../../final_project.srcs/sources_1/new/data_ext.v" \
+"../../../../final_project.srcs/sources_1/new/imm_ext.v" \
+"../../../../final_project.srcs/sim_1/new/Board_mem_test.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

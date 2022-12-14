@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Mon Dec 12 19:37:01 2022
-# Process ID: 28292
+# Start of session at: Tue Dec 13 22:06:48 2022
+# Process ID: 16928
 # Current directory: C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.runs/synth_1
 # Command line: vivado.exe -log Board.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Board.tcl
 # Log file: C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.runs/synth_1/Board.vds

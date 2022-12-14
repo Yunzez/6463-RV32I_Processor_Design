@@ -70,14 +70,10 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_param general.maxThreads 8
 set_param chipscope.maxJobs 4
 set_param xicom.use_bs_reader 1
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35ticpg236-1L
 
@@ -95,6 +91,7 @@ OPTRACE "Adding files" START { }
 read_mem {
   C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/branchTest.mem
   C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/instruction.mem
+  C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/board.mem
 }
 read_verilog -library xil_defaultlib {
   C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU.v

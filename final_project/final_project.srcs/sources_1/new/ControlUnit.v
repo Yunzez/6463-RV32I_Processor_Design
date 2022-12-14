@@ -26,7 +26,10 @@ module ControlUnit(
 //    input [2:0]funct3,
     input bc, // branch info
     output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op,Data_we,
-    output reg [1:0]ALU_op
+    output reg [1:0]ALU_op,
+    
+    // testing 
+    output wire [2:0] test_state
     );
     
     reg [2:0]curr_state;
@@ -50,7 +53,7 @@ module ControlUnit(
             curr_state   <= next_state;
             
     end
-    
+    assign test_state = curr_state;
     always @(posedge clk) begin
      case(curr_state)
         INITALIZE: begin
@@ -446,7 +449,7 @@ module ControlUnit(
                     RegFile_we_temp = 1'b0; 
                     Imm_op_temp = 1'b0; 
                     ALU_s1_temp = 1'b0; 
-                    ALU_s2_temp = 1'b0; 
+                    ALU_s2_temp = 1'b1; 
                     ALU_op_temp = 2'b01; // cal: check branch
 
                     // may need to wait here 

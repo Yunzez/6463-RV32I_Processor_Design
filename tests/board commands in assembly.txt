@@ -1,0 +1,56 @@
+1.  LW switches r1 // store switches value into r1 
+2.  Lw leds r2    // store leds value into r2
+3.  add r3 r2 r1 // add leds and switches and store it to r3
+4.  SW r3 4
+
+
+5.  sub r3 r3 r1 // subtract r3 from value of 
+6   SW r3 4
+7.  bne r3 r2 4  // if r3 != r2, jump over one command, this will not trigger jump 
+8.  beq r3 r2 4  // if r3 = r2, jump over one command 
+9.  add r3 r0 1  // this one will be jumped over
+10. add r3 r0 1  // r3 change to 1
+11. SW r3 4
+
+12. or r4 r3 r0  // store r3 or r0 and store in r4 
+13. SLLI r4 r4 1 // left shift r4 by one, r4 will be 10, so 2 
+14. SW r4 4
+15. SLLI r4 r4 1 // left shift r4 by one, r4 will be 100
+16. SW r4 4
+17. SLLI r4 r4 1 // left shift r4 by one, r4 will be 10000
+18. SW r4 4
+19. SLLI r4 r4 1 // left shift r4 by one, r4 will be 100000
+20. SW r4 4
+21. SLLI r4 r4 1 // left shift r4 by one, r4 will be 1000000
+22. SW r4 4
+23. SLLI r4 r4 1 // left shift r4 by one, r4 will be 10000000
+24. r4 4
+25. SLLI r4 r4 1 // left shift r4 by one, r4 will be 100000000
+26. SW r4 4
+27. SRLI r4 r4 1 // left shift r4 by one, r4 will be 10000000
+28. SW r4 4
+29. SRLI r4 r4 1 // left shift r4 by one, r4 will be 1000000
+30. SW r4 4
+31. SRLI r4 r4 1 // left shift r4 by one, r4 will be 100000
+32. SW r4 4
+33. SRLI r4 r4 1 // left shift r4 by one, r4 will be 10000
+34. SW r4 4
+35. SRLI r4 r4 1 // left shift r4 by one, r4 will be 1000
+36. SW r4 4
+37. SRLI r4 r4 1 // left shift r4 by one, r4 will be 100
+38. SW r4 4
+39. SRLI r4 r4 1 // left shift r4 by one, r4 will be 10
+40. SW r4 4
+
+
+
+add_force {/data/clk} -radix hex {0 0ns}
+add_force {/data/addr} -radix hex {00100014 0ns}
+add_force {/data/func3} -radix hex {000 0ns}
+add_force {/data/we_en} -radix hex {1 0ns}
+add_force {/data/re} -radix hex {0 0ns}
+add_force {/data/dmem_in} -radix hex {2 0ns}
+add_force {/data/board_switches} -radix hex {1 0ns}
+run 10 us
+add_force {/data/clk} -radix hex {1 0ns}
+run 10 us

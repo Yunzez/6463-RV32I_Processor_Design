@@ -24,22 +24,20 @@ module Board(
     input wire CLK100MHZ,
     input wire[15:0] sw,
     input wire btnU, 
-    output wire[15:0] LED
+    output wire [15:0] LED
     );
-    reg unsigned [23:0] inter_clock;
+    reg unsigned [20:0] inter_clock;
     wire slowclock;
     always @(posedge CLK100MHZ) begin 
         inter_clock <= inter_clock + 1;
     end
-    assign slowclock  = inter_clock[23];
+    assign slowclock  = inter_clock[20];
+
     Head Head(
         .rst_n(btnU),
-        .clk(slowclock),
-        .lightLED_clock(LED[0]),
-        .lightLED_read(LED[1]),
-        .lightLED_write(LED[2]),
-        .lightLED_opcode(LED[15:8]),
-        .lightLED_func3(LED[6:4])
+        .clk(CLK100MHZ), 
+        .boardLEDs(LED),
+        .boardSwitches(sw)
     );
 
 endmodule
