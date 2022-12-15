@@ -26,12 +26,12 @@ module ControlUnit(
 //    input [2:0]funct3,
     input bc, // branch info
     output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op,Data_we,
-    output reg [1:0]ALU_op,
+    output reg [1:0]ALU_op
     
     // testing 
-    output wire [2:0] test_state
+//    output wire [2:0] test_state
     );
-    
+
     reg [2:0]curr_state;
     reg [2:0]next_state;
     
@@ -41,7 +41,9 @@ module ControlUnit(
     parameter EXECUTION    = 3'b011;
     parameter MEM    = 3'b100;
     parameter WRITEBACK    = 3'b101;
-    parameter HALT  = 3'b110;
+    parameter BRANCH_PAUSE = 3'b110;
+    parameter HALT  = 3'b111;
+    
    
    reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
    reg [1:0] ALU_op_temp;      
@@ -671,7 +673,7 @@ module ControlUnit(
                     Data_op_temp = 1'b0; 
                     Data_s_temp = bc; // ! branch info based on branch control 
                     Data_we_temp = 1'b0; // TODO: check value 
-                    Bc_Op_temp = 1'b1; // use branch control
+                    Bc_Op_temp = 1'b0; // use branch control
                 end
 
 
@@ -758,6 +760,27 @@ module ControlUnit(
                 end
             endcase
         end
+        
+        BRANCH_PAUSE: begin
+
+            PC_s_temp = bc; // choose what to take base on bc
+            PC_we_temp = 1'b0; // write pc 
+            Instr_rd_temp = 1'b0;
+            RegFile_s_temp = 1'b0; 
+
+            RegFile_we_temp = 1'b0; 
+            Imm_op_temp = 1'b0; 
+            ALU_s1_temp = 1'b0; 
+            ALU_s2_temp = 1'b0; 
+            ALU_op_temp = 2'b00; // cal: check branch
+
+            // may need to wait here 
+            DataMem_rd_temp = 1'b0; // 
+            Data_op_temp = 1'b0; 
+            Data_s_temp = bc; // ! branch info based on branch control 
+            Data_we_temp = 1'b0; // TODO: check value 
+            Bc_Op_temp = 1'b0; // use branch control
+        end
     endcase
    end
    
@@ -835,6 +858,9 @@ always @(*) begin
         WRITEBACK  : 
          if(!rst)
                 next_state = INITALIZE;
+        else if(opcode == 7'b1100011) begin
+                next_state = BRANCH_PAUSE;
+             end 
          else
                 next_state = FETCH_INSTRUCTION;
          HALT:
@@ -842,7 +868,11 @@ always @(*) begin
                 next_state = INITALIZE;
             else
                 next_state = HALT;
-                
+         
+         BRANCH_PAUSE: 
+            if(!rst) next_state = INITALIZE;
+            else  next_state = FETCH_INSTRUCTION;
+              
         default:
             next_state = INITALIZE;
     endcase

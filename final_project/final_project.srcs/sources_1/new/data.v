@@ -106,8 +106,8 @@ module data(
     always@(posedge clk) begin
         if(we_en) begin
             if (addr[4:2] == 3'b101) begin 
-                dmem[dmem_addr] <=  dmem_in[15:0]; 
-                LED_temp <= dmem_in[15:0];
+                dmem[dmem_addr] <=  dmem_in; 
+                LED_temp <= dmem_in;
             end
             dmem[dmem_addr]    <= dmem_tmp;
         end

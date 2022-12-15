@@ -40,7 +40,6 @@ Head Head(
    .boardLEDs (placeholderLEDs), 
    .boardSwitches(placeholderSwitches)
 );
-
 wire [31:0] r0 = Head.RegisterFile.rf[0]; 
 wire [31:0] r1 = Head.RegisterFile.rf[1]; 
 wire [31:0] r2 = Head.RegisterFile.rf[2];  

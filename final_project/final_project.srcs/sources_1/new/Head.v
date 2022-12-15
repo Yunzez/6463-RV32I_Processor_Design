@@ -30,7 +30,7 @@
     );
     
 
-// output wire
+    // output wire
     wire PC_s; 
     wire PC_we; // pc enable signal
     wire Instr_rd; // control instruction enable
@@ -45,26 +45,25 @@
     wire Bc_Op; 
     wire Data_we;
 
-    //TODO: add data memory read/write enable
 
-// * pc  
+    // * pc  
     wire [31:0] current_pc;
     wire [31:0]PC_inputAddress;
     wire [31:0]PC_outputAddress;
     
     wire [31:0] added4_pc;
  
-// * instr_mem
+    // * instr_mem
     wire [31:0]mem_instr_out;
 
 
-// * registor_file
+    // * registor_file
     wire [31:0]readRd;// data goes in, 32 bits
     // output
     wire [31:0] rs1;
     wire [31:0] rs2;
 
-// * instruction decode
+    // * instruction decode
   
     // output
     wire [4:0] rd_addr;
@@ -80,7 +79,7 @@
     wire     [3:0]                   alu_ctrl;
 
 
-//* alu
+    //* alu
     wire    [31:0]                  operand1;
     wire    [31:0]                  operand2;
 
@@ -88,28 +87,34 @@
     wire     [31:0]                  alu_out;
     // dout 
     wire    [31:0]                  dout;                  
-// * data ext 
+    // * data ext 
     wire    [31:0]                  dout_ext;
-// * testing variable 
-    wire [2:0]testing_stage;
- //   wire [2:0] control_next_stage;
-     wire [31:0] instr_mem_addr_test;
+    
+    
+    
+    
+    // * testing variable 
+    //wire [2:0]testing_stage;
+    //wire [2:0] control_next_stage;
+    //wire [31:0] instr_mem_addr_test;
      
- wire [31:0] r1 = RegisterFile.rf[3]; 
-wire [31:0] r2 = RegisterFile.rf[3]; 
-wire [31:0] r3 = RegisterFile.rf[3]; 
-wire [31:0] r4 = RegisterFile.rf[3]; 
-wire [31:0] r5 = RegisterFile.rf[3]; 
-wire [31:0] r6 = RegisterFile.rf[3]; 
-wire [31:0] r7 = RegisterFile.rf[3]; 
-
-//wire [31:0] d1 = data.dmem[1];
-//wire [31:0] d2 = data.dmem[2];
-//wire [31:0] d3 = data.dmem[3];
+    //wire [31:0] r1 = RegisterFile.rf[3]; 
+    //wire [31:0] r2 = RegisterFile.rf[3]; 
+    //wire [31:0] r3 = RegisterFile.rf[3]; 
+    //wire [31:0] r4 = RegisterFile.rf[3]; 
+    //wire [31:0] r5 = RegisterFile.rf[3]; 
+    //wire [31:0] r6 = RegisterFile.rf[3]; 
+    //wire [31:0] r7 = RegisterFile.rf[3]; 
+    
+    //wire [31:0] d1 = data.dmem[1];
+    //wire [31:0] d2 = data.dmem[2];
+    //wire [31:0] d3 = data.dmem[3];
 
     //////////////////////////////////////////////////////////////////////////////////
     //Module
     //////////////////////////////////////////////////////////////////////////////////
+    
+    
     ControlUnit ControlUnit(
     // input
     .clk                         (clk                ),
@@ -123,17 +128,16 @@ wire [31:0] r7 = RegisterFile.rf[3];
     .Instr_rd(Instr_rd), 
     .RegFile_s(RegFile_s), 
     .RegFile_we(RegFile_we), 
-    .Imm_op(Imm_op), 
     .ALU_s1(ALU_s1), 
     .ALU_s2(ALU_s2), 
     .DataMem_rd(DataMem_rd), 
     .Data_op(Data_op), 
     .Data_s(Data_s), 
     .Bc_Op(Bc_Op), 
-    .Data_we(Data_we),
+    .Data_we(Data_we)
     
     // testing only 
-    .test_state(testing_stage)
+//    .test_state(testing_stage)
     
     );
 

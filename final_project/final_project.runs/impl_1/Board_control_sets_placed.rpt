@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Tue Dec 13 22:08:27 2022
+| Date         : Wed Dec 14 23:43:37 2022
 | Host         : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Board_control_sets_placed.rpt
 | Design       : Board
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    30 |
-|    Minimum number of control sets                        |    30 |
+| Total control sets                                       |    50 |
+|    Minimum number of control sets                        |    50 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    36 |
+| Unused register locations in slices containing registers |    37 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    30 |
-| >= 0 to < 4        |     2 |
+| Total control sets |    50 |
+| >= 0 to < 4        |     3 |
 | >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     2 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |    25 |
+| >= 16              |    46 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,51 +58,71 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              10 |            6 |
-| No           | No                    | Yes                    |             660 |          202 |
-| No           | Yes                   | No                     |              10 |            2 |
-| Yes          | No                    | No                     |             147 |           60 |
-| Yes          | No                    | Yes                    |             480 |          242 |
-| Yes          | Yes                   | No                     |              17 |           15 |
+| No           | No                    | No                     |              37 |           17 |
+| No           | No                    | Yes                    |              22 |           11 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |             124 |           63 |
+| Yes          | No                    | Yes                    |            1088 |          397 |
+| Yes          | Yes                   | No                     |              20 |            9 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-------------------------+--------------------------------------------+-----------------------------------------+------------------+----------------+--------------+
-|       Clock Signal      |                Enable Signal               |             Set/Reset Signal            | Slice Load Count | Bel Load Count | Bels / Slice |
-+-------------------------+--------------------------------------------+-----------------------------------------+------------------+----------------+--------------+
-|  CLK100MHZ_IBUF_BUFG    | Head/ControlUnit/Instr_rd                  | Head/ControlUnit/Instr_rd_reg_0         |                1 |              1 |         1.00 |
-|  Head/ControlUnit/Bc_Op |                                            |                                         |                1 |              1 |         1.00 |
-|  CLK100MHZ_IBUF_BUFG    |                                            |                                         |                5 |              9 |         1.80 |
-|  CLK100MHZ_IBUF_BUFG    |                                            | Head/Instruction/instr_out_reg[24]_0[3] |                2 |             10 |         5.00 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[5]_1        |                                         |                3 |             11 |         3.67 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/alu_ctrl_reg[1]                   |                                         |               10 |             16 |         1.60 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/alu_ctrl_reg[1]                   | Head/ALU/alu_ctrl_reg[1]_0              |               14 |             16 |         1.14 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/alu_ctrl_reg[1]_1[0]              |                                         |                7 |             16 |         2.29 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[9]_0        | Head/RegisterFile/btnU                  |               13 |             32 |         2.46 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[9]_rep_0    | Head/RegisterFile/btnU                  |               17 |             32 |         1.88 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_0        | Head/RegisterFile/btnU                  |               17 |             32 |         1.88 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep__0_0 | Head/RegisterFile/btnU                  |               15 |             32 |         2.13 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep__1_0 | Head/RegisterFile/btnU                  |               14 |             32 |         2.29 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep__2_0 | Head/RegisterFile/btnU                  |               14 |             32 |         2.29 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep_0    | Head/RegisterFile/btnU                  |               17 |             32 |         1.88 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep__3_0 | Head/RegisterFile/btnU                  |               21 |             32 |         1.52 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep__4_0 | Head/RegisterFile/btnU                  |               20 |             32 |         1.60 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[9]_rep__0_0 | Head/RegisterFile/btnU                  |               17 |             32 |         1.88 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[9]_rep__1_0 | Head/RegisterFile/btnU                  |               15 |             32 |         2.13 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[8]_rep__5_0 | Head/RegisterFile/btnU                  |               17 |             32 |         1.88 |
-|  CLK100MHZ_IBUF_BUFG    | Head/Instruction/instr_out_reg[12]_2[0]    |                                         |               15 |             32 |         2.13 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ControlUnit/PC_we                     | Head/RegisterFile/btnU                  |                9 |             32 |         3.56 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ControlUnit/E[0]                      |                                         |               14 |             32 |         2.29 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ControlUnit/Instr_rd                  |                                         |               11 |             40 |         3.64 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ControlUnit/RegFile_we_reg_inv_0[0]   | Head/RegisterFile/btnU                  |               36 |             64 |         1.78 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/Data_we_reg                       |                                         |               32 |            128 |         4.00 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/Data_we_reg_0                     |                                         |               32 |            128 |         4.00 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/Data_we_reg_1                     |                                         |               32 |            128 |         4.00 |
-|  CLK100MHZ_IBUF_BUFG    | Head/ALU/Data_we_reg_2                     |                                         |               32 |            128 |         4.00 |
-|  CLK100MHZ_IBUF_BUFG    |                                            | Head/RegisterFile/btnU                  |              202 |            660 |         3.27 |
-+-------------------------+--------------------------------------------+-----------------------------------------+------------------+----------------+--------------+
++-------------------------+------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
+|       Clock Signal      |               Enable Signal              |                Set/Reset Signal               | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------+------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
+|  Head/ControlUnit/Bc_Op |                                          |                                               |                1 |              1 |         1.00 |
+|  slowclock_BUFG         | Head/ControlUnit/Instr_rd                | Head/ProgramCounter/PC_outputAddress_reg[5]_5 |                1 |              2 |         2.00 |
+|  slowclock_BUFG         | Head/ControlUnit/Instr_rd                | Head/ControlUnit/Instr_rd_reg_0               |                1 |              2 |         2.00 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[2]_0      |                                               |                3 |             11 |         3.67 |
+|  CLK100MHZ_IBUF_BUFG    |                                          |                                               |                4 |             16 |         4.00 |
+|  slowclock_BUFG         | Head/RegisterFile/DataMem_rd_reg         | Head/RegisterFile/DataMem_rd_reg_0            |                7 |             16 |         2.29 |
+|  slowclock_BUFG         | Head/RegisterFile/DataMem_rd_reg         |                                               |                9 |             16 |         1.78 |
+|  slowclock_BUFG         | Head/RegisterFile/E[0]                   |                                               |                6 |             16 |         2.67 |
+|  slowclock_BUFG         | Head/ControlUnit/Instr_rd                |                                               |                5 |             17 |         3.40 |
+|  slowclock_BUFG         |                                          |                                               |               12 |             20 |         1.67 |
+|  slowclock_BUFG         |                                          | Head/RegisterFile/btnU                        |               11 |             22 |         2.00 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[11]_2[0]  | Head/RegisterFile/btnU                        |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[7]_3[0]   | Head/RegisterFile/btnU                        |               10 |             32 |         3.20 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_1[0] | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_7[0]  | Head/RegisterFile/btnU                        |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[7]_1[0]   | Head/RegisterFile/btnU                        |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_10[0] | Head/RegisterFile/btnU                        |               16 |             32 |         2.00 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_5[0]  | Head/RegisterFile/btnU                        |               10 |             32 |         3.20 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv[0]   | Head/RegisterFile/btnU                        |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_12[0] | Head/RegisterFile/btnU                        |               20 |             32 |         1.60 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_3[0]  | Head/RegisterFile/btnU                        |               14 |             32 |         2.29 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_4[0]  | Head/RegisterFile/btnU                        |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/E[0]                    | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[7]_2[0]   | Head/RegisterFile/btnU                        |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[9]_0[0]   | Head/RegisterFile/btnU                        |               10 |             32 |         3.20 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[7]_4[0]   | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_8[0]  | Head/RegisterFile/btnU                        |               17 |             32 |         1.88 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_0[0]  | Head/RegisterFile/btnU                        |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_11[0] | Head/RegisterFile/btnU                        |                8 |             32 |         4.00 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[11]_3[0]  | Head/RegisterFile/btnU                        |               14 |             32 |         2.29 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[7]_0[0]   | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[8]_0[0]   | Head/RegisterFile/btnU                        |               12 |             32 |         2.67 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_9[0]  | Head/RegisterFile/btnU                        |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_1[0]  | Head/RegisterFile/btnU                        |               10 |             32 |         3.20 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[11]_1[0]  | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[11]_4[0]  | Head/RegisterFile/btnU                        |               10 |             32 |         3.20 |
+|  slowclock_BUFG         | Head/Instruction/RegFile_we_reg_inv_0[0] | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[8]_1[0]   | Head/RegisterFile/btnU                        |               10 |             32 |         3.20 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[13]_1[0]  |                                               |               21 |             32 |         1.52 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_6[0]  | Head/RegisterFile/btnU                        |               13 |             32 |         2.46 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[9]_1[0]   | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[11]_0[0]  | Head/RegisterFile/btnU                        |               11 |             32 |         2.91 |
+|  slowclock_BUFG         | Head/ControlUnit/PC_we                   | Head/RegisterFile/btnU                        |                9 |             32 |         3.56 |
+|  slowclock_BUFG         | Head/Instruction/instr_out_reg[10]_2[0]  | Head/RegisterFile/btnU                        |               12 |             32 |         2.67 |
+|  slowclock_BUFG         | Head/ControlUnit/E[0]                    |                                               |               19 |             32 |         1.68 |
+|  slowclock_BUFG         | Head/ControlUnit/p_0_in                  | Head/RegisterFile/btnU                        |               30 |             64 |         2.13 |
+|  slowclock_BUFG         | Head/ALU_Control/Data_we_reg_1           |                                               |               32 |            128 |         4.00 |
+|  slowclock_BUFG         | Head/ALU_Control/Data_we_reg_0           |                                               |               32 |            128 |         4.00 |
+|  slowclock_BUFG         | Head/ALU_Control/Data_we_reg             |                                               |               32 |            128 |         4.00 |
+|  slowclock_BUFG         | Head/ALU_Control/Data_we_reg_2           |                                               |               32 |            128 |         4.00 |
++-------------------------+------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
 
 

@@ -26,16 +26,16 @@ module Board(
     input wire btnU, 
     output wire [15:0] LED
     );
-    reg unsigned [20:0] inter_clock;
+    reg unsigned [15:0] inter_clock;
     wire slowclock;
     always @(posedge CLK100MHZ) begin 
         inter_clock <= inter_clock + 1;
     end
-    assign slowclock  = inter_clock[20];
+    assign slowclock  = inter_clock[15];
 
     Head Head(
         .rst_n(btnU),
-        .clk(CLK100MHZ), 
+        .clk(slowclock), 
         .boardLEDs(LED),
         .boardSwitches(sw)
     );
