@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Wed Dec 14 23:43:07 2022
+| Date         : Thu Dec 15 19:57:49 2022
 | Host         : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Board_utilization_synth.rpt -pb Board_utilization_synth.pb
 | Design       : Board
@@ -36,8 +36,8 @@ Table of Contents
 |   LUT as Memory            |  512 |     0 |          0 |      9600 |  5.33 |
 |     LUT as Distributed RAM |  512 |     0 |            |           |       |
 |     LUT as Shift Register  |    0 |     0 |            |           |       |
-| Slice Registers            | 1291 |     0 |          0 |     41600 |  3.10 |
-|   Register as Flip Flop    | 1290 |     0 |          0 |     41600 |  3.10 |
+| Slice Registers            | 1292 |     0 |          0 |     41600 |  3.11 |
+|   Register as Flip Flop    | 1291 |     0 |          0 |     41600 |  3.10 |
 |   Register as Latch        |    1 |     0 |          0 |     41600 | <0.01 |
 | F7 Muxes                   |  416 |     0 |          0 |     16300 |  2.55 |
 | F8 Muxes                   |  128 |     0 |          0 |      8150 |  1.57 |
@@ -58,7 +58,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 3     |          Yes |           - |          Set |
-| 1108  |          Yes |           - |        Reset |
+| 1109  |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 180   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -153,17 +153,17 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     | 1107 |        Flop & Latch |
-| LUT6     |  561 |                 LUT |
+| FDCE     | 1108 |        Flop & Latch |
+| LUT6     |  560 |                 LUT |
 | RAMS64E  |  512 |  Distributed Memory |
 | MUXF7    |  416 |               MuxFx |
 | LUT5     |  389 |                 LUT |
 | FDRE     |  180 |        Flop & Latch |
 | MUXF8    |  128 |               MuxFx |
-| LUT2     |   76 |                 LUT |
+| LUT2     |   77 |                 LUT |
 | LUT3     |   67 |                 LUT |
 | CARRY4   |   50 |          CarryLogic |
-| LUT4     |   36 |                 LUT |
+| LUT4     |   37 |                 LUT |
 | IBUF     |   18 |                  IO |
 | OBUF     |   16 |                  IO |
 | LUT1     |    4 |                 LUT |

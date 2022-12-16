@@ -1,0 +1,179 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.sim/sim_1/impl/timing/xsim/Board_mem_test_time_impl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RAM256X1S_UNIQ_BASE_
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD255
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD256
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD257
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD258
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD259
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD260
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD261
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD262
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD263
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD264
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD265
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD266
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD267
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD268
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD269
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD270
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD271
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD272
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD273
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD274
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD275
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD276
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD277
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD278
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD279
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD280
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD281
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD282
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD283
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD284
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD285
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD286
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD287
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD288
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD289
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD290
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD291
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD292
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD293
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD294
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD295
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD296
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD297
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD298
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD299
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD300
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD301
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD302
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD303
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD304
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD305
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD306
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD307
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD308
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD309
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD310
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD311
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD312
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD313
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD314
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD315
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD316
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD317
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD318
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD319
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD320
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD321
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD322
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD323
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD324
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD325
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD326
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD327
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD328
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD329
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD330
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD331
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD332
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD333
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD334
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD335
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD336
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD337
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD338
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD339
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD340
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD341
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD342
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD343
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD344
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD345
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD346
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD347
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD348
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD349
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD350
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD351
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD352
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD353
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD354
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD355
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD356
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD357
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD358
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD359
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD360
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD361
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD362
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD363
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD364
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD365
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD366
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD367
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD368
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD369
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD370
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD371
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD372
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD373
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD374
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD375
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD376
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD377
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD378
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD379
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD380
+INFO: [VRFC 10-311] analyzing module RAM256X1S_HD381
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-311] analyzing module ALU_Control
+INFO: [VRFC 10-311] analyzing module Board
+INFO: [VRFC 10-311] analyzing module Branch_control
+INFO: [VRFC 10-311] analyzing module ControlUnit
+INFO: [VRFC 10-311] analyzing module Head
+INFO: [VRFC 10-311] analyzing module Instruction
+INFO: [VRFC 10-311] analyzing module ProgramCounter
+INFO: [VRFC 10-311] analyzing module RegisterFile
+INFO: [VRFC 10-311] analyzing module data
+INFO: [VRFC 10-311] analyzing module imm_ext
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'ALU' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU_Control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_Control
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'ALU_Control' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ALU_Control.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Branch_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Branch_control
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'Branch_control' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Branch_control.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ControlUnit
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'ControlUnit' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ControlUnit.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Head
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'Head' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Head.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Instruction
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'Instruction' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction.v:1]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/Instruction_decode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Instruction_decode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ProgramCounter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ProgramCounter
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'ProgramCounter' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/ProgramCounter.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/RegisterFile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RegisterFile
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'RegisterFile' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/RegisterFile.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'data' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data.v:3]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/data_ext.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_ext
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/imm_ext.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module imm_ext
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'imm_ext' [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sources_1/new/imm_ext.v:23]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/Board_mem_test.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Board_mem_test
+WARNING: [VRFC 10-8497] literal value 'h100010 truncated to fit in 16 bits [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/Board_mem_test.v:67]
+WARNING: [VRFC 10-8497] literal value 'h00100014 truncated to fit in 16 bits [C:/Users/frezy/NYU-6463-RV32I_Processor_Design/final_project/final_project.srcs/sim_1/new/Board_mem_test.v:69]

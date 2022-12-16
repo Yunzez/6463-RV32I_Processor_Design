@@ -49,7 +49,7 @@ initial begin
     Head.data.dmem[2] = data2; 
 end
 
-reg [6:0] round_count = 4'b0;
+reg [6:0] round_count = 6'b0;
 // load values
 
 wire [31:0] data_addr_in = Head.data.addr;
@@ -126,9 +126,14 @@ wire [31:0] signed_op1 = {{20{operand1[11]}},operand1[11:0]};
 wire [31:0] signed_op2 = {{20{operand2[11]}},operand2[11:0]};     
 
 // testing stage 
-wire [2:0]next_state = Head.ControlUnit.test_state;
+wire [3:0]next_state = Head.ControlUnit.test_state;
+
 always @(*) begin
-    if(next_state  == 3'b010) round_count = round_count + 1'b1;
+    if(next_state  == 4'd2) round_count = round_count + 1;
+end 
+
+always @(*) begin
+    
     
     if(round_count == 6'd13) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for R-type");
@@ -176,7 +181,7 @@ always @(*) begin
         #100;
     end
     // start at memory file line 27 for branch test
-    else if(round_count == 6'd35) begin // ! we only wait till 35 because some command is jumped 
+    else if(round_count == 6'd42) begin // ! we only wait till 35 because some command is jumped 
     // only one addi get executed 
     // r5 should be 1 
         if(r5 != 32'b1) $display("branch not passed");
@@ -191,7 +196,7 @@ always @(*) begin
     // branch tests instruction at line 48 
      
      // store command tests starts at line 49 
-     else if(round_count == 39) begin
+     else if(round_count == 45) begin
         if(Head.data.dmem[3] != {{24{1'b0}},data2[7:0]})     $display("Test case 'SB' failed"); 
         if(Head.data.dmem[4] != {{16{1'b0}},data2[15:0]})    $display("Test case 'SH' failed"); 
         if(Head.data.dmem[5] != data2)                     $display("Test case 'SW' failed"); 
@@ -200,7 +205,7 @@ always @(*) begin
      // store command ends at line 51
      
      
-     else if(round_count == 41) begin
+     else if(round_count == 48) begin
 //010002ef jump 4, store pc+ 4
 //00000000
 //00000000
@@ -219,46 +224,13 @@ always @(*) begin
      end 
      
      else if (round_count == 42) begin
-     $display("automatic halt --- ");
-     $display("there are three fake instruction after halt, halt fails if see the commands 00000001, 00000002, 00000003");
-     $finish;
+         $display("automatic halt --- ");
+         $display("there are three fake instruction after halt, halt fails if see the commands 00000001, 00000002, 00000003");
+         $finish;
      end 
      else begin 
      end
 end 
-
-
-// initial load command
-//initial begin
-//     $display("add insttuction to memory");
-//    Head.Instruction.rom_words[0] = 32'b00000011001000001_000_00001_0010011; // addi x1,x1,50
-//    $display("%b", Head.Instruction.rom_words[0]);
-//    Head.Instruction.rom_words[1] = {operand2[11:0],20'b00010_000_00010_0010011}; // addi x2,x2,100
-//    Head.Instruction.rom_words[2] = 32'b0000000_00010_00001_000_00011_0110011;    // add x3,x1,x2
-//    Head.Instruction.rom_words[3] = 32'b0100000_00010_00001_000_00100_0110011;    // sub x4,x1,x2
-    
-//    Head.Instruction.rom_words[4] = 32'b0000000_00010_00001_001_00101_0110011;    // sll x5,x1,x2  
-//    Head.Instruction.rom_words[5] = 32'b0000000_00010_00001_010_00110_0110011;    // slt x6,x1,x2  
-    
-//    Head.Instruction.rom_words[6] = 32'b0000000_00010_00001_011_00111_0110011;    // sltu x7,x1,x2  
-    
-//    Head.Instruction.rom_words[7] = 32'b0000000_00010_00001_100_01000_0110011;    // xor x8,x1,x2 
-    
-//    Head.Instruction.rom_words[8] = 32'b0000000_00010_00001_101_01001_0110011;    // srl x9,x1,4 
-    
-//    Head.Instruction.rom_words[9] = 32'b0100000_00010_00001_101_01010_0110011;    // sra x10,x1,x2 
-    
-//    Head.Instruction.rom_words[10]= 32'b0000000_00010_00001_110_01011_0110011;    // or x11,x1,x2 
-//    Head.Instruction.rom_words[11]= 32'b0000000_00010_00001_111_01100_0110011;    // and x12,x1,x2 
-//    $display("add insttuction successfully");
-//end
-
-
-
-
-
-   
-   
 
 
 

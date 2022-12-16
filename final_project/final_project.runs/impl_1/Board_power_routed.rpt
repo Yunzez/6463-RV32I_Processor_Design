@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date             : Wed Dec 14 23:43:58 2022
+| Date             : Thu Dec 15 19:58:47 2022
 | Host             : LAPTOP-2O846HLK running 64-bit major release  (build 9200)
 | Command          : report_power -file Board_power_routed.rpt -pb Board_power_summary_routed.pb -rpx Board_power_routed.rpx
 | Design           : Board
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.097        |
+| Total On-Chip Power (W)  | 0.096        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.035        |
+| Dynamic (W)              | 0.034        |
 | Device Static (W)        | 0.062        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 99.5         |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |    <0.001 |        3 |       --- |             --- |
-| Slice Logic              |     0.013 |     3547 |       --- |             --- |
+| Slice Logic              |     0.013 |     3549 |       --- |             --- |
 |   LUT as Logic           |     0.008 |     1073 |     20800 |            5.16 |
 |   LUT as Distributed RAM |     0.003 |      512 |      9600 |            5.33 |
 |   F7/F8 Muxes            |    <0.001 |      544 |     32600 |            1.67 |
 |   CARRY4                 |    <0.001 |       50 |      8150 |            0.61 |
-|   Register               |    <0.001 |     1291 |     41600 |            3.10 |
+|   Register               |    <0.001 |     1292 |     41600 |            3.11 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
 |   Others                 |     0.000 |       16 |       --- |             --- |
-| Signals                  |     0.021 |     2260 |       --- |             --- |
+| Signals                  |     0.021 |     2264 |       --- |             --- |
 | Block RAM                |    <0.001 |      0.5 |        50 |            1.00 |
 | I/O                      |    <0.001 |       34 |       106 |           32.08 |
 | Static Power             |     0.062 |          |           |                 |
-| Total                    |     0.097 |          |           |                 |
+| Total                    |     0.096 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -144,13 +144,13 @@ Table of Contents
 +------------------+-----------+
 | Name             | Power (W) |
 +------------------+-----------+
-| Board            |     0.035 |
-|   Head           |     0.034 |
-|     ALU_Control  |     0.001 |
-|     ControlUnit  |     0.010 |
+| Board            |     0.034 |
+|   Head           |     0.033 |
+|     ALU_Control  |     0.008 |
+|     ControlUnit  |     0.006 |
 |     Instruction  |     0.002 |
-|     RegisterFile |     0.009 |
-|     data         |     0.010 |
+|     RegisterFile |     0.008 |
+|     data         |     0.008 |
 +------------------+-----------+
 
 

@@ -26,28 +26,29 @@ module ControlUnit(
 //    input [2:0]funct3,
     input bc, // branch info
     output reg PC_s, PC_we, Instr_rd, RegFile_s, RegFile_we, Imm_op, ALU_s1, ALU_s2, DataMem_rd, Data_op, Data_s, Bc_Op,Data_we,
-    output reg [1:0]ALU_op
+    output reg [1:0]ALU_op,
     
     // testing 
-//    output wire [2:0] test_state
+    output wire [3:0] test_state
     );
 
-    reg [2:0]curr_state;
-    reg [2:0]next_state;
+    reg [3:0]curr_state;
+    reg [3:0]next_state;
     
-    parameter INITALIZE  = 3'b000;
-    parameter FETCH_INSTRUCTION  = 3'b001;
-    parameter FETCH_DECODE  = 3'b010;
-    parameter EXECUTION    = 3'b011;
-    parameter MEM    = 3'b100;
-    parameter WRITEBACK    = 3'b101;
-    parameter BRANCH_PAUSE = 3'b110;
-    parameter HALT  = 3'b111;
+    parameter INITALIZE  = 4'b0000;
+    parameter FETCH_INSTRUCTION  = 4'b0001;
+    parameter FETCH_DECODE  = 4'b0010;
+    parameter EXECUTION    = 4'b0011;
+    parameter MEM    = 4'b0100;
+    parameter WRITEBACK    = 4'b0101;
+    parameter BRANCH_PAUSE = 4'b0110;
+    parameter BRANCH_PAUSE_END = 4'b0111;
+    parameter HALT  = 4'b1011;
     
    
    reg PC_s_temp, PC_we_temp, Instr_rd_temp, RegFile_s_temp, RegFile_we_temp, Imm_op_temp, ALU_s1_temp, ALU_s2_temp, DataMem_rd_temp, Data_op_temp, Data_s_temp, Bc_Op_temp, Data_we_temp; 
    reg [1:0] ALU_op_temp;      
- 
+    assign test_state = curr_state;
     always @(posedge clk or negedge rst) begin
         if(!rst)
             curr_state   <= INITALIZE;
@@ -55,7 +56,7 @@ module ControlUnit(
             curr_state   <= next_state;
             
     end
-    assign test_state = curr_state;
+    
     always @(posedge clk) begin
      case(curr_state)
         INITALIZE: begin
@@ -658,7 +659,7 @@ module ControlUnit(
                 // e.g. PC=(rs1==rs2) ? PC+sign_ext(imm) : PC+4
 
                     PC_s_temp = bc; // choose what to take base on bc
-                    PC_we_temp = 1'b1; // write pc 
+                    PC_we_temp = 1'b0; // write pc  1
                     Instr_rd_temp = 1'b0;
                     RegFile_s_temp = 1'b0; 
 
@@ -761,10 +762,10 @@ module ControlUnit(
             endcase
         end
         
-        BRANCH_PAUSE: begin
+        BRANCH_PAUSE_END: begin
 
             PC_s_temp = bc; // choose what to take base on bc
-            PC_we_temp = 1'b0; // write pc 
+            PC_we_temp = 1'b1; // write pc 
             Instr_rd_temp = 1'b0;
             RegFile_s_temp = 1'b0; 
 
@@ -869,10 +870,16 @@ always @(*) begin
             else
                 next_state = HALT;
          
+         
+         
+         // pause for branch 
          BRANCH_PAUSE: 
             if(!rst) next_state = INITALIZE;
+            else  next_state = BRANCH_PAUSE_END;
+            
+        BRANCH_PAUSE_END:
+            if(!rst) next_state = INITALIZE;
             else  next_state = FETCH_INSTRUCTION;
-              
         default:
             next_state = INITALIZE;
     endcase

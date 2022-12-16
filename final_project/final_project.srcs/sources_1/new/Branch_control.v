@@ -34,63 +34,122 @@ module Branch_control(
 
 always @(*) begin
     if (bc_enable) begin
-        if (funct3 == 3'b000) begin
-            if (operand1 - operand2 == 0)
-                bc_out <= 1;
-            else
-                bc_out <= 0; 
-        end
-        else if (funct3 == 3'b001) begin
-            if (operand1 - operand2 != 0)
-                bc_out <= 1;
-            else
-                bc_out <= 0; 
-        end
-
-        else if (funct3 == 3'b100) begin
-            if (operand1[31] == 0 && operand2[31] == 1)
-                bc_out <= 0;
-            else if (operand1[31] == 1 && operand2[31] == 0)
-                bc_out <= 1;
-            else begin
-                if (operand1 - operand2 < 0)
+        case(funct3)
+            3'b000: begin 
+                if (operand1 - operand2 == 0)
                     bc_out <= 1;
-                else 
-                    bc_out <= 0;
-            end
+                else
+                    bc_out <= 0; 
+            end 
+           
+            3'b001 :begin 
+                if (operand1 - operand2 != 0)
+                    bc_out <= 1;
+                else
+                    bc_out <= 0; 
+            end 
             
-        end
-
-        else if (funct3 == 3'b101) begin
-            if (operand1[31] == 0 && operand2[31] == 1)
-                bc_out <= 1;
-            else if (operand1[31] == 1 && operand2[31] == 0)
-                bc_out <= 0;
-            else begin
+            3'b100: begin 
+                if (operand1[31] == 0 && operand2[31] == 1)
+                    bc_out <= 0;
+                else if (operand1[31] == 1 && operand2[31] == 0)
+                    bc_out <= 1;
+                else begin
+                    if (operand1 - operand2 < 0)
+                        bc_out <= 1;
+                    else 
+                        bc_out <= 0;
+                end
+            end 
+            
+            3'b101: begin 
+                if (operand1[31] == 0 && operand2[31] == 1)
+                    bc_out <= 1;
+                else if (operand1[31] == 1 && operand2[31] == 0)
+                    bc_out <= 0;
+                else begin
+                    if (operand1 - operand2 >= 0)
+                        bc_out <= 1;
+                    else 
+                        bc_out <= 0;
+                end
+            end 
+            
+            3'b110: begin 
                 if (operand1 - operand2 >= 0)
                     bc_out <= 1;
-                else 
-                    bc_out <= 0;
-            end
-        end
-        else if (funct3 == 3'b110) begin
-            if (operand1 - operand2 >= 0)
-                bc_out <= 1;
-            else
-                bc_out <= 0; 
-        end
-        else if (funct3 == 3'b111) begin
-            if (operand1 - operand2 >= 0)
-                bc_out <= 1;
-            else
-                bc_out <= 0; 
-        end
+                else
+                    bc_out <= 0; 
+            end 
+            
+            3'b111: begin
+                if (operand1 - operand2 >= 0)
+                    bc_out <= 1;
+                else
+                    bc_out <= 0; 
+            end 
+            
+            default :  bc_out <= 0;
+        endcase 
+       end
+  end 
+//        if (funct3 == 3'b000) begin
+//            if (operand1 - operand2 == 0)
+//                bc_out <= 1;
+//            else
+//                bc_out <= 0; 
+//        end
+//        else if (funct3 == 3'b001) begin
+//            if (operand1 - operand2 != 0)
+//                bc_out <= 1;
+//            else
+//                bc_out <= 0; 
+//        end
+
+//        else if (funct3 == 3'b100) begin
+//            if (operand1[31] == 0 && operand2[31] == 1)
+//                bc_out <= 0;
+//            else if (operand1[31] == 1 && operand2[31] == 0)
+//                bc_out <= 1;
+//            else begin
+//                if (operand1 - operand2 < 0)
+//                    bc_out <= 1;
+//                else 
+//                    bc_out <= 0;
+//            end
+            
+//        end
+
+//        else if (funct3 == 3'b101) begin
+//            if (operand1[31] == 0 && operand2[31] == 1)
+//                bc_out <= 1;
+//            else if (operand1[31] == 1 && operand2[31] == 0)
+//                bc_out <= 0;
+//            else begin
+//                if (operand1 - operand2 >= 0)
+//                    bc_out <= 1;
+//                else 
+//                    bc_out <= 0;
+//            end
+//        end
+//        else if (funct3 == 3'b110) begin
+//            if (operand1 - operand2 >= 0)
+//                bc_out <= 1;
+//            else
+//                bc_out <= 0; 
+//        end
+//        else if (funct3 == 3'b111) begin
+//            if (operand1 - operand2 >= 0)
+//                bc_out <= 1;
+//            else
+//                bc_out <= 0; 
+//        end
         
-        else 
-            bc_out <= 0;
-    end
+//        else 
+//            bc_out <= 0;
+//    end
         
-end
+
   
     
     

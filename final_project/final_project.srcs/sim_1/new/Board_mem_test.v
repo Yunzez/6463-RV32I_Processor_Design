@@ -68,8 +68,10 @@ wire [31:0] dmem_switch = Head.data.dmem[16'h100010];
 wire  [31:0] dmem [1023:0] = Head.data.dmem;
 wire [31:0] dmem_led = Head.data.dmem[16'h00100014];
 
-
-wire [2:0] state = Head.ControlUnit.test_state;
+wire [31:0] branchControl_operand1 = Head.Branch_control.operand1;
+wire [31:0] branchControl_operand2 = Head.Branch_control.operand2;
+wire bc_out =  Head.Branch_control.bc_out;
+wire [3:0] state = Head.ControlUnit.test_state;
 
 wire PC_we = Head.ControlUnit.PC_we;
 wire Instr_rd = Head.ControlUnit.Instr_rd;
