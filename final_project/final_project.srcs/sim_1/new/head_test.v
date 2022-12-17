@@ -132,9 +132,10 @@ always @(*) begin
     if(next_state  == 4'd2) round_count = round_count + 1;
 end 
 
-always @(*) begin
+
+
     
-    
+always @(round_count) begin    
     if(round_count == 6'd13) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for R-type");
         $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );

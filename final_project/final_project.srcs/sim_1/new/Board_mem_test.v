@@ -24,7 +24,7 @@ module Board_mem_test(
 
     );
     
-    parameter f = 200;                   //Mhz
+parameter f = 200;                   //Mhz
 parameter PERIOD = 1/(f*0.001);
 reg clk = 0;
 reg rst = 0;

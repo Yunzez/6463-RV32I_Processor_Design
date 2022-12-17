@@ -2,3 +2,6 @@ Running: xsim.dir/Board_mem_test_time_impl/xsimk.exe -simmode gui -wdb Board_mem
 Design successfully loaded
 Design Loading Memory Usage: 7996 KB (Peak: 7996 KB)
 Design Loading CPU Usage: 0 ms
+Simulation completed
+Simulation Memory Usage: 8900 KB (Peak: 8900 KB)
+Simulation CPU Usage: 15 ms
