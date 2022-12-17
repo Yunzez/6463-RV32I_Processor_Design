@@ -27,6 +27,8 @@ module Board(
     output wire [15:0] LED
     );
     reg unsigned [15:0] inter_clock;
+    
+    // clock divider for testing
     wire slowclock;
     always @(posedge CLK100MHZ) begin 
         inter_clock <= inter_clock + 1;
@@ -35,7 +37,7 @@ module Board(
 
     Head Head(
         .rst_n(btnU),
-        .clk(slowclock), 
+        .clk(CLK100MHZ), 
         .boardLEDs(LED),
         .boardSwitches(sw)
     );
