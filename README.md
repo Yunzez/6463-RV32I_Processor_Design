@@ -25,10 +25,35 @@
 <br></br>
 *Below is the data path of the CPU implementation*
 ![RISC-5_cpu](RISC-5_cpu.jpeg)
----
-<br></br>
 
+---
+
+**The Head (Top level file)**
+
+- Des: the top level file combined all the components together. All the muxes are implemented here as well. 
+
+- the Board.v connects the board with the Head file
+
+**Head Testbench**:  *head_test.v* is
+    the testbench of the Head, a testbench of the whole program. The testbench instructions are written in *instruction.mem* and the testbench executes them in order to see if all types of command can be carried out correctly. The instructions.mem file contains all the commands that the CPU can execute on. 
+
+- **To run this testbench**: 
+    change the memory file to *instruction.mem* in *intruction.v* file. 
+
+---
+**Other testbenches**: Board_mem_test is a test that go through all the whole commands regardless of the commands, it's a general test to observe the overall functionality of the processer.    
+
+---
+**Memory Files** 
+- **board.mem**: runs a simple *fibonacci sequence* with initial value 1 and 2, user can decide the number of loops it runs using the switches on the board. 
+- **complexity_branch.mem**: runs a simple function that test branching that does not branch
+- **complexity_branch_two.mem**: runs a simple function that test branching that does branch
+- **complexity_one.mem**: simply delivers user switch input to LEDs 
+- **complexity_two.mem**: delivers user swithc inputs to LEDS with left shift one bit
+
+---
 ***module***
+
 1. ALU 
 
 - Des:
@@ -104,12 +129,5 @@ The testbench testing the memory program by storing data into different place by
 - Des: data extension extends the output from data memory
 
 ---
-<br></br>
-**The Head (Top level file)**
-
-- Des: the top level file combined all the components together. All the muxes are implemented here as well. 
-
-**Testbench**: 
-    the testbench of the Head, top level file is a testbench of the whole program. The testbench instructions are written in instructions.mem and the testbench executes them in order to see if all types of command can be carried out correctly. The instructions.mem file contains all the commands that the CPU can execute on. 
 
 
