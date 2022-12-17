@@ -32,7 +32,7 @@ reg reset_mem = 0;
 
 
 wire [15:0] placeholderLEDs;
-wire [15:0] placeholderSwitches = 16'b11;
+wire [15:0] placeholderSwitches = 16'hfd5e;
 
 Head Head(
     .clk        (clk    ), 

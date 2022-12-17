@@ -10,7 +10,7 @@ module Instruction
 reg [31:0] rom_words[0:511];
 
 initial begin
-	 $readmemh ("instruction.mem", rom_words);
+	 $readmemh ("rc5_whole.mem", rom_words);
 end 
 wire [31:0] addr1 ;
 assign addr1 = addr_in & (~(32'h01000000));
@@ -20,7 +20,7 @@ always @(posedge clk)
 begin
     if(read_instr ) begin
        instr_out <= rom_words[addr_word];
-       test_addr <= addr_word;
+       test_addr <= addr_word; 
     end 
 end 
 endmodule
