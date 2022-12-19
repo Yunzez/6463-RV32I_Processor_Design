@@ -146,7 +146,7 @@ module ContolUnit_test();
                 $display(opcode_t," ", bc_t," ", PC_s_t," ", PC_we_t," ", Instr_rd_t," ", RegFile_s_t," ", RegFile_we_t," ", Imm_op_t," ", ALU_s1_t," ", ALU_s2_t," ", ALU_op_t," ", DataMem_rd_t," ", Data_op_t," ", Data_s_t," ", Bc_Op_t," ", Data_we_t);
                 testFailNum = testFailNum + 1;
 
-                $stop;
+                
              end
              
              else if (

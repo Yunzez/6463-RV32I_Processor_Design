@@ -52,24 +52,22 @@ module alu_test();
         
         
         while( !$feof(fp)) begin 
-            #2;
+            #10;
             
-            $fscanf(fp, "%b%b%b%b %b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b %b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b %b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b%b\n", file_arg1, file_arg2, file_arg3, file_arg4);
+            $fscanf(fp, "%b %b %b %b", file_arg1, file_arg2, file_arg3, file_arg4);
             
             alu_ctrl = file_arg1;
             operand1 = file_arg2;
             operand2 = file_arg3;
             
             
-            #1;
+            #10;
             $display(file_arg4);
             $display(alu_out);
             
 
             if(alu_out != file_arg4) begin
                 $display("test failed");
-                $fclose(fp);
-                $stop;
             end
         end
         $display("Test finished successfully");

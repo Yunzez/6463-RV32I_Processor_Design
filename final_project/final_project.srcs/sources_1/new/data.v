@@ -94,10 +94,7 @@ module data(
             end
         endcase 
     end
-//    assign dmem_in_0 = we[0] ? dmem_in[7:0] : dmem[dmem_addr][7:0];
-//    assign dmem_in_1 = we[1] ? dmem_in[15:8] : dmem[dmem_addr][15:8];
-//    assign dmem_in_2 = we[2] ? dmem_in[23:16] : dmem[dmem_addr][23:16];
-//    assign dmem_in_3 = we[3] ? dmem_in[31:24] : dmem[dmem_addr][31:24];
+    
     assign dmem_tmp  = {dmem_in_3_temp,dmem_in_2_temp,dmem_in_1_temp,dmem_in_0_temp};
 
     

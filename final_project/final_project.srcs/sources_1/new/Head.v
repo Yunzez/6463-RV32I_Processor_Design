@@ -157,9 +157,6 @@
         .rst                         (rst_n              ),
         .read_instr                  (Instr_rd),
         .addr_in(PC_outputAddress),
-        
-        
-        .test_addr(instr_mem_addr_test),
 
         // output
         .instr_out(mem_instr_out)

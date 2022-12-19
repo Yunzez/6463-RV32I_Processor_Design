@@ -138,7 +138,6 @@ end
 always @(round_count) begin    
     if(round_count == 6'd13) begin
         $display("current cycle %d", round_count - 1'b1, "enetering check for R-type");
-        $display("values %d", r1, " %d", r2, " %d", r3," %d", r4," %d", r5," %d", r6," %d", r7," %d", r8," %d", r9," %d", r10," %d", r11," %d", r12 );
         if(r3 != signed_op1 + signed_op2)                       $display("Test case 'add' failed, actual value %d", r3, "  operand value: %d", operand1, "%d", operand2); // add x3,x1,x2
         if(r4 != signed_op1 - signed_op2)                       $display("Test case 'sub' failed,  operand value: 1, 2  %d", operand1, "%d", operand2, "expected %d", signed_op1 + signed_op2); // sub x4,x1,x2
         if(r5 != signed_op1 << signed_op2[4:0])                 $display("Test case 'sll' failed"); // sll x5,x1,x2 

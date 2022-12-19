@@ -37,7 +37,7 @@ module Board(
 
     Head Head(
         .rst_n(btnU),
-        .clk(CLK100MHZ), 
+        .clk(slowclock), 
         .boardLEDs(LED),
         .boardSwitches(sw)
     );
