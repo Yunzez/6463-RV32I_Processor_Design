@@ -15,7 +15,7 @@
 <br></br>
 
 ## the spec of this project can be seen in [Here](Project_2022_spec.pdf)
-
+## the report of this project can be seen [Here](https://docs.google.com/document/d/1FXe9FPpNVVNkHWFsvAbTHbC7hrTnMCA-RVr0LdoQibg/edit?usp=sharing)
 <br></br>
 
 ## You can also checkout the bitstream file that is generated specifically for *BASYS3 Artix-7 FPGA (XC7A35T-ICPG236C)* [Here](https://github.com/Yunzez/NYU-6463-RV32I_Processor_Design/blob/main/final_project/final_project.runs/impl_1/Board.bit)
